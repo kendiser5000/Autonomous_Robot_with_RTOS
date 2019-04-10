@@ -11,7 +11,16 @@
 ".\objects\can.o"
 ".\objects\can0.o"
 ".\objects\interrupt.o"
+".\objects\tof.o"
 ".\objects\startup.o"
+".\objects\vl53l0x.o"
+".\objects\vl53l0x_i2c.o"
+".\objects\vl53l0x_platform.o"
+".\objects\vl53l0x_api_strings.o"
+".\objects\vl53l0x_api_ranging.o"
+".\objects\vl53l0x_api_core.o"
+".\objects\vl53l0x_api_calibration.o"
+".\objects\vl53l0x_api.o"
 --library_type=microlib --ro-base 0x00000000 --entry 0x00000000 --rw-base 0x20000000 --entry Reset_Handler --first __Vectors --strict --summary_stderr --info summarysizes --map --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
 --list ".\Listings\RTOS-lab1.map" -o .\Objects\RTOS-lab1.axf
