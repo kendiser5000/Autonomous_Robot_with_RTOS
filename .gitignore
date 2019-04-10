@@ -1,0 +1,23 @@
+#ignore everything
+lab-3/Objects
+lab-3/Listings
+*.bak
+*.dep
+*.o
+*.d
+*.Sijin
+*.Sikenderali Ashraf
+
+# do not ignore
+!*.s
+!*.c
+!*.h
+!*.docx
+!*.sch
+!*.pcb
+!*.pdf
+!*.txt
+!*.xlsx
+!lab-3
+
+
