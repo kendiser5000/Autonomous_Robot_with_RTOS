@@ -1,5 +1,9 @@
 /** @file Ping.c
  * @brief Drivers for Ping Sensor
+    PING PORTB CONNECTIONS:
+      Gnd: GND
+      5V: 5V
+      Signal: PB6
  * @date 4/9/2018
  * @author Sikender Ashraf
  */
