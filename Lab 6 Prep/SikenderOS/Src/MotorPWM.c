@@ -10,6 +10,12 @@
  */
 
 #include "tm4c123gh6pm.h"
+#include <stdint.h>
+
+#define PB4		(*(volatile uint32_t *)0x40005040)
+#define PB5		(*(volatile uint32_t *)0x40005080)
+#define PB6		(*(volatile uint32_t *)0x40005100)
+#define PB7		(*(volatile uint32_t *)0x40005200)
 
  /** MotorRight_InitA
   * @brief Initialize A+ port for H Bridge Motor Driver (PB6), 80 MHz/64 = 1.25 MHz,  PB7 controls direction,

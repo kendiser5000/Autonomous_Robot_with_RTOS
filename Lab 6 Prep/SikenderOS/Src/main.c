@@ -32,6 +32,9 @@
 #include <stdbool.h>
 #include "Timer3.h"
 #include "can0.h"
+#include "Ping.h"
+#include "Servo.h"
+#include "MotorPWM.h"
 
 
 
@@ -43,7 +46,8 @@
 #define PF1                     (*((volatile uint32_t *)0x40025008))
 #define PF2                     (*((volatile uint32_t *)0x40025010))
 
-
+#define SERVO_PERIOD 	1
+#define SERVO_DUTY		1
 
 void DisableInterrupts(void); // Disable interrupts
 void EnableInterrupts(void);  // Enable interrupts
@@ -107,12 +111,15 @@ int main(void){    // realmain
 	//********initialize communication channels
 	OS_MailBox_Init();
 	OS_Fifo_Init(128);    // ***note*** 4 is not big enough*****//128
-
+	
+	Servo_Initilization(SERVO_PERIOD, SERVO_DUTY);
+	
+	
 	CAN0_Open();
 	NumCreated = 0 ;
 	// create initial foreground threads
 	NumCreated += OS_AddThread(&WrapInterpreter,128,2); //2
-	
+
 
 	OS_Launch(TIME_2MS); // doesn't return, interrupts enabled in here
 	return 0;            // this never executes

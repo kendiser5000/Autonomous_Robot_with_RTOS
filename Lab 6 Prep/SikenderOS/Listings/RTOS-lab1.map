@@ -1,4 +1,4 @@
-Component: ARM Compiler 5.06 update 6 (build 750) Tool: armlink [4d35ed]
+ARM Linker, 5.03 [Build 76] [MDK-ARM Lite]
 
 ==============================================================================
 
@@ -11,6 +11,7 @@ Section Cross References
     main.o(i.main) refers to main.o(i.GPIO_PortF_Init) for GPIO_PortF_Init
     main.o(i.main) refers to os.o(i.OS_MailBox_Init) for OS_MailBox_Init
     main.o(i.main) refers to os.o(i.OS_Fifo_Init) for OS_Fifo_Init
+    main.o(i.main) refers to servo.o(i.Servo_Initilization) for Servo_Initilization
     main.o(i.main) refers to can0.o(i.CAN0_Open) for CAN0_Open
     main.o(i.main) refers to os.o(i.OS_AddThread) for OS_AddThread
     main.o(i.main) refers to os.o(i.OS_Launch) for OS_Launch
@@ -329,6 +330,7 @@ Section Cross References
     can.o(i.CANStatusGet) refers to can.o(i.CANRegWrite) for CANRegWrite
     can0.o(i.CAN0_CheckMail) refers to can0.o(.data) for MailFlag
     can0.o(i.CAN0_GetMail) refers to os.o(i.OS_Wait) for OS_Wait
+    can0.o(i.CAN0_GetMail) refers to os.o(i.OS_Fifo_Get) for OS_Fifo_Get
     can0.o(i.CAN0_GetMail) refers to can0.o(.data) for MailFlag
     can0.o(i.CAN0_GetMailNonBlock) refers to os.o(i.OS_Wait) for OS_Wait
     can0.o(i.CAN0_GetMailNonBlock) refers to os.o(i.OS_Signal) for OS_Signal
@@ -336,6 +338,7 @@ Section Cross References
     can0.o(i.CAN0_Handler) refers to can.o(i.CANIntStatus) for CANIntStatus
     can0.o(i.CAN0_Handler) refers to can.o(i.CANStatusGet) for CANStatusGet
     can0.o(i.CAN0_Handler) refers to can.o(i.CANMessageGet) for CANMessageGet
+    can0.o(i.CAN0_Handler) refers to os.o(i.OS_Fifo_Put) for OS_Fifo_Put
     can0.o(i.CAN0_Handler) refers to os.o(i.OS_Signal) for OS_Signal
     can0.o(i.CAN0_Handler) refers to can.o(i.CANIntClear) for CANIntClear
     can0.o(i.CAN0_Handler) refers to can0.o(.data) for RCVData
@@ -355,9 +358,22 @@ Section Cross References
     interrupt.o(i.IntRegister) refers to interrupt.o(vtable) for g_pfnRAMVectors
     interrupt.o(i.IntUnregister) refers to interrupt.o(i.IntDefaultHandler) for IntDefaultHandler
     interrupt.o(i.IntUnregister) refers to interrupt.o(vtable) for g_pfnRAMVectors
+    ping.o(i.GPIOPortB_Handler) refers to os.o(i.OS_Time) for OS_Time
+    ping.o(i.GPIOPortB_Handler) refers to os.o(i.OS_TimeDifference) for OS_TimeDifference
+    ping.o(i.GPIOPortB_Handler) refers to os.o(i.OS_AddThread) for OS_AddThread
+    ping.o(i.GPIOPortB_Handler) refers to ping.o(.data) for time
+    ping.o(i.Ping_Initilizations) refers to ping.o(i.Ping_PORTB_Initilization) for Ping_PORTB_Initilization
+    ping.o(i.Ping_PORTB_Initilization) refers to startup.o(.text) for StartCritical
+    ping.o(i.Ping_PORTB_Initilization) refers to ping.o(.data) for PING_PORTB_PeriodicTask
+    ping.o(i.Ping_PORTB_Signal) refers to startup.o(.text) for StartCritical
+    ping.o(i.Ping_PORTB_Signal) refers to os.o(i.OS_Kill) for OS_Kill
+    ping.o(i.Ping_PORTB_Start) refers to os.o(i.OS_AddThread) for OS_AddThread
+    ping.o(i.Ping_PORTB_Start) refers to ping.o(i.Ping_PORTB_Signal) for Ping_PORTB_Signal
+    servo.o(i.Servo_Turn) refers to servo.o(i.Servo_DutyCycle) for Servo_DutyCycle
     startup.o(RESET) refers to startup.o(STACK) for StackMem
     startup.o(RESET) refers to osasm.o(.text) for PendSV_Handler
     startup.o(RESET) refers to os.o(i.SysTick_Handler) for SysTick_Handler
+    startup.o(RESET) refers to ping.o(i.GPIOPortB_Handler) for GPIOPortB_Handler
     startup.o(RESET) refers to uart.o(i.UART0_Handler) for UART0_Handler
     startup.o(RESET) refers to adc.o(i.ADC0Seq3_Handler) for ADC0Seq3_Handler
     startup.o(RESET) refers to os.o(i.Timer0A_Handler) for Timer0A_Handler
@@ -391,10 +407,10 @@ Removing Unused input sections from the image.
 
     Removing main.o(i.PortE_Init), (104 bytes).
     Removing main.o(i.UserTask), (64 bytes).
-    Removing adc.o(i.ADC0_InitTimer2ATriggerSeq3), (1056 bytes).
+    Removing adc.o(i.ADC0_InitTimer2ATriggerSeq3), (1060 bytes).
     Removing adc.o(i.ADC_Collect), (40 bytes).
     Removing adc.o(i.ADC_In), (44 bytes).
-    Removing adc.o(i.ADC_InitSWTriggerSeq3), (1004 bytes).
+    Removing adc.o(i.ADC_InitSWTriggerSeq3), (1008 bytes).
     Removing adc.o(i.ADC_Open), (6 bytes).
     Removing adc.o(i.ADC_Status), (20 bytes).
     Removing os.o(i.Jitter), (104 bytes).
@@ -404,7 +420,6 @@ Removing Unused input sections from the image.
     Removing os.o(i.OS_AddThreads), (116 bytes).
     Removing os.o(i.OS_ClearMsTime), (12 bytes).
     Removing os.o(i.OS_Fifo_Get), (76 bytes).
-    Removing os.o(i.OS_Fifo_Put), (72 bytes).
     Removing os.o(i.OS_Fifo_Size), (12 bytes).
     Removing os.o(i.OS_Id), (12 bytes).
     Removing os.o(i.OS_MailBox_Recv), (28 bytes).
@@ -415,7 +430,7 @@ Removing Unused input sections from the image.
     Removing os.o(i.PeriodicThread1_Init), (120 bytes).
     Removing os.o(i.PeriodicThread2_Init), (116 bytes).
     Removing os.o(i.SW1_Init), (236 bytes).
-    Removing os.o(i.SW2_Init), (248 bytes).
+    Removing os.o(i.SW2_Init), (244 bytes).
     Removing st7735.o(i.Output_Clear), (10 bytes).
     Removing st7735.o(i.Output_Color), (12 bytes).
     Removing st7735.o(i.Output_Init), (16 bytes).
@@ -424,7 +439,7 @@ Removing Unused input sections from the image.
     Removing st7735.o(i.ST7735_Color565), (24 bytes).
     Removing st7735.o(i.ST7735_DivideScreen), (18 bytes).
     Removing st7735.o(i.ST7735_DrawBitmap), (288 bytes).
-    Removing st7735.o(i.ST7735_DrawChar), (272 bytes).
+    Removing st7735.o(i.ST7735_DrawChar), (268 bytes).
     Removing st7735.o(i.ST7735_DrawFastVLine), (124 bytes).
     Removing st7735.o(i.ST7735_InitB), (52 bytes).
     Removing st7735.o(i.ST7735_InvertDisplay), (22 bytes).
@@ -455,16 +470,16 @@ Removing Unused input sections from the image.
     Removing can.o(i.CANIntDisable), (26 bytes).
     Removing can.o(i.CANIntRegister), (30 bytes).
     Removing can.o(i.CANIntUnregister), (26 bytes).
-    Removing can.o(i.CANMessageClear), (68 bytes).
+    Removing can.o(i.CANMessageClear), (66 bytes).
     Removing can.o(i.CANRetryGet), (24 bytes).
     Removing can.o(i.CANRetrySet), (36 bytes).
     Removing can0.o(i.CAN0_CheckMail), (12 bytes).
-    Removing can0.o(i.CAN0_GetMail), (44 bytes).
+    Removing can0.o(i.CAN0_GetMail), (40 bytes).
     Removing can0.o(i.CAN0_GetMailNonBlock), (52 bytes).
     Removing can0.o(i.CAN0_SendData), (26 bytes).
     Removing interrupt.o(i.IntDefaultHandler), (4 bytes).
     Removing interrupt.o(i.IntPendClear), (88 bytes).
-    Removing interrupt.o(i.IntPendSet), (104 bytes).
+    Removing interrupt.o(i.IntPendSet), (108 bytes).
     Removing interrupt.o(i.IntPriorityGet), (28 bytes).
     Removing interrupt.o(i.IntPriorityGroupingGet), (44 bytes).
     Removing interrupt.o(i.IntPriorityGroupingSet), (28 bytes).
@@ -473,9 +488,23 @@ Removing Unused input sections from the image.
     Removing interrupt.o(i.IntUnregister), (20 bytes).
     Removing interrupt.o(.constdata), (104 bytes).
     Removing interrupt.o(vtable), (284 bytes).
+    Removing motorpwm.o(i.MotorLeft_DutyA), (32 bytes).
+    Removing motorpwm.o(i.MotorLeft_DutyB), (32 bytes).
+    Removing motorpwm.o(i.MotorLeft_InitA), (268 bytes).
+    Removing motorpwm.o(i.MotorLeft_InitB), (268 bytes).
+    Removing motorpwm.o(i.MotorRight_DutyA), (32 bytes).
+    Removing motorpwm.o(i.MotorRight_DutyB), (32 bytes).
+    Removing motorpwm.o(i.MotorRight_InitA), (240 bytes).
+    Removing motorpwm.o(i.MotorRight_InitB), (244 bytes).
+    Removing ping.o(i.Ping_Initilizations), (12 bytes).
+    Removing ping.o(i.Ping_PORTB_Initilization), (220 bytes).
+    Removing ping.o(i.Ping_PORTB_Signal), (164 bytes).
+    Removing ping.o(i.Ping_PORTB_Start), (20 bytes).
+    Removing servo.o(i.Servo_DutyCycle), (12 bytes).
+    Removing servo.o(i.Servo_Turn), (60 bytes).
     Removing startup.o(HEAP), (0 bytes).
 
-85 unused section(s) (total 7884 bytes) removed from the image.
+98 unused section(s) (total 9446 bytes) removed from the image.
 
 ==============================================================================
 
@@ -486,26 +515,29 @@ Image Symbol Table
     Symbol Name                              Value     Ov Type        Size  Object(Section)
 
     RESET                                    0x00000000   Section      644  startup.o(RESET)
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry2.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry5.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7a.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10b.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8a.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10a.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9b.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8b.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry5.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry2.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry.o ABSOLUTE
     CMSIS\startup.s                          0x00000000   Number         0  startup.o ABSOLUTE
     Src\ADC.c                                0x00000000   Number         0  adc.o ABSOLUTE
     Src\Interpreter.c                        0x00000000   Number         0  interpreter.o ABSOLUTE
+    Src\MotorPWM.c                           0x00000000   Number         0  motorpwm.o ABSOLUTE
     Src\OS.c                                 0x00000000   Number         0  os.o ABSOLUTE
     Src\OSasm.s                              0x00000000   Number         0  osasm.o ABSOLUTE
     Src\PLL.c                                0x00000000   Number         0  pll.o ABSOLUTE
+    Src\Ping.c                               0x00000000   Number         0  ping.o ABSOLUTE
     Src\ST7735.c                             0x00000000   Number         0  st7735.o ABSOLUTE
+    Src\Servo.c                              0x00000000   Number         0  servo.o ABSOLUTE
     Src\Timer2.c                             0x00000000   Number         0  timer2.o ABSOLUTE
     Src\UART.c                               0x00000000   Number         0  uart.o ABSOLUTE
     Src\can.c                                0x00000000   Number         0  can.o ABSOLUTE
@@ -532,149 +564,156 @@ Image Symbol Table
     i.AddBlockedToSemaphore                  0x00000354   Section        0  os.o(i.AddBlockedToSemaphore)
     i.BlockTCB                               0x00000388   Section        0  os.o(i.BlockTCB)
     i.CAN0_Handler                           0x000003c4   Section        0  can0.o(i.CAN0_Handler)
-    i.CAN0_Open                              0x00000444   Section        0  can0.o(i.CAN0_Open)
-    i.CAN0_Setup_Message_Object              0x0000051c   Section        0  can0.o(i.CAN0_Setup_Message_Object)
-    CAN0_Setup_Message_Object                0x0000051d   Thumb Code    44  can0.o(i.CAN0_Setup_Message_Object)
-    i.CANBitRateSet                          0x0000054c   Section        0  can.o(i.CANBitRateSet)
-    i.CANDataRegRead                         0x000005e0   Section        0  can.o(i.CANDataRegRead)
-    CANDataRegRead                           0x000005e1   Thumb Code    54  can.o(i.CANDataRegRead)
-    i.CANDataRegWrite                        0x00000616   Section        0  can.o(i.CANDataRegWrite)
-    CANDataRegWrite                          0x00000617   Thumb Code    54  can.o(i.CANDataRegWrite)
-    i.CANEnable                              0x0000064c   Section        0  can.o(i.CANEnable)
-    i.CANInit                                0x00000664   Section        0  can.o(i.CANInit)
-    i.CANIntClear                            0x000006fe   Section        0  can.o(i.CANIntClear)
-    i.CANIntEnable                           0x0000074e   Section        0  can.o(i.CANIntEnable)
-    i.CANIntNumberGet                        0x00000768   Section        0  can.o(i.CANIntNumberGet)
-    CANIntNumberGet                          0x00000769   Thumb Code    44  can.o(i.CANIntNumberGet)
-    i.CANIntStatus                           0x00000798   Section        0  can.o(i.CANIntStatus)
-    i.CANMessageGet                          0x000007d4   Section        0  can.o(i.CANMessageGet)
-    i.CANMessageSet                          0x0000098a   Section        0  can.o(i.CANMessageSet)
-    i.CANRegRead                             0x00000b40   Section        0  can.o(i.CANRegRead)
-    CANRegRead                               0x00000b41   Thumb Code    72  can.o(i.CANRegRead)
-    i.CANRegWrite                            0x00000b8c   Section        0  can.o(i.CANRegWrite)
-    CANRegWrite                              0x00000b8d   Thumb Code    24  can.o(i.CANRegWrite)
-    i.CANStatusGet                           0x00000ba4   Section        0  can.o(i.CANStatusGet)
-    i.Delay1ms                               0x00000c20   Section        0  st7735.o(i.Delay1ms)
-    i.GPIOPortF_Handler                      0x00000c40   Section        0  os.o(i.GPIOPortF_Handler)
-    i.GPIO_PortF_Init                        0x00000d08   Section        0  main.o(i.GPIO_PortF_Init)
-    i.IO_Init                                0x00000d7c   Section        0  os.o(i.IO_Init)
-    i.IntDisable                             0x00000de8   Section        0  interrupt.o(i.IntDisable)
-    i.IntEnable                              0x00000e68   Section        0  interrupt.o(i.IntEnable)
-    i.Interpreter                            0x00000ee8   Section        0  interpreter.o(i.Interpreter)
-    i.LinkTCB                                0x00000fc4   Section        0  os.o(i.LinkTCB)
-    i.OS_AddPriorityThread                   0x00001008   Section        0  os.o(i.OS_AddPriorityThread)
-    i.OS_AddThread                           0x0000106c   Section        0  os.o(i.OS_AddThread)
-    i.OS_Fifo_Init                           0x000011a0   Section        0  os.o(i.OS_Fifo_Init)
-    i.OS_Init                                0x000011d0   Section        0  os.o(i.OS_Init)
-    i.OS_InitSemaphore                       0x0000120c   Section        0  os.o(i.OS_InitSemaphore)
-    i.OS_Kill                                0x00001228   Section        0  os.o(i.OS_Kill)
-    i.OS_Launch                              0x00001390   Section        0  os.o(i.OS_Launch)
-    i.OS_MailBox_Init                        0x000013d8   Section        0  os.o(i.OS_MailBox_Init)
-    i.OS_Scheduler                           0x000013f4   Section        0  os.o(i.OS_Scheduler)
-    i.OS_Signal                              0x00001490   Section        0  os.o(i.OS_Signal)
-    i.OS_Sleep                               0x000014b4   Section        0  os.o(i.OS_Sleep)
-    i.OS_Suspend                             0x000014f0   Section        0  os.o(i.OS_Suspend)
-    i.OS_Time                                0x00001508   Section        0  os.o(i.OS_Time)
-    i.OS_TimeDifference                      0x00001514   Section        0  os.o(i.OS_TimeDifference)
-    i.OS_Wait                                0x00001526   Section        0  os.o(i.OS_Wait)
-    i.OutCRLF                                0x0000154a   Section        0  uart.o(i.OutCRLF)
-    i.PLL_Init                               0x0000155c   Section        0  pll.o(i.PLL_Init)
-    i.RemoveBlockedFromSemaphore             0x000015d8   Section        0  os.o(i.RemoveBlockedFromSemaphore)
-    i.RxFifo_Get                             0x000015e4   Section        0  uart.o(i.RxFifo_Get)
-    i.RxFifo_Init                            0x00001620   Section        0  uart.o(i.RxFifo_Init)
-    i.RxFifo_Put                             0x00001644   Section        0  uart.o(i.RxFifo_Put)
-    i.RxFifo_Size                            0x00001680   Section        0  uart.o(i.RxFifo_Size)
-    i.ST7735_DrawCharS                       0x00001698   Section        0  st7735.o(i.ST7735_DrawCharS)
-    i.ST7735_DrawFastHLine                   0x00001790   Section        0  st7735.o(i.ST7735_DrawFastHLine)
-    i.ST7735_DrawPixel                       0x0000180c   Section        0  st7735.o(i.ST7735_DrawPixel)
-    i.ST7735_DrawString                      0x00001854   Section        0  st7735.o(i.ST7735_DrawString)
-    i.ST7735_FillRect                        0x000018ac   Section        0  st7735.o(i.ST7735_FillRect)
-    i.ST7735_FillScreen                      0x00001958   Section        0  st7735.o(i.ST7735_FillScreen)
-    i.ST7735_InitR                           0x0000197c   Section        0  st7735.o(i.ST7735_InitR)
-    i.ST7735_OutChar                         0x00001a04   Section        0  st7735.o(i.ST7735_OutChar)
-    i.ST7735_OutString                       0x00001ad8   Section        0  st7735.o(i.ST7735_OutString)
-    i.ST7735_SetCursor                       0x00001af0   Section        0  st7735.o(i.ST7735_SetCursor)
-    i.SW1_Debounce                           0x00001b10   Section        0  os.o(i.SW1_Debounce)
-    i.SW2_Debounce                           0x00001b3c   Section        0  os.o(i.SW2_Debounce)
-    i.SetInitialStack                        0x00001b68   Section        0  os.o(i.SetInitialStack)
-    i.SetThreads                             0x00001c54   Section        0  os.o(i.SetThreads)
-    i.SysTick_Handler                        0x00001ca0   Section        0  os.o(i.SysTick_Handler)
-    i.SysTick_Init                           0x00001cb4   Section        0  os.o(i.SysTick_Init)
-    i.Timer0A_Handler                        0x00001ce4   Section        0  os.o(i.Timer0A_Handler)
-    i.Timer0A_Init                           0x00001d00   Section        0  os.o(i.Timer0A_Init)
-    i.Timer1A_Handler                        0x00001d60   Section        0  os.o(i.Timer1A_Handler)
-    i.Timer2A_Handler                        0x00001df8   Section        0  timer2.o(i.Timer2A_Handler)
-    i.Timer3A_Handler                        0x00001e10   Section        0  os.o(i.Timer3A_Handler)
-    i.Timer3A_Init                           0x00001ea0   Section        0  os.o(i.Timer3A_Init)
-    i.Timer4A_Handler                        0x00001f04   Section        0  os.o(i.Timer4A_Handler)
-    i.TxFifo_Get                             0x00001f98   Section        0  uart.o(i.TxFifo_Get)
-    i.TxFifo_Init                            0x00001fd4   Section        0  uart.o(i.TxFifo_Init)
-    i.TxFifo_Put                             0x00001ff8   Section        0  uart.o(i.TxFifo_Put)
-    i.TxFifo_Size                            0x00002034   Section        0  uart.o(i.TxFifo_Size)
-    i.UART0_Handler                          0x0000204c   Section        0  uart.o(i.UART0_Handler)
-    i.UART_InChar                            0x000020a4   Section        0  uart.o(i.UART_InChar)
-    i.UART_Init                              0x000020b8   Section        0  uart.o(i.UART_Init)
-    i.UART_OutChar                           0x0000218c   Section        0  uart.o(i.UART_OutChar)
-    i.UART_OutString                         0x000021d0   Section        0  uart.o(i.UART_OutString)
-    i.UnBlockTCB                             0x000021e8   Section        0  os.o(i.UnBlockTCB)
-    i.UnLinkTCB                              0x00002200   Section        0  os.o(i.UnLinkTCB)
-    i.WrapInterpreter                        0x00002230   Section        0  main.o(i.WrapInterpreter)
-    i.__scatterload_copy                     0x00002238   Section       14  handlers.o(i.__scatterload_copy)
-    i.__scatterload_null                     0x00002246   Section        2  handlers.o(i.__scatterload_null)
-    i.__scatterload_zeroinit                 0x00002248   Section       14  handlers.o(i.__scatterload_zeroinit)
-    i.commandList                            0x00002256   Section        0  st7735.o(i.commandList)
-    commandList                              0x00002257   Thumb Code    86  st7735.o(i.commandList)
-    i.commonInit                             0x000022ac   Section        0  st7735.o(i.commonInit)
-    commonInit                               0x000022ad   Thumb Code   342  st7735.o(i.commonInit)
-    i.copyHardwareToSoftware                 0x00002434   Section        0  uart.o(i.copyHardwareToSoftware)
-    copyHardwareToSoftware                   0x00002435   Thumb Code    36  uart.o(i.copyHardwareToSoftware)
-    i.copySoftwareToHardware                 0x0000245c   Section        0  uart.o(i.copySoftwareToHardware)
-    copySoftwareToHardware                   0x0000245d   Thumb Code    38  uart.o(i.copySoftwareToHardware)
-    i.main                                   0x00002488   Section        0  main.o(i.main)
-    i.newLine                                0x000024d0   Section        0  interpreter.o(i.newLine)
-    i.pushColor                              0x000024d8   Section        0  st7735.o(i.pushColor)
-    pushColor                                0x000024d9   Thumb Code    18  st7735.o(i.pushColor)
-    i.setAddrWindow                          0x000024ec   Section        0  st7735.o(i.setAddrWindow)
-    setAddrWindow                            0x000024ed   Thumb Code   106  st7735.o(i.setAddrWindow)
-    i.writecommand                           0x00002560   Section        0  st7735.o(i.writecommand)
-    writecommand                             0x00002561   Thumb Code    40  st7735.o(i.writecommand)
-    i.writedata                              0x00002590   Section        0  st7735.o(i.writedata)
-    writedata                                0x00002591   Thumb Code    26  st7735.o(i.writedata)
-    .constdata                               0x000025b4   Section     2018  st7735.o(.constdata)
-    Font                                     0x000025b4   Data        1275  st7735.o(.constdata)
-    Bcmd                                     0x00002aaf   Data         103  st7735.o(.constdata)
-    Rcmd1                                    0x00002b16   Data          59  st7735.o(.constdata)
-    Rcmd2green                               0x00002b51   Data          13  st7735.o(.constdata)
-    Rcmd2red                                 0x00002b5e   Data          13  st7735.o(.constdata)
-    Rcmd3                                    0x00002b6b   Data          43  st7735.o(.constdata)
-    .constdata                               0x00002d96   Section       18  can.o(.constdata)
-    g_usCANBitValues                         0x00002d96   Data          18  can.o(.constdata)
+    i.CAN0_Open                              0x00000464   Section        0  can0.o(i.CAN0_Open)
+    i.CAN0_Setup_Message_Object              0x0000053c   Section        0  can0.o(i.CAN0_Setup_Message_Object)
+    CAN0_Setup_Message_Object                0x0000053d   Thumb Code    44  can0.o(i.CAN0_Setup_Message_Object)
+    i.CANBitRateSet                          0x0000056c   Section        0  can.o(i.CANBitRateSet)
+    i.CANDataRegRead                         0x00000600   Section        0  can.o(i.CANDataRegRead)
+    CANDataRegRead                           0x00000601   Thumb Code    54  can.o(i.CANDataRegRead)
+    i.CANDataRegWrite                        0x00000636   Section        0  can.o(i.CANDataRegWrite)
+    CANDataRegWrite                          0x00000637   Thumb Code    54  can.o(i.CANDataRegWrite)
+    i.CANEnable                              0x0000066c   Section        0  can.o(i.CANEnable)
+    i.CANInit                                0x00000684   Section        0  can.o(i.CANInit)
+    i.CANIntClear                            0x00000718   Section        0  can.o(i.CANIntClear)
+    i.CANIntEnable                           0x00000764   Section        0  can.o(i.CANIntEnable)
+    i.CANIntNumberGet                        0x00000780   Section        0  can.o(i.CANIntNumberGet)
+    CANIntNumberGet                          0x00000781   Thumb Code    44  can.o(i.CANIntNumberGet)
+    i.CANIntStatus                           0x000007b0   Section        0  can.o(i.CANIntStatus)
+    i.CANMessageGet                          0x000007ec   Section        0  can.o(i.CANMessageGet)
+    i.CANMessageSet                          0x0000099e   Section        0  can.o(i.CANMessageSet)
+    i.CANRegRead                             0x00000b50   Section        0  can.o(i.CANRegRead)
+    CANRegRead                               0x00000b51   Thumb Code    76  can.o(i.CANRegRead)
+    i.CANRegWrite                            0x00000ba0   Section        0  can.o(i.CANRegWrite)
+    CANRegWrite                              0x00000ba1   Thumb Code    24  can.o(i.CANRegWrite)
+    i.CANStatusGet                           0x00000bb8   Section        0  can.o(i.CANStatusGet)
+    i.Delay1ms                               0x00000c34   Section        0  st7735.o(i.Delay1ms)
+    i.GPIOPortB_Handler                      0x00000c54   Section        0  ping.o(i.GPIOPortB_Handler)
+    i.GPIOPortF_Handler                      0x00000cc4   Section        0  os.o(i.GPIOPortF_Handler)
+    i.GPIO_PortF_Init                        0x00000d8c   Section        0  main.o(i.GPIO_PortF_Init)
+    i.IO_Init                                0x00000e00   Section        0  os.o(i.IO_Init)
+    i.IntDisable                             0x00000e6c   Section        0  interrupt.o(i.IntDisable)
+    i.IntEnable                              0x00000eec   Section        0  interrupt.o(i.IntEnable)
+    i.Interpreter                            0x00000f6c   Section        0  interpreter.o(i.Interpreter)
+    i.LinkTCB                                0x00001048   Section        0  os.o(i.LinkTCB)
+    i.OS_AddPriorityThread                   0x0000108c   Section        0  os.o(i.OS_AddPriorityThread)
+    i.OS_AddThread                           0x000010f0   Section        0  os.o(i.OS_AddThread)
+    i.OS_Fifo_Init                           0x00001224   Section        0  os.o(i.OS_Fifo_Init)
+    i.OS_Fifo_Put                            0x00001254   Section        0  os.o(i.OS_Fifo_Put)
+    i.OS_Init                                0x0000129c   Section        0  os.o(i.OS_Init)
+    i.OS_InitSemaphore                       0x000012d8   Section        0  os.o(i.OS_InitSemaphore)
+    i.OS_Kill                                0x000012f4   Section        0  os.o(i.OS_Kill)
+    i.OS_Launch                              0x0000145c   Section        0  os.o(i.OS_Launch)
+    i.OS_MailBox_Init                        0x000014a4   Section        0  os.o(i.OS_MailBox_Init)
+    i.OS_Scheduler                           0x000014c0   Section        0  os.o(i.OS_Scheduler)
+    i.OS_Signal                              0x0000155c   Section        0  os.o(i.OS_Signal)
+    i.OS_Sleep                               0x00001580   Section        0  os.o(i.OS_Sleep)
+    i.OS_Suspend                             0x000015bc   Section        0  os.o(i.OS_Suspend)
+    i.OS_Time                                0x000015d4   Section        0  os.o(i.OS_Time)
+    i.OS_TimeDifference                      0x000015e0   Section        0  os.o(i.OS_TimeDifference)
+    i.OS_Wait                                0x000015f2   Section        0  os.o(i.OS_Wait)
+    i.OutCRLF                                0x00001616   Section        0  uart.o(i.OutCRLF)
+    i.PLL_Init                               0x00001628   Section        0  pll.o(i.PLL_Init)
+    i.RemoveBlockedFromSemaphore             0x000016a4   Section        0  os.o(i.RemoveBlockedFromSemaphore)
+    i.RxFifo_Get                             0x000016b0   Section        0  uart.o(i.RxFifo_Get)
+    i.RxFifo_Init                            0x000016ec   Section        0  uart.o(i.RxFifo_Init)
+    i.RxFifo_Put                             0x00001710   Section        0  uart.o(i.RxFifo_Put)
+    i.RxFifo_Size                            0x0000174c   Section        0  uart.o(i.RxFifo_Size)
+    i.ST7735_DrawCharS                       0x00001764   Section        0  st7735.o(i.ST7735_DrawCharS)
+    i.ST7735_DrawFastHLine                   0x00001858   Section        0  st7735.o(i.ST7735_DrawFastHLine)
+    i.ST7735_DrawPixel                       0x000018d4   Section        0  st7735.o(i.ST7735_DrawPixel)
+    i.ST7735_DrawString                      0x0000191c   Section        0  st7735.o(i.ST7735_DrawString)
+    i.ST7735_FillRect                        0x00001974   Section        0  st7735.o(i.ST7735_FillRect)
+    i.ST7735_FillScreen                      0x00001a20   Section        0  st7735.o(i.ST7735_FillScreen)
+    i.ST7735_InitR                           0x00001a44   Section        0  st7735.o(i.ST7735_InitR)
+    i.ST7735_OutChar                         0x00001acc   Section        0  st7735.o(i.ST7735_OutChar)
+    i.ST7735_OutString                       0x00001ba0   Section        0  st7735.o(i.ST7735_OutString)
+    i.ST7735_SetCursor                       0x00001bb8   Section        0  st7735.o(i.ST7735_SetCursor)
+    i.SW1_Debounce                           0x00001bd8   Section        0  os.o(i.SW1_Debounce)
+    i.SW2_Debounce                           0x00001c04   Section        0  os.o(i.SW2_Debounce)
+    i.Servo_Initilization                    0x00001c30   Section        0  servo.o(i.Servo_Initilization)
+    i.SetInitialStack                        0x00001d04   Section        0  os.o(i.SetInitialStack)
+    i.SetThreads                             0x00001df0   Section        0  os.o(i.SetThreads)
+    i.SysTick_Handler                        0x00001e3c   Section        0  os.o(i.SysTick_Handler)
+    i.SysTick_Init                           0x00001e50   Section        0  os.o(i.SysTick_Init)
+    i.Timer0A_Handler                        0x00001e80   Section        0  os.o(i.Timer0A_Handler)
+    i.Timer0A_Init                           0x00001e9c   Section        0  os.o(i.Timer0A_Init)
+    i.Timer1A_Handler                        0x00001f00   Section        0  os.o(i.Timer1A_Handler)
+    i.Timer2A_Handler                        0x00001f98   Section        0  timer2.o(i.Timer2A_Handler)
+    i.Timer3A_Handler                        0x00001fb0   Section        0  os.o(i.Timer3A_Handler)
+    i.Timer3A_Init                           0x00002040   Section        0  os.o(i.Timer3A_Init)
+    i.Timer4A_Handler                        0x000020a8   Section        0  os.o(i.Timer4A_Handler)
+    i.TxFifo_Get                             0x0000213c   Section        0  uart.o(i.TxFifo_Get)
+    i.TxFifo_Init                            0x00002178   Section        0  uart.o(i.TxFifo_Init)
+    i.TxFifo_Put                             0x0000219c   Section        0  uart.o(i.TxFifo_Put)
+    i.TxFifo_Size                            0x000021d8   Section        0  uart.o(i.TxFifo_Size)
+    i.UART0_Handler                          0x000021f0   Section        0  uart.o(i.UART0_Handler)
+    i.UART_InChar                            0x00002248   Section        0  uart.o(i.UART_InChar)
+    i.UART_Init                              0x0000225c   Section        0  uart.o(i.UART_Init)
+    i.UART_OutChar                           0x00002330   Section        0  uart.o(i.UART_OutChar)
+    i.UART_OutString                         0x00002374   Section        0  uart.o(i.UART_OutString)
+    i.UnBlockTCB                             0x0000238c   Section        0  os.o(i.UnBlockTCB)
+    i.UnLinkTCB                              0x000023a4   Section        0  os.o(i.UnLinkTCB)
+    i.WrapInterpreter                        0x000023d4   Section        0  main.o(i.WrapInterpreter)
+    i.__scatterload_copy                     0x000023dc   Section       14  handlers.o(i.__scatterload_copy)
+    i.__scatterload_null                     0x000023ea   Section        2  handlers.o(i.__scatterload_null)
+    i.__scatterload_zeroinit                 0x000023ec   Section       14  handlers.o(i.__scatterload_zeroinit)
+    i.commandList                            0x000023fa   Section        0  st7735.o(i.commandList)
+    commandList                              0x000023fb   Thumb Code    86  st7735.o(i.commandList)
+    i.commonInit                             0x00002450   Section        0  st7735.o(i.commonInit)
+    commonInit                               0x00002451   Thumb Code   340  st7735.o(i.commonInit)
+    i.copyHardwareToSoftware                 0x000025d4   Section        0  uart.o(i.copyHardwareToSoftware)
+    copyHardwareToSoftware                   0x000025d5   Thumb Code    36  uart.o(i.copyHardwareToSoftware)
+    i.copySoftwareToHardware                 0x000025fc   Section        0  uart.o(i.copySoftwareToHardware)
+    copySoftwareToHardware                   0x000025fd   Thumb Code    38  uart.o(i.copySoftwareToHardware)
+    i.main                                   0x00002628   Section        0  main.o(i.main)
+    i.newLine                                0x00002678   Section        0  interpreter.o(i.newLine)
+    i.pushColor                              0x00002680   Section        0  st7735.o(i.pushColor)
+    pushColor                                0x00002681   Thumb Code    18  st7735.o(i.pushColor)
+    i.setAddrWindow                          0x00002694   Section        0  st7735.o(i.setAddrWindow)
+    setAddrWindow                            0x00002695   Thumb Code   106  st7735.o(i.setAddrWindow)
+    i.writecommand                           0x00002708   Section        0  st7735.o(i.writecommand)
+    writecommand                             0x00002709   Thumb Code    40  st7735.o(i.writecommand)
+    i.writedata                              0x00002738   Section        0  st7735.o(i.writedata)
+    writedata                                0x00002739   Thumb Code    24  st7735.o(i.writedata)
+    .constdata                               0x00002758   Section     2018  st7735.o(.constdata)
+    Font                                     0x00002758   Data        1275  st7735.o(.constdata)
+    Bcmd                                     0x00002c53   Data         103  st7735.o(.constdata)
+    Rcmd1                                    0x00002cba   Data          59  st7735.o(.constdata)
+    Rcmd2green                               0x00002cf5   Data          13  st7735.o(.constdata)
+    Rcmd2red                                 0x00002d02   Data          13  st7735.o(.constdata)
+    Rcmd3                                    0x00002d0f   Data          43  st7735.o(.constdata)
+    .constdata                               0x00002f3a   Section       18  can.o(.constdata)
+    g_usCANBitValues                         0x00002f3a   Data          18  can.o(.constdata)
     .data                                    0x20000000   Section       20  main.o(.data)
     .data                                    0x20000014   Section       16  adc.o(.data)
-    .data                                    0x20000024   Section      121  os.o(.data)
+    .data                                    0x20000024   Section      124  os.o(.data)
     NumOfThreads                             0x20000024   Data           1  os.o(.data)
-    endTime                                  0x20000094   Data           4  os.o(.data)
-    endTime                                  0x20000098   Data           4  os.o(.data)
-    NumberOfPeriodicTasks                    0x2000009c   Data           1  os.o(.data)
+    endTime                                  0x20000048   Data           4  os.o(.data)
+    endTime                                  0x2000004c   Data           4  os.o(.data)
+    NumberOfPeriodicTasks                    0x20000050   Data           1  os.o(.data)
     .data                                    0x200000a0   Section       52  st7735.o(.data)
-    ColStart                                 0x200000b4   Data           1  st7735.o(.data)
-    RowStart                                 0x200000b5   Data           1  st7735.o(.data)
-    Rotation                                 0x200000b6   Data           1  st7735.o(.data)
-    TabColor                                 0x200000b7   Data           1  st7735.o(.data)
-    _width                                   0x200000b8   Data           2  st7735.o(.data)
-    _height                                  0x200000ba   Data           2  st7735.o(.data)
+    _width                                   0x200000aa   Data           2  st7735.o(.data)
+    _height                                  0x200000ac   Data           2  st7735.o(.data)
+    ColStart                                 0x200000bc   Data           1  st7735.o(.data)
+    RowStart                                 0x200000bd   Data           1  st7735.o(.data)
+    Rotation                                 0x200000be   Data           1  st7735.o(.data)
+    TabColor                                 0x200000bf   Data           1  st7735.o(.data)
     .data                                    0x200000d4   Section        4  timer2.o(.data)
     PeriodicTask                             0x200000d4   Data           4  timer2.o(.data)
     .data                                    0x200000d8   Section       24  uart.o(.data)
     .data                                    0x200000f0   Section       20  can0.o(.data)
     RCVData                                  0x200000f0   Data           4  can0.o(.data)
-    .bss                                     0x20000104   Section    23652  os.o(.bss)
-    tcbs                                     0x20001504   Data         400  os.o(.bss)
-    .bss                                     0x20005d68   Section       32  uart.o(.bss)
-    RxFifo                                   0x20005d68   Data          16  uart.o(.bss)
-    TxFifo                                   0x20005d78   Data          16  uart.o(.bss)
-    STACK                                    0x20005d88   Section     1024  startup.o(STACK)
-    StackMem                                 0x20005d88   Data           0  startup.o(STACK)
+    .data                                    0x20000104   Section       20  ping.o(.data)
+    startTime                                0x20000104   Data           4  ping.o(.data)
+    data                                     0x20000108   Data           4  ping.o(.data)
+    time                                     0x2000010c   Data           4  ping.o(.data)
+    .bss                                     0x20000118   Section    23652  os.o(.bss)
+    tcbs                                     0x20001bd8   Data         400  os.o(.bss)
+    .bss                                     0x20005d7c   Section       32  uart.o(.bss)
+    RxFifo                                   0x20005d7c   Data          16  uart.o(.bss)
+    TxFifo                                   0x20005d8c   Data          16  uart.o(.bss)
+    STACK                                    0x20005da0   Section     1024  startup.o(STACK)
+    StackMem                                 0x20005da0   Data           0  startup.o(STACK)
 
     Global Symbols
 
@@ -714,7 +753,6 @@ Image Symbol Table
     Fan0_Handler                             0x00000283   Thumb Code     0  startup.o(RESET)
     FlashCtl_Handler                         0x00000283   Thumb Code     0  startup.o(RESET)
     GPIOPortA_Handler                        0x00000283   Thumb Code     0  startup.o(RESET)
-    GPIOPortB_Handler                        0x00000283   Thumb Code     0  startup.o(RESET)
     GPIOPortC_Handler                        0x00000283   Thumb Code     0  startup.o(RESET)
     GPIOPortD_Handler                        0x00000283   Thumb Code     0  startup.o(RESET)
     GPIOPortE_Handler                        0x00000283   Thumb Code     0  startup.o(RESET)
@@ -821,138 +859,141 @@ Image Symbol Table
     WaitForInterrupt                         0x000002ff   Thumb Code     0  startup.o(.text)
     __scatterload                            0x00000305   Thumb Code    28  init.o(.text)
     __scatterload_rt2                        0x00000305   Thumb Code     0  init.o(.text)
-    ADC0Seq3_Handler                         0x00000329   Thumb Code    30  adc.o(i.ADC0Seq3_Handler)
+    ADC0Seq3_Handler                         0x00000329   Thumb Code    28  adc.o(i.ADC0Seq3_Handler)
     AddBlockedToSemaphore                    0x00000355   Thumb Code    46  os.o(i.AddBlockedToSemaphore)
     BlockTCB                                 0x00000389   Thumb Code    52  os.o(i.BlockTCB)
-    CAN0_Handler                             0x000003c5   Thumb Code   114  can0.o(i.CAN0_Handler)
-    CAN0_Open                                0x00000445   Thumb Code   178  can0.o(i.CAN0_Open)
-    CANBitRateSet                            0x0000054d   Thumb Code   142  can.o(i.CANBitRateSet)
-    CANEnable                                0x0000064d   Thumb Code    24  can.o(i.CANEnable)
-    CANInit                                  0x00000665   Thumb Code   154  can.o(i.CANInit)
-    CANIntClear                              0x000006ff   Thumb Code    80  can.o(i.CANIntClear)
-    CANIntEnable                             0x0000074f   Thumb Code    26  can.o(i.CANIntEnable)
-    CANIntStatus                             0x00000799   Thumb Code    60  can.o(i.CANIntStatus)
-    CANMessageGet                            0x000007d5   Thumb Code   438  can.o(i.CANMessageGet)
-    CANMessageSet                            0x0000098b   Thumb Code   436  can.o(i.CANMessageSet)
-    CANStatusGet                             0x00000ba5   Thumb Code   124  can.o(i.CANStatusGet)
-    Delay1ms                                 0x00000c21   Thumb Code    32  st7735.o(i.Delay1ms)
-    GPIOPortF_Handler                        0x00000c41   Thumb Code   164  os.o(i.GPIOPortF_Handler)
-    GPIO_PortF_Init                          0x00000d09   Thumb Code    94  main.o(i.GPIO_PortF_Init)
-    IO_Init                                  0x00000d7d   Thumb Code    78  os.o(i.IO_Init)
-    IntDisable                               0x00000de9   Thumb Code   118  interrupt.o(i.IntDisable)
-    IntEnable                                0x00000e69   Thumb Code   118  interrupt.o(i.IntEnable)
-    Interpreter                              0x00000ee9   Thumb Code   138  interpreter.o(i.Interpreter)
-    LinkTCB                                  0x00000fc5   Thumb Code    54  os.o(i.LinkTCB)
-    OS_AddPriorityThread                     0x00001009   Thumb Code    82  os.o(i.OS_AddPriorityThread)
-    OS_AddThread                             0x0000106d   Thumb Code   290  os.o(i.OS_AddThread)
-    OS_Fifo_Init                             0x000011a1   Thumb Code    36  os.o(i.OS_Fifo_Init)
-    OS_Init                                  0x000011d1   Thumb Code    42  os.o(i.OS_Init)
-    OS_InitSemaphore                         0x0000120d   Thumb Code    26  os.o(i.OS_InitSemaphore)
-    OS_Kill                                  0x00001229   Thumb Code   330  os.o(i.OS_Kill)
-    OS_Launch                                0x00001391   Thumb Code    58  os.o(i.OS_Launch)
-    OS_MailBox_Init                          0x000013d9   Thumb Code    22  os.o(i.OS_MailBox_Init)
-    OS_Scheduler                             0x000013f5   Thumb Code   138  os.o(i.OS_Scheduler)
-    OS_Signal                                0x00001491   Thumb Code    36  os.o(i.OS_Signal)
-    OS_Sleep                                 0x000014b5   Thumb Code    50  os.o(i.OS_Sleep)
-    OS_Suspend                               0x000014f1   Thumb Code    18  os.o(i.OS_Suspend)
-    OS_Time                                  0x00001509   Thumb Code     6  os.o(i.OS_Time)
-    OS_TimeDifference                        0x00001515   Thumb Code    18  os.o(i.OS_TimeDifference)
-    OS_Wait                                  0x00001527   Thumb Code    36  os.o(i.OS_Wait)
-    OutCRLF                                  0x0000154b   Thumb Code    16  uart.o(i.OutCRLF)
-    PLL_Init                                 0x0000155d   Thumb Code   120  pll.o(i.PLL_Init)
-    RemoveBlockedFromSemaphore               0x000015d9   Thumb Code    10  os.o(i.RemoveBlockedFromSemaphore)
-    RxFifo_Get                               0x000015e5   Thumb Code    46  uart.o(i.RxFifo_Get)
-    RxFifo_Init                              0x00001621   Thumb Code    26  uart.o(i.RxFifo_Init)
-    RxFifo_Put                               0x00001645   Thumb Code    48  uart.o(i.RxFifo_Put)
-    RxFifo_Size                              0x00001681   Thumb Code    14  uart.o(i.RxFifo_Size)
-    ST7735_DrawCharS                         0x00001699   Thumb Code   236  st7735.o(i.ST7735_DrawCharS)
-    ST7735_DrawFastHLine                     0x00001791   Thumb Code   116  st7735.o(i.ST7735_DrawFastHLine)
-    ST7735_DrawPixel                         0x0000180d   Thumb Code    64  st7735.o(i.ST7735_DrawPixel)
-    ST7735_DrawString                        0x00001855   Thumb Code    86  st7735.o(i.ST7735_DrawString)
-    ST7735_FillRect                          0x000018ad   Thumb Code   164  st7735.o(i.ST7735_FillRect)
-    ST7735_FillScreen                        0x00001959   Thumb Code    28  st7735.o(i.ST7735_FillScreen)
-    ST7735_InitR                             0x0000197d   Thumb Code    98  st7735.o(i.ST7735_InitR)
-    ST7735_OutChar                           0x00001a05   Thumb Code   176  st7735.o(i.ST7735_OutChar)
-    ST7735_OutString                         0x00001ad9   Thumb Code    24  st7735.o(i.ST7735_OutString)
-    ST7735_SetCursor                         0x00001af1   Thumb Code    22  st7735.o(i.ST7735_SetCursor)
-    SW1_Debounce                             0x00001b11   Thumb Code    36  os.o(i.SW1_Debounce)
-    SW2_Debounce                             0x00001b3d   Thumb Code    36  os.o(i.SW2_Debounce)
-    SetInitialStack                          0x00001b69   Thumb Code   228  os.o(i.SetInitialStack)
-    SetThreads                               0x00001c55   Thumb Code    68  os.o(i.SetThreads)
-    SysTick_Handler                          0x00001ca1   Thumb Code    16  os.o(i.SysTick_Handler)
-    SysTick_Init                             0x00001cb5   Thumb Code    42  os.o(i.SysTick_Init)
-    Timer0A_Handler                          0x00001ce5   Thumb Code    18  os.o(i.Timer0A_Handler)
-    Timer0A_Init                             0x00001d01   Thumb Code    80  os.o(i.Timer0A_Init)
-    Timer1A_Handler                          0x00001d61   Thumb Code   120  os.o(i.Timer1A_Handler)
-    Timer2A_Handler                          0x00001df9   Thumb Code    16  timer2.o(i.Timer2A_Handler)
-    Timer3A_Handler                          0x00001e11   Thumb Code   128  os.o(i.Timer3A_Handler)
-    Timer3A_Init                             0x00001ea1   Thumb Code    84  os.o(i.Timer3A_Init)
-    Timer4A_Handler                          0x00001f05   Thumb Code   120  os.o(i.Timer4A_Handler)
-    TxFifo_Get                               0x00001f99   Thumb Code    46  uart.o(i.TxFifo_Get)
-    TxFifo_Init                              0x00001fd5   Thumb Code    26  uart.o(i.TxFifo_Init)
-    TxFifo_Put                               0x00001ff9   Thumb Code    48  uart.o(i.TxFifo_Put)
-    TxFifo_Size                              0x00002035   Thumb Code    14  uart.o(i.TxFifo_Size)
-    UART0_Handler                            0x0000204d   Thumb Code    82  uart.o(i.UART0_Handler)
-    UART_InChar                              0x000020a5   Thumb Code    20  uart.o(i.UART_InChar)
-    UART_Init                                0x000020b9   Thumb Code   182  uart.o(i.UART_Init)
-    UART_OutChar                             0x0000218d   Thumb Code    58  uart.o(i.UART_OutChar)
-    UART_OutString                           0x000021d1   Thumb Code    24  uart.o(i.UART_OutString)
-    UnBlockTCB                               0x000021e9   Thumb Code    24  os.o(i.UnBlockTCB)
-    UnLinkTCB                                0x00002201   Thumb Code    40  os.o(i.UnLinkTCB)
-    WrapInterpreter                          0x00002231   Thumb Code     8  main.o(i.WrapInterpreter)
-    __scatterload_copy                       0x00002239   Thumb Code    14  handlers.o(i.__scatterload_copy)
-    __scatterload_null                       0x00002247   Thumb Code     2  handlers.o(i.__scatterload_null)
-    __scatterload_zeroinit                   0x00002249   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
-    main                                     0x00002489   Thumb Code    60  main.o(i.main)
-    newLine                                  0x000024d1   Thumb Code     8  interpreter.o(i.newLine)
-    dBfs                                     0x00002b96   Data         512  st7735.o(.constdata)
-    Region$$Table$$Base                      0x00002da8   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x00002dc8   Number         0  anon$$obj.o(Region$$Table)
-    XmtData                                  0x20000000   Data           4  main.o(.data)
-    RcvData                                  0x20000004   Data           4  main.o(.data)
-    RcvCount                                 0x20000008   Data           4  main.o(.data)
-    sequenceNum                              0x2000000c   Data           1  main.o(.data)
+    CAN0_Handler                             0x000003c5   Thumb Code   146  can0.o(i.CAN0_Handler)
+    CAN0_Open                                0x00000465   Thumb Code   178  can0.o(i.CAN0_Open)
+    CANBitRateSet                            0x0000056d   Thumb Code   142  can.o(i.CANBitRateSet)
+    CANEnable                                0x0000066d   Thumb Code    24  can.o(i.CANEnable)
+    CANInit                                  0x00000685   Thumb Code   148  can.o(i.CANInit)
+    CANIntClear                              0x00000719   Thumb Code    76  can.o(i.CANIntClear)
+    CANIntEnable                             0x00000765   Thumb Code    26  can.o(i.CANIntEnable)
+    CANIntStatus                             0x000007b1   Thumb Code    60  can.o(i.CANIntStatus)
+    CANMessageGet                            0x000007ed   Thumb Code   434  can.o(i.CANMessageGet)
+    CANMessageSet                            0x0000099f   Thumb Code   434  can.o(i.CANMessageSet)
+    CANStatusGet                             0x00000bb9   Thumb Code   124  can.o(i.CANStatusGet)
+    Delay1ms                                 0x00000c35   Thumb Code    32  st7735.o(i.Delay1ms)
+    GPIOPortB_Handler                        0x00000c55   Thumb Code    88  ping.o(i.GPIOPortB_Handler)
+    GPIOPortF_Handler                        0x00000cc5   Thumb Code   164  os.o(i.GPIOPortF_Handler)
+    GPIO_PortF_Init                          0x00000d8d   Thumb Code    94  main.o(i.GPIO_PortF_Init)
+    IO_Init                                  0x00000e01   Thumb Code    78  os.o(i.IO_Init)
+    IntDisable                               0x00000e6d   Thumb Code   116  interrupt.o(i.IntDisable)
+    IntEnable                                0x00000eed   Thumb Code   116  interrupt.o(i.IntEnable)
+    Interpreter                              0x00000f6d   Thumb Code   138  interpreter.o(i.Interpreter)
+    LinkTCB                                  0x00001049   Thumb Code    54  os.o(i.LinkTCB)
+    OS_AddPriorityThread                     0x0000108d   Thumb Code    82  os.o(i.OS_AddPriorityThread)
+    OS_AddThread                             0x000010f1   Thumb Code   290  os.o(i.OS_AddThread)
+    OS_Fifo_Init                             0x00001225   Thumb Code    36  os.o(i.OS_Fifo_Init)
+    OS_Fifo_Put                              0x00001255   Thumb Code    60  os.o(i.OS_Fifo_Put)
+    OS_Init                                  0x0000129d   Thumb Code    42  os.o(i.OS_Init)
+    OS_InitSemaphore                         0x000012d9   Thumb Code    26  os.o(i.OS_InitSemaphore)
+    OS_Kill                                  0x000012f5   Thumb Code   330  os.o(i.OS_Kill)
+    OS_Launch                                0x0000145d   Thumb Code    58  os.o(i.OS_Launch)
+    OS_MailBox_Init                          0x000014a5   Thumb Code    22  os.o(i.OS_MailBox_Init)
+    OS_Scheduler                             0x000014c1   Thumb Code   138  os.o(i.OS_Scheduler)
+    OS_Signal                                0x0000155d   Thumb Code    36  os.o(i.OS_Signal)
+    OS_Sleep                                 0x00001581   Thumb Code    50  os.o(i.OS_Sleep)
+    OS_Suspend                               0x000015bd   Thumb Code    18  os.o(i.OS_Suspend)
+    OS_Time                                  0x000015d5   Thumb Code     6  os.o(i.OS_Time)
+    OS_TimeDifference                        0x000015e1   Thumb Code    18  os.o(i.OS_TimeDifference)
+    OS_Wait                                  0x000015f3   Thumb Code    36  os.o(i.OS_Wait)
+    OutCRLF                                  0x00001617   Thumb Code    16  uart.o(i.OutCRLF)
+    PLL_Init                                 0x00001629   Thumb Code   118  pll.o(i.PLL_Init)
+    RemoveBlockedFromSemaphore               0x000016a5   Thumb Code    10  os.o(i.RemoveBlockedFromSemaphore)
+    RxFifo_Get                               0x000016b1   Thumb Code    46  uart.o(i.RxFifo_Get)
+    RxFifo_Init                              0x000016ed   Thumb Code    26  uart.o(i.RxFifo_Init)
+    RxFifo_Put                               0x00001711   Thumb Code    48  uart.o(i.RxFifo_Put)
+    RxFifo_Size                              0x0000174d   Thumb Code    14  uart.o(i.RxFifo_Size)
+    ST7735_DrawCharS                         0x00001765   Thumb Code   232  st7735.o(i.ST7735_DrawCharS)
+    ST7735_DrawFastHLine                     0x00001859   Thumb Code   116  st7735.o(i.ST7735_DrawFastHLine)
+    ST7735_DrawPixel                         0x000018d5   Thumb Code    64  st7735.o(i.ST7735_DrawPixel)
+    ST7735_DrawString                        0x0000191d   Thumb Code    86  st7735.o(i.ST7735_DrawString)
+    ST7735_FillRect                          0x00001975   Thumb Code   164  st7735.o(i.ST7735_FillRect)
+    ST7735_FillScreen                        0x00001a21   Thumb Code    28  st7735.o(i.ST7735_FillScreen)
+    ST7735_InitR                             0x00001a45   Thumb Code    98  st7735.o(i.ST7735_InitR)
+    ST7735_OutChar                           0x00001acd   Thumb Code   176  st7735.o(i.ST7735_OutChar)
+    ST7735_OutString                         0x00001ba1   Thumb Code    24  st7735.o(i.ST7735_OutString)
+    ST7735_SetCursor                         0x00001bb9   Thumb Code    22  st7735.o(i.ST7735_SetCursor)
+    SW1_Debounce                             0x00001bd9   Thumb Code    36  os.o(i.SW1_Debounce)
+    SW2_Debounce                             0x00001c05   Thumb Code    36  os.o(i.SW2_Debounce)
+    Servo_Initilization                      0x00001c31   Thumb Code   178  servo.o(i.Servo_Initilization)
+    SetInitialStack                          0x00001d05   Thumb Code   228  os.o(i.SetInitialStack)
+    SetThreads                               0x00001df1   Thumb Code    68  os.o(i.SetThreads)
+    SysTick_Handler                          0x00001e3d   Thumb Code    16  os.o(i.SysTick_Handler)
+    SysTick_Init                             0x00001e51   Thumb Code    42  os.o(i.SysTick_Init)
+    Timer0A_Handler                          0x00001e81   Thumb Code    18  os.o(i.Timer0A_Handler)
+    Timer0A_Init                             0x00001e9d   Thumb Code    82  os.o(i.Timer0A_Init)
+    Timer1A_Handler                          0x00001f01   Thumb Code   120  os.o(i.Timer1A_Handler)
+    Timer2A_Handler                          0x00001f99   Thumb Code    16  timer2.o(i.Timer2A_Handler)
+    Timer3A_Handler                          0x00001fb1   Thumb Code   128  os.o(i.Timer3A_Handler)
+    Timer3A_Init                             0x00002041   Thumb Code    86  os.o(i.Timer3A_Init)
+    Timer4A_Handler                          0x000020a9   Thumb Code   120  os.o(i.Timer4A_Handler)
+    TxFifo_Get                               0x0000213d   Thumb Code    46  uart.o(i.TxFifo_Get)
+    TxFifo_Init                              0x00002179   Thumb Code    26  uart.o(i.TxFifo_Init)
+    TxFifo_Put                               0x0000219d   Thumb Code    48  uart.o(i.TxFifo_Put)
+    TxFifo_Size                              0x000021d9   Thumb Code    14  uart.o(i.TxFifo_Size)
+    UART0_Handler                            0x000021f1   Thumb Code    82  uart.o(i.UART0_Handler)
+    UART_InChar                              0x00002249   Thumb Code    20  uart.o(i.UART_InChar)
+    UART_Init                                0x0000225d   Thumb Code   184  uart.o(i.UART_Init)
+    UART_OutChar                             0x00002331   Thumb Code    58  uart.o(i.UART_OutChar)
+    UART_OutString                           0x00002375   Thumb Code    24  uart.o(i.UART_OutString)
+    UnBlockTCB                               0x0000238d   Thumb Code    24  os.o(i.UnBlockTCB)
+    UnLinkTCB                                0x000023a5   Thumb Code    40  os.o(i.UnLinkTCB)
+    WrapInterpreter                          0x000023d5   Thumb Code     8  main.o(i.WrapInterpreter)
+    __scatterload_copy                       0x000023dd   Thumb Code    14  handlers.o(i.__scatterload_copy)
+    __scatterload_null                       0x000023eb   Thumb Code     2  handlers.o(i.__scatterload_null)
+    __scatterload_zeroinit                   0x000023ed   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
+    main                                     0x00002629   Thumb Code    68  main.o(i.main)
+    newLine                                  0x00002679   Thumb Code     8  interpreter.o(i.newLine)
+    dBfs                                     0x00002d3a   Data         512  st7735.o(.constdata)
+    Region$$Table$$Base                      0x00002f4c   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x00002f6c   Number         0  anon$$obj.o(Region$$Table)
+    RcvCount                                 0x20000000   Data           4  main.o(.data)
+    sequenceNum                              0x20000004   Data           1  main.o(.data)
+    XmtData                                  0x20000005   Data           4  main.o(.data)
+    RcvData                                  0x20000009   Data           4  main.o(.data)
     NumCreated                               0x20000010   Data           4  main.o(.data)
     semaADC                                  0x20000014   Data           8  adc.o(.data)
     ProducerTask                             0x2000001c   Data           4  adc.o(.data)
     ADCvalue                                 0x20000020   Data           4  adc.o(.data)
     OS_SystemTime                            0x20000028   Data           4  os.o(.data)
-    OS_SystemTimeMS                          0x2000002c   Data           4  os.o(.data)
-    RunPt                                    0x20000030   Data           4  os.o(.data)
-    NextRunPt                                0x20000034   Data           4  os.o(.data)
-    MaxJitter1                               0x20000038   Data           4  os.o(.data)
-    MaxJitter2                               0x2000003c   Data           4  os.o(.data)
-    JitterMax_Periodic1                      0x20000040   Data           4  os.o(.data)
-    JitterMax_Periodic2                      0x20000044   Data           4  os.o(.data)
-    DataDump1                                0x20000048   Data           4  os.o(.data)
-    DataDump2                                0x2000004c   Data           4  os.o(.data)
-    Periodic_Thread1                         0x20000050   Data           4  os.o(.data)
-    Period1                                  0x20000054   Data           4  os.o(.data)
-    Period1Counter                           0x20000058   Data           4  os.o(.data)
-    Periodic_Thread2                         0x2000005c   Data           4  os.o(.data)
-    Period2                                  0x20000060   Data           4  os.o(.data)
-    Period2Counter                           0x20000064   Data           4  os.o(.data)
-    Sw1Pri                                   0x20000068   Data           4  os.o(.data)
-    SW1_Task                                 0x2000006c   Data           4  os.o(.data)
-    SW1_Priority                             0x20000070   Data           4  os.o(.data)
-    LastSW1                                  0x20000074   Data           4  os.o(.data)
-    SW2_Task                                 0x20000078   Data           4  os.o(.data)
-    SW2_Priority                             0x2000007c   Data           4  os.o(.data)
-    LastSW2                                  0x20000080   Data           4  os.o(.data)
-    FiFo_Size_Unused                         0x20000084   Data           4  os.o(.data)
-    Get_Idx                                  0x20000088   Data           2  os.o(.data)
-    Put_Idx                                  0x2000008a   Data           2  os.o(.data)
-    SemaFIFO                                 0x2000008c   Data           8  os.o(.data)
+    JitterMax_Periodic1                      0x2000002c   Data           4  os.o(.data)
+    JitterMax_Periodic2                      0x20000030   Data           4  os.o(.data)
+    DataDump1                                0x20000034   Data           4  os.o(.data)
+    DataDump2                                0x20000038   Data           4  os.o(.data)
+    Period1Counter                           0x2000003c   Data           4  os.o(.data)
+    Period2Counter                           0x20000040   Data           4  os.o(.data)
+    Get_Idx                                  0x20000044   Data           2  os.o(.data)
+    Put_Idx                                  0x20000046   Data           2  os.o(.data)
+    OS_SystemTimeMS                          0x20000054   Data           4  os.o(.data)
+    RunPt                                    0x20000058   Data           4  os.o(.data)
+    NextRunPt                                0x2000005c   Data           4  os.o(.data)
+    MaxJitter1                               0x20000060   Data           4  os.o(.data)
+    MaxJitter2                               0x20000064   Data           4  os.o(.data)
+    Periodic_Thread1                         0x20000068   Data           4  os.o(.data)
+    Period1                                  0x2000006c   Data           4  os.o(.data)
+    Periodic_Thread2                         0x20000070   Data           4  os.o(.data)
+    Period2                                  0x20000074   Data           4  os.o(.data)
+    Sw1Pri                                   0x20000078   Data           4  os.o(.data)
+    SW1_Task                                 0x2000007c   Data           4  os.o(.data)
+    SW1_Priority                             0x20000080   Data           4  os.o(.data)
+    LastSW1                                  0x20000084   Data           4  os.o(.data)
+    SW2_Task                                 0x20000088   Data           4  os.o(.data)
+    SW2_Priority                             0x2000008c   Data           4  os.o(.data)
+    LastSW2                                  0x20000090   Data           4  os.o(.data)
+    FiFo_Size_Unused                         0x20000094   Data           4  os.o(.data)
+    SemaFIFO                                 0x20000098   Data           8  os.o(.data)
     StX                                      0x200000a0   Data           4  st7735.o(.data)
     StY                                      0x200000a4   Data           4  st7735.o(.data)
     StTextColor                              0x200000a8   Data           2  st7735.o(.data)
-    SemaDisplay                              0x200000ac   Data           8  st7735.o(.data)
-    Messageindex                             0x200000bc   Data           4  st7735.o(.data)
-    Ymax                                     0x200000c0   Data           4  st7735.o(.data)
-    Ymin                                     0x200000c4   Data           4  st7735.o(.data)
-    X                                        0x200000c8   Data           4  st7735.o(.data)
-    Yrange                                   0x200000cc   Data           4  st7735.o(.data)
-    lastj                                    0x200000d0   Data           4  st7735.o(.data)
+    lastj                                    0x200000b0   Data           4  st7735.o(.data)
+    SemaDisplay                              0x200000b4   Data           8  st7735.o(.data)
+    Messageindex                             0x200000c0   Data           4  st7735.o(.data)
+    Ymax                                     0x200000c4   Data           4  st7735.o(.data)
+    Ymin                                     0x200000c8   Data           4  st7735.o(.data)
+    X                                        0x200000cc   Data           4  st7735.o(.data)
+    Yrange                                   0x200000d0   Data           4  st7735.o(.data)
     RxPutI                                   0x200000d8   Data           4  uart.o(.data)
     RxGetI                                   0x200000dc   Data           4  uart.o(.data)
     TxPutI                                   0x200000e0   Data           4  uart.o(.data)
@@ -960,18 +1001,20 @@ Image Symbol Table
     semaUART                                 0x200000e8   Data           8  uart.o(.data)
     mutexCan                                 0x200000f4   Data           8  can0.o(.data)
     MailFlag                                 0x200000fc   Data           8  can0.o(.data)
-    Stacks                                   0x20000104   Data        5120  os.o(.bss)
-    JitterHistogram1                         0x20001694   Data         400  os.o(.bss)
-    JitterHistogram2                         0x20001824   Data         400  os.o(.bss)
-    Dump1                                    0x200019b4   Data         400  os.o(.bss)
-    Dump2                                    0x20001b44   Data         400  os.o(.bss)
-    PriorityTotal                            0x20001cd4   Data          32  os.o(.bss)
-    PriorityAvailable                        0x20001cf4   Data          32  os.o(.bss)
-    PriorityPtr                              0x20001d14   Data          32  os.o(.bss)
-    PriorityLastPtr                          0x20001d34   Data          32  os.o(.bss)
-    OS_FiFo                                  0x20001d54   Data       16384  os.o(.bss)
-    MailBox                                  0x20005d54   Data          20  os.o(.bss)
-    __initial_sp                             0x20006188   Data           0  startup.o(STACK)
+    PING_PORTB_PeriodicTask                  0x20000110   Data           4  ping.o(.data)
+    PING_PORTB_Time                          0x20000114   Data           4  ping.o(.data)
+    JitterHistogram1                         0x20000118   Data         400  os.o(.bss)
+    JitterHistogram2                         0x200002a8   Data         400  os.o(.bss)
+    Dump1                                    0x20000438   Data         400  os.o(.bss)
+    Dump2                                    0x200005c8   Data         400  os.o(.bss)
+    PriorityTotal                            0x20000758   Data          32  os.o(.bss)
+    PriorityAvailable                        0x20000778   Data          32  os.o(.bss)
+    PriorityPtr                              0x20000798   Data          32  os.o(.bss)
+    PriorityLastPtr                          0x200007b8   Data          32  os.o(.bss)
+    Stacks                                   0x200007d8   Data        5120  os.o(.bss)
+    OS_FiFo                                  0x20001d68   Data       16384  os.o(.bss)
+    MailBox                                  0x20005d68   Data          20  os.o(.bss)
+    __initial_sp                             0x200061a0   Data           0  startup.o(STACK)
 
 
 
@@ -981,155 +1024,159 @@ Memory Map of the image
 
   Image Entry point : 0x0000026d
 
-  Load Region LR_1 (Base: 0x00000000, Size: 0x00002ecc, Max: 0xffffffff, ABSOLUTE)
+  Load Region LR_1 (Base: 0x00000000, Size: 0x00003084, Max: 0xffffffff, ABSOLUTE)
 
-    Execution Region ER_RO (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x00002dc8, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RO (Base: 0x00000000, Size: 0x00002f6c, Max: 0xffffffff, ABSOLUTE)
 
-    Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
+    Base Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x00000000   0x00000000   0x00000284   Code   RO         1236  * RESET               startup.o
-    0x00000284   0x00000284   0x00000000   Code   RO         1243  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)
-    0x00000284   0x00000284   0x00000004   Code   RO         1246    .ARM.Collect$$$$00000001  mc_w.l(entry2.o)
-    0x00000288   0x00000288   0x00000004   Code   RO         1249    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)
-    0x0000028c   0x0000028c   0x00000000   Code   RO         1251    .ARM.Collect$$$$00000008  mc_w.l(entry7b.o)
-    0x0000028c   0x0000028c   0x00000000   Code   RO         1253    .ARM.Collect$$$$0000000A  mc_w.l(entry8b.o)
-    0x0000028c   0x0000028c   0x00000008   Code   RO         1254    .ARM.Collect$$$$0000000B  mc_w.l(entry9a.o)
-    0x00000294   0x00000294   0x00000000   Code   RO         1256    .ARM.Collect$$$$0000000D  mc_w.l(entry10a.o)
-    0x00000294   0x00000294   0x00000000   Code   RO         1258    .ARM.Collect$$$$0000000F  mc_w.l(entry11a.o)
-    0x00000294   0x00000294   0x00000004   Code   RO         1247    .ARM.Collect$$$$00002712  mc_w.l(entry2.o)
-    0x00000298   0x00000298   0x00000050   Code   RO          932    .text               osasm.o
-    0x000002e8   0x000002e8   0x0000001c   Code   RO         1237    .text               startup.o
-    0x00000304   0x00000304   0x00000024   Code   RO         1260    .text               mc_w.l(init.o)
-    0x00000328   0x00000328   0x0000002c   Code   RO           79    i.ADC0Seq3_Handler  adc.o
-    0x00000354   0x00000354   0x00000034   Code   RO          151    i.AddBlockedToSemaphore  os.o
-    0x00000388   0x00000388   0x0000003c   Code   RO          152    i.BlockTCB          os.o
-    0x000003c4   0x000003c4   0x00000080   Code   RO         1098    i.CAN0_Handler      can0.o
-    0x00000444   0x00000444   0x000000d8   Code   RO         1099    i.CAN0_Open         can0.o
-    0x0000051c   0x0000051c   0x00000030   Code   RO         1101    i.CAN0_Setup_Message_Object  can0.o
-    0x0000054c   0x0000054c   0x00000094   Code   RO          936    i.CANBitRateSet     can.o
-    0x000005e0   0x000005e0   0x00000036   Code   RO          937    i.CANDataRegRead    can.o
-    0x00000616   0x00000616   0x00000036   Code   RO          938    i.CANDataRegWrite   can.o
-    0x0000064c   0x0000064c   0x00000018   Code   RO          940    i.CANEnable         can.o
-    0x00000664   0x00000664   0x0000009a   Code   RO          942    i.CANInit           can.o
-    0x000006fe   0x000006fe   0x00000050   Code   RO          943    i.CANIntClear       can.o
-    0x0000074e   0x0000074e   0x0000001a   Code   RO          945    i.CANIntEnable      can.o
-    0x00000768   0x00000768   0x00000030   Code   RO          946    i.CANIntNumberGet   can.o
-    0x00000798   0x00000798   0x0000003c   Code   RO          948    i.CANIntStatus      can.o
-    0x000007d4   0x000007d4   0x000001b6   Code   RO          951    i.CANMessageGet     can.o
-    0x0000098a   0x0000098a   0x000001b4   Code   RO          952    i.CANMessageSet     can.o
-    0x00000b3e   0x00000b3e   0x00000002   PAD
-    0x00000b40   0x00000b40   0x0000004c   Code   RO          953    i.CANRegRead        can.o
-    0x00000b8c   0x00000b8c   0x00000018   Code   RO          954    i.CANRegWrite       can.o
-    0x00000ba4   0x00000ba4   0x0000007c   Code   RO          957    i.CANStatusGet      can.o
-    0x00000c20   0x00000c20   0x00000020   Code   RO          506    i.Delay1ms          st7735.o
-    0x00000c40   0x00000c40   0x000000c8   Code   RO          153    i.GPIOPortF_Handler  os.o
-    0x00000d08   0x00000d08   0x00000074   Code   RO            1    i.GPIO_PortF_Init   main.o
-    0x00000d7c   0x00000d7c   0x0000006c   Code   RO          154    i.IO_Init           os.o
-    0x00000de8   0x00000de8   0x00000080   Code   RO         1146    i.IntDisable        interrupt.o
-    0x00000e68   0x00000e68   0x00000080   Code   RO         1147    i.IntEnable         interrupt.o
-    0x00000ee8   0x00000ee8   0x000000dc   Code   RO          130    i.Interpreter       interpreter.o
-    0x00000fc4   0x00000fc4   0x00000044   Code   RO          156    i.LinkTCB           os.o
-    0x00001008   0x00001008   0x00000064   Code   RO          158    i.OS_AddPriorityThread  os.o
-    0x0000106c   0x0000106c   0x00000134   Code   RO          161    i.OS_AddThread      os.o
-    0x000011a0   0x000011a0   0x00000030   Code   RO          165    i.OS_Fifo_Init      os.o
-    0x000011d0   0x000011d0   0x0000003c   Code   RO          169    i.OS_Init           os.o
-    0x0000120c   0x0000120c   0x0000001a   Code   RO          170    i.OS_InitSemaphore  os.o
-    0x00001226   0x00001226   0x00000002   PAD
-    0x00001228   0x00001228   0x00000168   Code   RO          171    i.OS_Kill           os.o
-    0x00001390   0x00001390   0x00000048   Code   RO          172    i.OS_Launch         os.o
-    0x000013d8   0x000013d8   0x0000001c   Code   RO          173    i.OS_MailBox_Init   os.o
-    0x000013f4   0x000013f4   0x0000009c   Code   RO          177    i.OS_Scheduler      os.o
-    0x00001490   0x00001490   0x00000024   Code   RO          178    i.OS_Signal         os.o
-    0x000014b4   0x000014b4   0x0000003c   Code   RO          179    i.OS_Sleep          os.o
-    0x000014f0   0x000014f0   0x00000018   Code   RO          180    i.OS_Suspend        os.o
-    0x00001508   0x00001508   0x0000000c   Code   RO          181    i.OS_Time           os.o
-    0x00001514   0x00001514   0x00000012   Code   RO          182    i.OS_TimeDifference  os.o
-    0x00001526   0x00001526   0x00000024   Code   RO          183    i.OS_Wait           os.o
-    0x0000154a   0x0000154a   0x00000010   Code   RO          795    i.OutCRLF           uart.o
-    0x0000155a   0x0000155a   0x00000002   PAD
-    0x0000155c   0x0000155c   0x0000007c   Code   RO          491    i.PLL_Init          pll.o
-    0x000015d8   0x000015d8   0x0000000a   Code   RO          188    i.RemoveBlockedFromSemaphore  os.o
-    0x000015e2   0x000015e2   0x00000002   PAD
-    0x000015e4   0x000015e4   0x0000003c   Code   RO          796    i.RxFifo_Get        uart.o
-    0x00001620   0x00001620   0x00000024   Code   RO          797    i.RxFifo_Init       uart.o
-    0x00001644   0x00001644   0x0000003c   Code   RO          798    i.RxFifo_Put        uart.o
-    0x00001680   0x00001680   0x00000018   Code   RO          799    i.RxFifo_Size       uart.o
-    0x00001698   0x00001698   0x000000f8   Code   RO          516    i.ST7735_DrawCharS  st7735.o
-    0x00001790   0x00001790   0x0000007c   Code   RO          517    i.ST7735_DrawFastHLine  st7735.o
-    0x0000180c   0x0000180c   0x00000048   Code   RO          519    i.ST7735_DrawPixel  st7735.o
-    0x00001854   0x00001854   0x00000056   Code   RO          520    i.ST7735_DrawString  st7735.o
-    0x000018aa   0x000018aa   0x00000002   PAD
-    0x000018ac   0x000018ac   0x000000ac   Code   RO          521    i.ST7735_FillRect   st7735.o
-    0x00001958   0x00001958   0x00000024   Code   RO          522    i.ST7735_FillScreen  st7735.o
-    0x0000197c   0x0000197c   0x00000088   Code   RO          524    i.ST7735_InitR      st7735.o
-    0x00001a04   0x00001a04   0x000000d4   Code   RO          527    i.ST7735_OutChar    st7735.o
-    0x00001ad8   0x00001ad8   0x00000018   Code   RO          528    i.ST7735_OutString  st7735.o
-    0x00001af0   0x00001af0   0x00000020   Code   RO          538    i.ST7735_SetCursor  st7735.o
-    0x00001b10   0x00001b10   0x0000002c   Code   RO          189    i.SW1_Debounce      os.o
-    0x00001b3c   0x00001b3c   0x0000002c   Code   RO          191    i.SW2_Debounce      os.o
-    0x00001b68   0x00001b68   0x000000ec   Code   RO          193    i.SetInitialStack   os.o
-    0x00001c54   0x00001c54   0x0000004c   Code   RO          194    i.SetThreads        os.o
-    0x00001ca0   0x00001ca0   0x00000014   Code   RO          195    i.SysTick_Handler   os.o
-    0x00001cb4   0x00001cb4   0x00000030   Code   RO          196    i.SysTick_Init      os.o
-    0x00001ce4   0x00001ce4   0x0000001c   Code   RO          197    i.Timer0A_Handler   os.o
-    0x00001d00   0x00001d00   0x00000060   Code   RO          198    i.Timer0A_Init      os.o
-    0x00001d60   0x00001d60   0x00000098   Code   RO          199    i.Timer1A_Handler   os.o
-    0x00001df8   0x00001df8   0x00000018   Code   RO          769    i.Timer2A_Handler   timer2.o
-    0x00001e10   0x00001e10   0x00000090   Code   RO          200    i.Timer3A_Handler   os.o
-    0x00001ea0   0x00001ea0   0x00000064   Code   RO          201    i.Timer3A_Init      os.o
-    0x00001f04   0x00001f04   0x00000094   Code   RO          202    i.Timer4A_Handler   os.o
-    0x00001f98   0x00001f98   0x0000003c   Code   RO          800    i.TxFifo_Get        uart.o
-    0x00001fd4   0x00001fd4   0x00000024   Code   RO          801    i.TxFifo_Init       uart.o
-    0x00001ff8   0x00001ff8   0x0000003c   Code   RO          802    i.TxFifo_Put        uart.o
-    0x00002034   0x00002034   0x00000018   Code   RO          803    i.TxFifo_Size       uart.o
-    0x0000204c   0x0000204c   0x00000058   Code   RO          804    i.UART0_Handler     uart.o
-    0x000020a4   0x000020a4   0x00000014   Code   RO          805    i.UART_InChar       uart.o
-    0x000020b8   0x000020b8   0x000000d4   Code   RO          809    i.UART_Init         uart.o
-    0x0000218c   0x0000218c   0x00000044   Code   RO          810    i.UART_OutChar      uart.o
-    0x000021d0   0x000021d0   0x00000018   Code   RO          811    i.UART_OutString    uart.o
-    0x000021e8   0x000021e8   0x00000018   Code   RO          203    i.UnBlockTCB        os.o
-    0x00002200   0x00002200   0x00000030   Code   RO          204    i.UnLinkTCB         os.o
-    0x00002230   0x00002230   0x00000008   Code   RO            4    i.WrapInterpreter   main.o
-    0x00002238   0x00002238   0x0000000e   Code   RO         1264    i.__scatterload_copy  mc_w.l(handlers.o)
-    0x00002246   0x00002246   0x00000002   Code   RO         1265    i.__scatterload_null  mc_w.l(handlers.o)
-    0x00002248   0x00002248   0x0000000e   Code   RO         1266    i.__scatterload_zeroinit  mc_w.l(handlers.o)
-    0x00002256   0x00002256   0x00000056   Code   RO          542    i.commandList       st7735.o
-    0x000022ac   0x000022ac   0x00000188   Code   RO          543    i.commonInit        st7735.o
-    0x00002434   0x00002434   0x00000028   Code   RO          814    i.copyHardwareToSoftware  uart.o
-    0x0000245c   0x0000245c   0x0000002c   Code   RO          815    i.copySoftwareToHardware  uart.o
-    0x00002488   0x00002488   0x00000048   Code   RO            5    i.main              main.o
-    0x000024d0   0x000024d0   0x00000008   Code   RO          131    i.newLine           interpreter.o
-    0x000024d8   0x000024d8   0x00000012   Code   RO          545    i.pushColor         st7735.o
-    0x000024ea   0x000024ea   0x00000002   PAD
-    0x000024ec   0x000024ec   0x00000074   Code   RO          546    i.setAddrWindow     st7735.o
-    0x00002560   0x00002560   0x00000030   Code   RO          547    i.writecommand      st7735.o
-    0x00002590   0x00002590   0x00000024   Code   RO          548    i.writedata         st7735.o
-    0x000025b4   0x000025b4   0x000007e2   Data   RO          550    .constdata          st7735.o
-    0x00002d96   0x00002d96   0x00000012   Data   RO          958    .constdata          can.o
-    0x00002da8   0x00002da8   0x00000020   Data   RO         1262    Region$$Table       anon$$obj.o
-
-
-    Execution Region ER_RW (Exec base: 0x20000000, Load base: 0x00002dc8, Size: 0x00000104, Max: 0xffffffff, ABSOLUTE)
-
-    Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
-
-    0x20000000   0x00002dc8   0x00000014   Data   RW            6    .data               main.o
-    0x20000014   0x00002ddc   0x00000010   Data   RW           86    .data               adc.o
-    0x20000024   0x00002dec   0x00000079   Data   RW          206    .data               os.o
-    0x2000009d   0x00002e65   0x00000003   PAD
-    0x200000a0   0x00002e68   0x00000034   Data   RW          551    .data               st7735.o
-    0x200000d4   0x00002e9c   0x00000004   Data   RW          772    .data               timer2.o
-    0x200000d8   0x00002ea0   0x00000018   Data   RW          817    .data               uart.o
-    0x200000f0   0x00002eb8   0x00000014   Data   RW         1102    .data               can0.o
+    0x00000000   0x00000284   Code   RO         1356  * RESET               startup.o
+    0x00000284   0x00000000   Code   RO         1363  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)
+    0x00000284   0x00000004   Code   RO         1366    .ARM.Collect$$$$00000001  mc_w.l(entry2.o)
+    0x00000288   0x00000004   Code   RO         1369    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)
+    0x0000028c   0x00000000   Code   RO         1371    .ARM.Collect$$$$00000008  mc_w.l(entry7b.o)
+    0x0000028c   0x00000000   Code   RO         1373    .ARM.Collect$$$$0000000A  mc_w.l(entry8b.o)
+    0x0000028c   0x00000008   Code   RO         1374    .ARM.Collect$$$$0000000B  mc_w.l(entry9a.o)
+    0x00000294   0x00000000   Code   RO         1376    .ARM.Collect$$$$0000000D  mc_w.l(entry10a.o)
+    0x00000294   0x00000000   Code   RO         1378    .ARM.Collect$$$$0000000F  mc_w.l(entry11a.o)
+    0x00000294   0x00000004   Code   RO         1367    .ARM.Collect$$$$00002712  mc_w.l(entry2.o)
+    0x00000298   0x00000050   Code   RO          935    .text               osasm.o
+    0x000002e8   0x0000001c   Code   RO         1357    .text               startup.o
+    0x00000304   0x00000024   Code   RO         1380    .text               mc_w.l(init.o)
+    0x00000328   0x0000002c   Code   RO           82    i.ADC0Seq3_Handler  adc.o
+    0x00000354   0x00000034   Code   RO          154    i.AddBlockedToSemaphore  os.o
+    0x00000388   0x0000003c   Code   RO          155    i.BlockTCB          os.o
+    0x000003c4   0x000000a0   Code   RO         1101    i.CAN0_Handler      can0.o
+    0x00000464   0x000000d8   Code   RO         1102    i.CAN0_Open         can0.o
+    0x0000053c   0x00000030   Code   RO         1104    i.CAN0_Setup_Message_Object  can0.o
+    0x0000056c   0x00000094   Code   RO          939    i.CANBitRateSet     can.o
+    0x00000600   0x00000036   Code   RO          940    i.CANDataRegRead    can.o
+    0x00000636   0x00000036   Code   RO          941    i.CANDataRegWrite   can.o
+    0x0000066c   0x00000018   Code   RO          943    i.CANEnable         can.o
+    0x00000684   0x00000094   Code   RO          945    i.CANInit           can.o
+    0x00000718   0x0000004c   Code   RO          946    i.CANIntClear       can.o
+    0x00000764   0x0000001a   Code   RO          948    i.CANIntEnable      can.o
+    0x0000077e   0x00000002   PAD
+    0x00000780   0x00000030   Code   RO          949    i.CANIntNumberGet   can.o
+    0x000007b0   0x0000003c   Code   RO          951    i.CANIntStatus      can.o
+    0x000007ec   0x000001b2   Code   RO          954    i.CANMessageGet     can.o
+    0x0000099e   0x000001b2   Code   RO          955    i.CANMessageSet     can.o
+    0x00000b50   0x00000050   Code   RO          956    i.CANRegRead        can.o
+    0x00000ba0   0x00000018   Code   RO          957    i.CANRegWrite       can.o
+    0x00000bb8   0x0000007c   Code   RO          960    i.CANStatusGet      can.o
+    0x00000c34   0x00000020   Code   RO          509    i.Delay1ms          st7735.o
+    0x00000c54   0x00000070   Code   RO         1291    i.GPIOPortB_Handler  ping.o
+    0x00000cc4   0x000000c8   Code   RO          156    i.GPIOPortF_Handler  os.o
+    0x00000d8c   0x00000074   Code   RO            1    i.GPIO_PortF_Init   main.o
+    0x00000e00   0x0000006c   Code   RO          157    i.IO_Init           os.o
+    0x00000e6c   0x00000080   Code   RO         1149    i.IntDisable        interrupt.o
+    0x00000eec   0x00000080   Code   RO         1150    i.IntEnable         interrupt.o
+    0x00000f6c   0x000000dc   Code   RO          133    i.Interpreter       interpreter.o
+    0x00001048   0x00000044   Code   RO          159    i.LinkTCB           os.o
+    0x0000108c   0x00000064   Code   RO          161    i.OS_AddPriorityThread  os.o
+    0x000010f0   0x00000134   Code   RO          164    i.OS_AddThread      os.o
+    0x00001224   0x00000030   Code   RO          168    i.OS_Fifo_Init      os.o
+    0x00001254   0x00000048   Code   RO          169    i.OS_Fifo_Put       os.o
+    0x0000129c   0x0000003c   Code   RO          172    i.OS_Init           os.o
+    0x000012d8   0x0000001a   Code   RO          173    i.OS_InitSemaphore  os.o
+    0x000012f2   0x00000002   PAD
+    0x000012f4   0x00000168   Code   RO          174    i.OS_Kill           os.o
+    0x0000145c   0x00000048   Code   RO          175    i.OS_Launch         os.o
+    0x000014a4   0x0000001c   Code   RO          176    i.OS_MailBox_Init   os.o
+    0x000014c0   0x0000009c   Code   RO          180    i.OS_Scheduler      os.o
+    0x0000155c   0x00000024   Code   RO          181    i.OS_Signal         os.o
+    0x00001580   0x0000003c   Code   RO          182    i.OS_Sleep          os.o
+    0x000015bc   0x00000018   Code   RO          183    i.OS_Suspend        os.o
+    0x000015d4   0x0000000c   Code   RO          184    i.OS_Time           os.o
+    0x000015e0   0x00000012   Code   RO          185    i.OS_TimeDifference  os.o
+    0x000015f2   0x00000024   Code   RO          186    i.OS_Wait           os.o
+    0x00001616   0x00000010   Code   RO          798    i.OutCRLF           uart.o
+    0x00001626   0x00000002   PAD
+    0x00001628   0x0000007c   Code   RO          494    i.PLL_Init          pll.o
+    0x000016a4   0x0000000a   Code   RO          191    i.RemoveBlockedFromSemaphore  os.o
+    0x000016ae   0x00000002   PAD
+    0x000016b0   0x0000003c   Code   RO          799    i.RxFifo_Get        uart.o
+    0x000016ec   0x00000024   Code   RO          800    i.RxFifo_Init       uart.o
+    0x00001710   0x0000003c   Code   RO          801    i.RxFifo_Put        uart.o
+    0x0000174c   0x00000018   Code   RO          802    i.RxFifo_Size       uart.o
+    0x00001764   0x000000f4   Code   RO          519    i.ST7735_DrawCharS  st7735.o
+    0x00001858   0x0000007c   Code   RO          520    i.ST7735_DrawFastHLine  st7735.o
+    0x000018d4   0x00000048   Code   RO          522    i.ST7735_DrawPixel  st7735.o
+    0x0000191c   0x00000056   Code   RO          523    i.ST7735_DrawString  st7735.o
+    0x00001972   0x00000002   PAD
+    0x00001974   0x000000ac   Code   RO          524    i.ST7735_FillRect   st7735.o
+    0x00001a20   0x00000024   Code   RO          525    i.ST7735_FillScreen  st7735.o
+    0x00001a44   0x00000088   Code   RO          527    i.ST7735_InitR      st7735.o
+    0x00001acc   0x000000d4   Code   RO          530    i.ST7735_OutChar    st7735.o
+    0x00001ba0   0x00000018   Code   RO          531    i.ST7735_OutString  st7735.o
+    0x00001bb8   0x00000020   Code   RO          541    i.ST7735_SetCursor  st7735.o
+    0x00001bd8   0x0000002c   Code   RO          192    i.SW1_Debounce      os.o
+    0x00001c04   0x0000002c   Code   RO          194    i.SW2_Debounce      os.o
+    0x00001c30   0x000000d4   Code   RO         1331    i.Servo_Initilization  servo.o
+    0x00001d04   0x000000ec   Code   RO          196    i.SetInitialStack   os.o
+    0x00001df0   0x0000004c   Code   RO          197    i.SetThreads        os.o
+    0x00001e3c   0x00000014   Code   RO          198    i.SysTick_Handler   os.o
+    0x00001e50   0x00000030   Code   RO          199    i.SysTick_Init      os.o
+    0x00001e80   0x0000001c   Code   RO          200    i.Timer0A_Handler   os.o
+    0x00001e9c   0x00000064   Code   RO          201    i.Timer0A_Init      os.o
+    0x00001f00   0x00000098   Code   RO          202    i.Timer1A_Handler   os.o
+    0x00001f98   0x00000018   Code   RO          772    i.Timer2A_Handler   timer2.o
+    0x00001fb0   0x00000090   Code   RO          203    i.Timer3A_Handler   os.o
+    0x00002040   0x00000068   Code   RO          204    i.Timer3A_Init      os.o
+    0x000020a8   0x00000094   Code   RO          205    i.Timer4A_Handler   os.o
+    0x0000213c   0x0000003c   Code   RO          803    i.TxFifo_Get        uart.o
+    0x00002178   0x00000024   Code   RO          804    i.TxFifo_Init       uart.o
+    0x0000219c   0x0000003c   Code   RO          805    i.TxFifo_Put        uart.o
+    0x000021d8   0x00000018   Code   RO          806    i.TxFifo_Size       uart.o
+    0x000021f0   0x00000058   Code   RO          807    i.UART0_Handler     uart.o
+    0x00002248   0x00000014   Code   RO          808    i.UART_InChar       uart.o
+    0x0000225c   0x000000d4   Code   RO          812    i.UART_Init         uart.o
+    0x00002330   0x00000044   Code   RO          813    i.UART_OutChar      uart.o
+    0x00002374   0x00000018   Code   RO          814    i.UART_OutString    uart.o
+    0x0000238c   0x00000018   Code   RO          206    i.UnBlockTCB        os.o
+    0x000023a4   0x00000030   Code   RO          207    i.UnLinkTCB         os.o
+    0x000023d4   0x00000008   Code   RO            4    i.WrapInterpreter   main.o
+    0x000023dc   0x0000000e   Code   RO         1384    i.__scatterload_copy  mc_w.l(handlers.o)
+    0x000023ea   0x00000002   Code   RO         1385    i.__scatterload_null  mc_w.l(handlers.o)
+    0x000023ec   0x0000000e   Code   RO         1386    i.__scatterload_zeroinit  mc_w.l(handlers.o)
+    0x000023fa   0x00000056   Code   RO          545    i.commandList       st7735.o
+    0x00002450   0x00000184   Code   RO          546    i.commonInit        st7735.o
+    0x000025d4   0x00000028   Code   RO          817    i.copyHardwareToSoftware  uart.o
+    0x000025fc   0x0000002c   Code   RO          818    i.copySoftwareToHardware  uart.o
+    0x00002628   0x00000050   Code   RO            5    i.main              main.o
+    0x00002678   0x00000008   Code   RO          134    i.newLine           interpreter.o
+    0x00002680   0x00000012   Code   RO          548    i.pushColor         st7735.o
+    0x00002692   0x00000002   PAD
+    0x00002694   0x00000074   Code   RO          549    i.setAddrWindow     st7735.o
+    0x00002708   0x00000030   Code   RO          550    i.writecommand      st7735.o
+    0x00002738   0x00000020   Code   RO          551    i.writedata         st7735.o
+    0x00002758   0x000007e2   Data   RO          553    .constdata          st7735.o
+    0x00002f3a   0x00000012   Data   RO          961    .constdata          can.o
+    0x00002f4c   0x00000020   Data   RO         1382    Region$$Table       anon$$obj.o
 
 
-    Execution Region ER_ZI (Exec base: 0x20000104, Load base: 0x00002ecc, Size: 0x00006084, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RW (Base: 0x20000000, Size: 0x00000118, Max: 0xffffffff, ABSOLUTE)
 
-    Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
+    Base Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x20000104        -       0x00005c64   Zero   RW          205    .bss                os.o
-    0x20005d68        -       0x00000020   Zero   RW          816    .bss                uart.o
-    0x20005d88        -       0x00000400   Zero   RW         1234    STACK               startup.o
+    0x20000000   0x00000014   Data   RW            6    .data               main.o
+    0x20000014   0x00000010   Data   RW           89    .data               adc.o
+    0x20000024   0x0000007c   Data   RW          209    .data               os.o
+    0x200000a0   0x00000034   Data   RW          554    .data               st7735.o
+    0x200000d4   0x00000004   Data   RW          775    .data               timer2.o
+    0x200000d8   0x00000018   Data   RW          820    .data               uart.o
+    0x200000f0   0x00000014   Data   RW         1105    .data               can0.o
+    0x20000104   0x00000014   Data   RW         1296    .data               ping.o
+
+
+    Execution Region ER_ZI (Base: 0x20000118, Size: 0x00006088, Max: 0xffffffff, ABSOLUTE)
+
+    Base Addr    Size         Type   Attr      Idx    E Section Name        Object
+
+    0x20000118   0x00005c64   Zero   RW          208    .bss                os.o
+    0x20005d7c   0x00000020   Zero   RW          819    .bss                uart.o
+    0x20005d9c   0x00000004   PAD
+    0x20005da0   0x00000400   Zero   RW         1354    STACK               startup.o
 
 
 ==============================================================================
@@ -1139,24 +1186,26 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-        44         14          0         16          0       1055   adc.o
-      1746         20         18          0          0      15645   can.o
-       392         56          0         20          0       2751   can0.o
-       228         82          0          0          0       1040   interpreter.o
-       256         20          0          0          0       1101   interrupt.o
-       196         34          0         20          0       8657   main.o
-      3050        418          0        121      23652      22701   os.o
-        80         10          0          0          0        312   osasm.o
-       124          4          0          0          0        483   pll.o
-      1870        206       2018         52          0      14033   st7735.o
-       672        622          0          0       1024       1016   startup.o
-        24          8          0          4          0       1006   timer2.o
-       872        148          0         24         32       9171   uart.o
+        44         16          0         16          0        991   adc.o
+      1734         20         18          0          0      14901   can.o
+       424         56          0         20          0       2607   can0.o
+       228         82          0          0          0        992   interpreter.o
+       256         24          0          0          0       1057   interrupt.o
+       204         34          0         20          0       8277   main.o
+      3130        434          0        124      23652      22099   os.o
+        80         10          0          0          0        284   osasm.o
+       112         24          0         20          0       1162   ping.o
+       124          6          0          0          0        459   pll.o
+       212         34          0          0          0        542   servo.o
+      1858        202       2018         52          0      13273   st7735.o
+       672        622          0          0       1024        960   startup.o
+        24          8          0          4          0        930   timer2.o
+       872        146          0         24         32       8679   uart.o
 
     ----------------------------------------------------------------------
-      9566       1642       2068        260      24708      78971   Object Totals
+      9986       1718       2068        280      24712      77213   Object Totals
          0          0         32          0          0          0   (incl. Generated)
-        12          0          0          3          0          0   (incl. Padding)
+        12          0          0          0          4          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -1193,15 +1242,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      9652       1658       2068        260      24708      74511   Grand Totals
-      9652       1658       2068        260      24708      74511   ELF Image Totals
-      9652       1658       2068        260          0          0   ROM Totals
+     10072       1734       2068        280      24712      72393   Grand Totals
+     10072       1734       2068        280      24712      72393   ELF Image Totals
+     10072       1734       2068        280          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                11720 (  11.45kB)
-    Total RW  Size (RW Data + ZI Data)             24968 (  24.38kB)
-    Total ROM Size (Code + RO Data + RW Data)      11980 (  11.70kB)
+    Total RO  Size (Code + RO Data)                12140 (  11.86kB)
+    Total RW  Size (RW Data + ZI Data)             24992 (  24.41kB)
+    Total ROM Size (Code + RO Data + RW Data)      12420 (  12.13kB)
 
 ==============================================================================
 

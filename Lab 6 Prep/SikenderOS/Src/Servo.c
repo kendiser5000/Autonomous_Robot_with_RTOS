@@ -7,7 +7,7 @@
  * @author Sikender Ashraf
  */
 #include "tm4c123gh6pm.h"
-
+#include <stdint.h>
 
   /** Servo_Initilization
    * @brief Initialize Servo Controlling PWM
@@ -62,15 +62,15 @@
     uint16_t duty;
     int8_t newTurnDirection;
     // check boundary conditions
-    if(dir > 45){
+    if(turnDegrees > 45){
         newTurnDirection = 45;
-    } else if(dir < -45){
+    } else if(turnDegrees < -45){
         newTurnDirection = -45;
     } else{
-      newTurnDirection = dir;
+      newTurnDirection = turnDegrees;
     }
     // calculate new duty cycle from degrees
     duty = (((newTurnDirection+5+40) * 125) / 9) + 1250;
-    Servo_Duty(duty);
-    return newDir;
+    Servo_DutyCycle(duty);
+    return newTurnDirection;
 }

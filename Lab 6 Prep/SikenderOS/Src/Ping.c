@@ -15,6 +15,8 @@
 #define PORTB_PORTS 0x40
 #define PORTB_PING_PRIORITY 1
 
+int StartCritical(void);
+void EndCritical(int sr);
 
  /*
 PING PORTB CONNECTIONS:
@@ -36,7 +38,7 @@ void (*PING_PORTB_PeriodicTask)(void);
 /** Time taken for ping
  * Task to run upon ping detection
  */
-unsinged long PING_PORTB_Time;
+unsigned long PING_PORTB_Time;
 
  /** Ping_PORTB_Initilization
   * @brief Initialize PortB for ping sensor (without Timer 1)
@@ -64,7 +66,7 @@ void Ping_PORTB_Initilization(void(*task) (void)){
     GPIO_PORTB_IM_R |= PORTB_PORTS;       // arm interrupt on PB6
                                           // interrupt enable
     NVIC_PRI0_R = (NVIC_PRI0_R&0xFFFF0FFF)|0x00004000;
-    NVIC_EN0_R = NVIC_EN0_INT1;     // enable interrupt 1 in NVIC
+    NVIC_EN0_R = NVIC_PRI0_INT1_M;     // enable interrupt 1 in NVIC
     EndCritical(sr);
 }
 
@@ -116,7 +118,7 @@ void Ping_PORTB_Signal(void){
  * @author Sikender Ashraf
  */
 void Ping_PORTB_Start(void){
-    OS_AddThread(&PING_Signal, 128, PORTB_PING_PRIORITY);
+    OS_AddThread(&Ping_PORTB_Signal, 128, PORTB_PING_PRIORITY);	// should this be Ping_PORTB_Signal
 }
 
 
@@ -136,7 +138,7 @@ void GPIOPortB_Handler(void){
     }
      //PB6 low
     else if((data & 0x40) == 0){
-    		PING_Time = OS_TimeDifference(startTime, time);
+    		PING_PORTB_Time = OS_TimeDifference(startTime, time);
     		OS_AddThread(PING_PORTB_PeriodicTask,128, PORTB_PING_PRIORITY);
     }
     GPIO_PORTB_ICR_R = PORTB_PORTS;      // acknowledge flag6
