@@ -28,13 +28,3 @@ void Servo_Initilization(uint16_t period, uint16_t duty);
  * @author Sikender Ashraf
  */
 void Servo_Turn(int turnDegrees);
-
-
-
-/** Servo_DutyCycle
- * @brief Set dutycycle for Servo PWM
- * @parameter duty dutycycle
- * @date 4/9/2018
- * @author Sikender Ashraf
- */
-void Servo_DutyCycle(int duty);

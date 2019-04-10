@@ -6,7 +6,7 @@
  * @date 4/9/2018
  * @author Sikender Ashraf
  */
-
+#include "tm4c123gh6pm.h"
 
 
   /** Servo_Initilization
