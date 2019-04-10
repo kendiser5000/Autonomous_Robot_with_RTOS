@@ -32,9 +32,13 @@
 #include <stdbool.h>
 #include "Timer3.h"
 #include "can0.h"
+
 #include "Ping.h"
 #include "Servo.h"
 #include "MotorPWM.h"
+
+#include "IR.h"
+
 
 
 
