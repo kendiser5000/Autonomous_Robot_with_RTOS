@@ -32,6 +32,7 @@
 #include <stdbool.h>
 #include "Timer3.h"
 #include "can0.h"
+#include "IR.h"
 
 
 
