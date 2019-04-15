@@ -29,7 +29,7 @@ void Ping_Initilizations(void(*task)(void));
  */
 void Ping_PORTB_Start(void);
 
-
+unsigned long Ping_Value(void);
 
 
 

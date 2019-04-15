@@ -12,6 +12,7 @@
 #include "OS.h"
 #include "ToF.h"
 #include "IR.h"
+#include "Ping.h"
 
 
 /** MAXSAMPLES
@@ -50,7 +51,7 @@ void Interpreter(){
 	newLine();
 	UART_OutString ("3: Measure IR"); 
 	newLine(); 
-	UART_OutString ("4: "); 
+	UART_OutString ("4: Measure Ultrasonic"); 
 	newLine(); 
 	newLine();
 	UART_OutString ("Selection: ");
@@ -82,7 +83,7 @@ void Interpreter(){
 			UART_OutString("mm\r\n");
 			break;
 		case '4':
-			
+			Ping_PORTB_Start();
 			break;
 	}
 	newLine();

@@ -109,6 +109,13 @@ void UserTask(void){
   sequenceNum++;
 }
 
+void PingTask(void){
+	// nothing
+	UART_OutString("Ultrasonic Measurement: ");
+	UART_OutUDec(Ping_Value());
+	UART_OutString("cm\r\n");
+	OS_Kill();
+}
 
 
 int main(void){    // realmain
@@ -121,6 +128,7 @@ int main(void){    // realmain
 	Servo_Initilization(SERVO_PERIOD, SERVO_DUTY);
 	ToF_Init(1);
 	IR_Init(1);
+	Ping_Initilizations(PingTask);
 	
 	CAN0_Open();
 	NumCreated = 0 ;

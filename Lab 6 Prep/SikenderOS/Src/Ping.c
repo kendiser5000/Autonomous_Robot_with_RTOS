@@ -121,6 +121,9 @@ void Ping_PORTB_Start(void){
     OS_AddThread(&Ping_PORTB_Signal, 128, PORTB_PING_PRIORITY);	// should this be Ping_PORTB_Signal
 }
 
+unsigned long Ping_Value(void){
+	return PING_PORTB_Time;
+}
 
 /** Ping_PORTB_Signal
  * @brief Starts contact with sensor
