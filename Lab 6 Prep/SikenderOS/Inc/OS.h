@@ -46,7 +46,7 @@
 /** NUMTHREADS
  * @brief max number of threads
 */
-#define NUMTHREADS  10        // maximum number of threads
+#define NUMTHREADS  5        // maximum number of threads
 
 /** STACKSIZE
  * @brief max size of stack

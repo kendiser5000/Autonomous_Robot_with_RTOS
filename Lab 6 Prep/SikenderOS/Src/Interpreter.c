@@ -32,7 +32,8 @@ void newLine(void){
 	OutCRLF();
 }
 
-
+char* USONICStrings[3] = {"US0: ", "US1: ", "US2: "};
+uint32_t USONICValues[NUM_USONIC];
 
 /** Interpreter_RealMain
  * Interpreter module for lab 2 realmain
@@ -93,7 +94,14 @@ void Interpreter(){
 			UART_OutString("mm\r\n");
 			break;
 		case '4':
-			Ping_PORTB_Start();
+			UART_OutString("Ultrasonic Sensor Measurement: ");
+			uint8_t message[8];
+			Ping_GetData(USONICValues);
+			for(int i=0; i<NUM_USONIC; i++){
+				message[2*i] = (USONICValues[i]&0x00FF);
+				message[2*i+1] = ((USONICValues[i]&0xFF00)>>8);
+				UART_OutUDec(USONICValues[i]);
+			}
 			break;
 	}
 	newLine();

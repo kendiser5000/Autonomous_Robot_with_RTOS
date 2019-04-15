@@ -226,11 +226,10 @@ ARM Macro Assembler    Page 4
   161 00000048                 END
               00000000 
               00000000 
-Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M4 --apcs=interw
-ork --depend=.\objects\osasm.d -o.\objects\osasm.o -IC:\Keil_v5\ARM\RV31\INC -I
-C:\Keil_v5\ARM\CMSIS\Include -IC:\Keil_v5\ARM\INC\TI\TM4C123 --predefine="__MIC
-ROLIB SETA 1" --predefine="__UVISION_VERSION SETA 525" --list=.\listings\osasm.
-lst Src\OSasm.s
+Command Line: --debug --xref --cpu=Cortex-M4 --apcs=interwork --depend=.\object
+s\osasm.d -o.\objects\osasm.o -IC:\Keil\ARM\RV31\INC -IC:\Keil\ARM\CMSIS\Includ
+e -IC:\Keil\ARM\Inc\TI\TM4C123 --predefine="__MICROLIB SETA 1" --list=.\listing
+s\osasm.lst Src\OSasm.s
 
 
 
@@ -310,4 +309,4 @@ Symbol: RunPt
       At line 143 in file Src\OSasm.s
 
 3 symbols
-346 symbols in table
+345 symbols in table

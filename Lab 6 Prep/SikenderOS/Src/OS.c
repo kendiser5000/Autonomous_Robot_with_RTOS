@@ -300,7 +300,7 @@ void IO_Init(void){
 	ST7735_DrawFastHLine(0, 80, 128, ST7735_YELLOW); // Horizontal line that separates the top and bottom display
 	UART_Init();
 	Timer3A_Init(TIME_1MS);
-	Timer0A_Init();
+	//Timer0A_Init();
 
 }
 
@@ -1280,7 +1280,7 @@ unsigned long OS_MsTime(void){
 	return OS_SystemTimeMS;
 }
 
-
+#if 0
 
 /** Timer0A_Init
  *  Setup 12.5ns timer
@@ -1314,7 +1314,7 @@ void Timer0A_Handler(void){
 	TIMER0_ICR_R = TIMER_ICR_TATOCINT;// acknowledge timer0A timeout
 	OS_SystemTime++;
 }
-
+#endif
 #include <stdio.h>
 
 /** Jitter
