@@ -10,10 +10,11 @@
 #define FILTERSIZE	5
 #define skewRate	0
 #define fs 			0
-int medianFilter[filterSize];
+uint16_t medianFilter[FILTERSIZE];
 int middle;
 
 void IR_Init(uint32_t channelNum){
+	ADC_Open();
 	ADC_Collect(channelNum, fs, medianFilter, FILTERSIZE);
 	middle = FILTERSIZE / 2;
 }
@@ -23,7 +24,7 @@ int cmpfunc (const void * a, const void * b) {
 }
 
 //get IR filtered value
-int getIRValue(void){
+int IR_getValue(void){
 	qsort(medianFilter, FILTERSIZE, sizeof(int), cmpfunc);
 	return medianFilter[middle];
 }

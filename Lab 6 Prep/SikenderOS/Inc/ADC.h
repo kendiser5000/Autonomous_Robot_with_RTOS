@@ -3,6 +3,7 @@
 // Modified On: 04/10/19
 // Created By:  Richard Li
 
+#include <stdint.h>
 
 //----------ADC_Open----------
 // Input:   channelNum

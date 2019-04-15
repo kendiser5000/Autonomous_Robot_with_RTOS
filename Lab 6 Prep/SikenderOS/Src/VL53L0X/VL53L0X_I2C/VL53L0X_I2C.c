@@ -523,7 +523,8 @@ int VL53L0X_read_multi(uint32_t port, uint8_t deviceAddress, uint8_t index, uint
  * @brief write 1 or more bytes to VL53L0X.
  */
 int VL53L0X_write_multi(uint32_t port, uint8_t deviceAddress, uint8_t index, uint8_t* pdata, uint32_t count) {
-#ifdef I2C0
+	switch(port){
+		case 0:
     while (I2C0_MCS_R & I2C_MCS_BUSY) {};                            // wait for I2C ready
     I2C0_MSA_R = (deviceAddress << 1) & I2C_MSA_SA_M;                // MSA[7:1] is slave address
     I2C0_MSA_R &= ~I2C_MSA_RS;                                       // MSA[0] is 0 for send
@@ -567,7 +568,9 @@ int VL53L0X_write_multi(uint32_t port, uint8_t deviceAddress, uint8_t index, uin
         // return error bits
         return (I2C0_MCS_R & (I2C_MCS_DATACK|I2C_MCS_ADRACK|I2C_MCS_ERROR));
     }
-#elif defined I2C1
+		
+		
+		case 1:
     while (I2C1_MCS_R & I2C_MCS_BUSY) {};                            // wait for I2C ready
     I2C1_MSA_R = (deviceAddress << 1) & I2C_MSA_SA_M;                // MSA[7:1] is slave address
     I2C1_MSA_R &= ~I2C_MSA_RS;                                       // MSA[0] is 0 for send
@@ -611,7 +614,9 @@ int VL53L0X_write_multi(uint32_t port, uint8_t deviceAddress, uint8_t index, uin
         // return error bits
         return (I2C1_MCS_R & (I2C_MCS_DATACK|I2C_MCS_ADRACK|I2C_MCS_ERROR));
     }
-#elif defined I2C2
+
+		
+		case 2:
     while (I2C2_MCS_R & I2C_MCS_BUSY) {};                            // wait for I2C ready
     I2C2_MSA_R = (deviceAddress << 1) & I2C_MSA_SA_M;                // MSA[7:1] is slave address
     I2C2_MSA_R &= ~I2C_MSA_RS;                                       // MSA[0] is 0 for send
@@ -655,7 +660,9 @@ int VL53L0X_write_multi(uint32_t port, uint8_t deviceAddress, uint8_t index, uin
         // return error bits
         return (I2C2_MCS_R & (I2C_MCS_DATACK|I2C_MCS_ADRACK|I2C_MCS_ERROR));
     }
-#elif defined I2C3
+
+		
+		case 3:
     while (I2C3_MCS_R & I2C_MCS_BUSY) {};                            // wait for I2C ready
     I2C3_MSA_R = (deviceAddress << 1) & I2C_MSA_SA_M;                // MSA[7:1] is slave address
     I2C3_MSA_R &= ~I2C_MSA_RS;                                       // MSA[0] is 0 for send
@@ -699,7 +706,9 @@ int VL53L0X_write_multi(uint32_t port, uint8_t deviceAddress, uint8_t index, uin
         // return error bits
         return (I2C3_MCS_R & (I2C_MCS_DATACK|I2C_MCS_ADRACK|I2C_MCS_ERROR));
     }
-#endif
+
+	}
+	return 0;
 }
 
 /**

@@ -51,7 +51,7 @@
 /** STACKSIZE
  * @brief max size of stack
 */
-#define STACKSIZE   128       // number of 32-bit words in stack
+#define STACKSIZE   256       // number of 32-bit words in stack
 
 
 

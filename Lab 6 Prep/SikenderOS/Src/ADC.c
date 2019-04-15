@@ -47,7 +47,7 @@ uint16_t ADC_In(void) {
 //----------ADC_Collect----------
 // Input:   channelNum, fs, buffer[], numberOfSamples
 // Output:  none
-void ADC_Collect(uint32_t channelNum, uint32_t fs, uint16_t buffer[], uint32_t numberOfSamples){
+void ADC_Collect(uint32_t channelNum, uint32_t fs, uint16_t *buffer, uint32_t numberOfSamples){
 
         volatile uint32_t delay;
 

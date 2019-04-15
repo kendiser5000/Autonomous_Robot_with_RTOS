@@ -10,6 +10,8 @@
 #include "ADC.h"
 #include "tm4c123gh6pm.h"
 #include "OS.h"
+#include "ToF.h"
+#include "IR.h"
 
 
 /** MAXSAMPLES
@@ -44,16 +46,18 @@ void Interpreter(){
 	newLine();
 	UART_OutString ("1: SendCan"); 
 	newLine();
-	UART_OutString ("2: ");
+	UART_OutString ("2: Measure ToF");
 	newLine();
-	UART_OutString ("3: "); 
+	UART_OutString ("3: Measure IR"); 
+	newLine(); 
+	UART_OutString ("4: "); 
 	newLine(); 
 	newLine();
 	UART_OutString ("Selection: ");
 	
 	char selection = UART_InChar();
 	// Error checking
-	while ((selection != '1') && (selection != '2') && (selection != '3')){
+	while ((selection != '1') && (selection != '2') && (selection != '3') && (selection != '4')){
 			newLine(); newLine();
 			UART_OutString ("Invalid Choice, try again"); 
 			newLine(); 
@@ -68,9 +72,16 @@ void Interpreter(){
 			
 			break;
 		case '2': 
-			 
+			UART_OutString("ToF Sensor 1 Measurement: ");
+			UART_OutUDec(ToF_Measure(1));
+			UART_OutString("mm\r\n");
 			break;
 		case '3': 
+			UART_OutString("IR Sensor Measurement: ");
+			UART_OutUDec(IR_getValue());
+			UART_OutString("mm\r\n");
+			break;
+		case '4':
 			
 			break;
 	}

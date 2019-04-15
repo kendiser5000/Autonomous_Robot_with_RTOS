@@ -38,6 +38,7 @@
 #include "MotorPWM.h"
 
 #include "IR.h"
+#include "ToF.h"
 
 
 
@@ -49,6 +50,7 @@
 #define PF0                     (*((volatile uint32_t *)0x40025004))
 #define PF1                     (*((volatile uint32_t *)0x40025008))
 #define PF2                     (*((volatile uint32_t *)0x40025010))
+#define PF3                     (*((volatile uint32_t *)0x40025020))
 
 #define SERVO_PERIOD 	1
 #define SERVO_DUTY		1
@@ -117,7 +119,8 @@ int main(void){    // realmain
 	OS_Fifo_Init(128);    // ***note*** 4 is not big enough*****//128
 	
 	Servo_Initilization(SERVO_PERIOD, SERVO_DUTY);
-	
+	ToF_Init(1);
+	IR_Init(1);
 	
 	CAN0_Open();
 	NumCreated = 0 ;
@@ -127,4 +130,12 @@ int main(void){    // realmain
 
 	OS_Launch(TIME_2MS); // doesn't return, interrupts enabled in here
 	return 0;            // this never executes
+}
+
+
+void HardFault_Handler(void){
+	PF1 = 0x02;
+	PF2 = 0x04;
+	PF3 = 0x08;
+	while(1);
 }
