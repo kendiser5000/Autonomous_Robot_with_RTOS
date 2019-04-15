@@ -13,6 +13,7 @@
 #include "ToF.h"
 #include "IR.h"
 #include "Ping.h"
+#include "CAN0.h"
 
 
 /** MAXSAMPLES
@@ -53,6 +54,10 @@ void Interpreter(){
 	newLine(); 
 	UART_OutString ("4: Measure Ultrasonic"); 
 	newLine(); 
+	UART_OutString ("5: PWM"); 
+	newLine(); 
+	UART_OutString ("4: Measure Ultrasonic"); 
+	newLine(); 
 	newLine();
 	UART_OutString ("Selection: ");
 	
@@ -70,7 +75,10 @@ void Interpreter(){
 	// Output text for selection
 	switch (selection){
 		case '1': 
-			
+			UART_OutString ("Sending data onto CAN"); 
+			uint8_t data[4] = {0x04, 0x03, 0x02, 0x01};
+			CAN0_SendData(data);
+			newLine();
 			break;
 		case '2': 
 			UART_OutString("ToF Sensor 1 Measurement: ");

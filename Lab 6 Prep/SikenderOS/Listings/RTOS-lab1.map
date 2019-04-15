@@ -32,6 +32,7 @@ Section Cross References
     interpreter.o(i.Interpreter) refers to uart.o(i.UART_OutString) for UART_OutString
     interpreter.o(i.Interpreter) refers to interpreter.o(i.newLine) for newLine
     interpreter.o(i.Interpreter) refers to uart.o(i.UART_InChar) for UART_InChar
+    interpreter.o(i.Interpreter) refers to can0.o(i.CAN0_SendData) for CAN0_SendData
     interpreter.o(i.Interpreter) refers to tof.o(i.ToF_Measure) for ToF_Measure
     interpreter.o(i.Interpreter) refers to uart.o(i.UART_OutUDec) for UART_OutUDec
     interpreter.o(i.Interpreter) refers to ir.o(i.IR_getValue) for IR_getValue
@@ -790,7 +791,6 @@ Removing Unused input sections from the image.
     Removing can0.o(i.CAN0_CheckMail), (12 bytes).
     Removing can0.o(i.CAN0_GetMail), (40 bytes).
     Removing can0.o(i.CAN0_GetMailNonBlock), (52 bytes).
-    Removing can0.o(i.CAN0_SendData), (26 bytes).
     Removing interrupt.o(i.IntDefaultHandler), (4 bytes).
     Removing interrupt.o(i.IntPendClear), (88 bytes).
     Removing interrupt.o(i.IntPendSet), (108 bytes).
@@ -900,7 +900,7 @@ Removing Unused input sections from the image.
     Removing vl53l0x_api_strings.o(i.VL53L0X_get_range_status_string), (192 bytes).
     Removing vl53l0x_api_strings.o(i.VL53L0X_get_sequence_steps_info), (124 bytes).
 
-173 unused section(s) (total 13492 bytes) removed from the image.
+172 unused section(s) (total 13466 bytes) removed from the image.
 
 ==============================================================================
 
@@ -912,9 +912,6 @@ Image Symbol Table
 
     RESET                                    0x00000000   Section      644  startup.o(RESET)
     ../clib/../cmprslib/lz77c.c              0x00000000   Number         0  __dclz77c.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10a.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry2.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry5.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7a.o ABSOLUTE
@@ -922,8 +919,11 @@ Image Symbol Table
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8a.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8b.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11b.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11a.o ABSOLUTE
     ../clib/microlib/stdlib/qsort.c          0x00000000   Number         0  qsort.o ABSOLUTE
     ../clib/microlib/string/memcpy.c         0x00000000   Number         0  memcpyb.o ABSOLUTE
@@ -985,234 +985,235 @@ Image Symbol Table
     i.BlockTCB                               0x00000698   Section        0  os.o(i.BlockTCB)
     i.CAN0_Handler                           0x000006d4   Section        0  can0.o(i.CAN0_Handler)
     i.CAN0_Open                              0x00000774   Section        0  can0.o(i.CAN0_Open)
-    i.CAN0_Setup_Message_Object              0x0000084c   Section        0  can0.o(i.CAN0_Setup_Message_Object)
-    CAN0_Setup_Message_Object                0x0000084d   Thumb Code    44  can0.o(i.CAN0_Setup_Message_Object)
-    i.CANBitRateSet                          0x0000087c   Section        0  can.o(i.CANBitRateSet)
-    i.CANDataRegRead                         0x00000910   Section        0  can.o(i.CANDataRegRead)
-    CANDataRegRead                           0x00000911   Thumb Code    54  can.o(i.CANDataRegRead)
-    i.CANDataRegWrite                        0x00000946   Section        0  can.o(i.CANDataRegWrite)
-    CANDataRegWrite                          0x00000947   Thumb Code    54  can.o(i.CANDataRegWrite)
-    i.CANEnable                              0x0000097c   Section        0  can.o(i.CANEnable)
-    i.CANInit                                0x00000994   Section        0  can.o(i.CANInit)
-    i.CANIntClear                            0x00000a28   Section        0  can.o(i.CANIntClear)
-    i.CANIntEnable                           0x00000a74   Section        0  can.o(i.CANIntEnable)
-    i.CANIntNumberGet                        0x00000a90   Section        0  can.o(i.CANIntNumberGet)
-    CANIntNumberGet                          0x00000a91   Thumb Code    44  can.o(i.CANIntNumberGet)
-    i.CANIntStatus                           0x00000ac0   Section        0  can.o(i.CANIntStatus)
-    i.CANMessageGet                          0x00000afc   Section        0  can.o(i.CANMessageGet)
-    i.CANMessageSet                          0x00000cae   Section        0  can.o(i.CANMessageSet)
-    i.CANRegRead                             0x00000e60   Section        0  can.o(i.CANRegRead)
-    CANRegRead                               0x00000e61   Thumb Code    76  can.o(i.CANRegRead)
-    i.CANRegWrite                            0x00000eb0   Section        0  can.o(i.CANRegWrite)
-    CANRegWrite                              0x00000eb1   Thumb Code    24  can.o(i.CANRegWrite)
-    i.CANStatusGet                           0x00000ec8   Section        0  can.o(i.CANStatusGet)
-    i.Delay1ms                               0x00000f44   Section        0  st7735.o(i.Delay1ms)
-    i.GPIOPortB_Handler                      0x00000f64   Section        0  ping.o(i.GPIOPortB_Handler)
-    i.GPIOPortF_Handler                      0x00000fd4   Section        0  os.o(i.GPIOPortF_Handler)
-    i.GPIO_PortF_Init                        0x0000109c   Section        0  main.o(i.GPIO_PortF_Init)
-    i.HardFault_Handler                      0x00001110   Section        0  main.o(i.HardFault_Handler)
-    i.IO_Init                                0x00001128   Section        0  os.o(i.IO_Init)
-    i.IR_Init                                0x00001194   Section        0  ir.o(i.IR_Init)
-    i.IR_getValue                            0x000011b8   Section        0  ir.o(i.IR_getValue)
-    i.IntDisable                             0x000011e0   Section        0  interrupt.o(i.IntDisable)
-    i.IntEnable                              0x00001260   Section        0  interrupt.o(i.IntEnable)
-    i.Interpreter                            0x000012e0   Section        0  interpreter.o(i.Interpreter)
-    i.LinkTCB                                0x0000146c   Section        0  os.o(i.LinkTCB)
-    i.OS_AddPriorityThread                   0x000014b0   Section        0  os.o(i.OS_AddPriorityThread)
-    i.OS_AddThread                           0x00001514   Section        0  os.o(i.OS_AddThread)
-    i.OS_Fifo_Init                           0x00001648   Section        0  os.o(i.OS_Fifo_Init)
-    i.OS_Fifo_Put                            0x00001678   Section        0  os.o(i.OS_Fifo_Put)
-    i.OS_Init                                0x000016c0   Section        0  os.o(i.OS_Init)
-    i.OS_InitSemaphore                       0x000016fc   Section        0  os.o(i.OS_InitSemaphore)
-    i.OS_Kill                                0x00001718   Section        0  os.o(i.OS_Kill)
-    i.OS_Launch                              0x00001880   Section        0  os.o(i.OS_Launch)
-    i.OS_MailBox_Init                        0x000018c8   Section        0  os.o(i.OS_MailBox_Init)
-    i.OS_Scheduler                           0x000018e4   Section        0  os.o(i.OS_Scheduler)
-    i.OS_Signal                              0x00001980   Section        0  os.o(i.OS_Signal)
-    i.OS_Sleep                               0x000019a4   Section        0  os.o(i.OS_Sleep)
-    i.OS_Suspend                             0x000019e0   Section        0  os.o(i.OS_Suspend)
-    i.OS_Time                                0x000019f8   Section        0  os.o(i.OS_Time)
-    i.OS_TimeDifference                      0x00001a04   Section        0  os.o(i.OS_TimeDifference)
-    i.OS_Wait                                0x00001a16   Section        0  os.o(i.OS_Wait)
-    i.OutCRLF                                0x00001a3a   Section        0  uart.o(i.OutCRLF)
-    i.PLL_Init                               0x00001a4c   Section        0  pll.o(i.PLL_Init)
-    i.PingTask                               0x00001ac8   Section        0  main.o(i.PingTask)
-    i.Ping_Initilizations                    0x00001b0c   Section        0  ping.o(i.Ping_Initilizations)
-    i.Ping_PORTB_Initilization               0x00001b18   Section        0  ping.o(i.Ping_PORTB_Initilization)
-    i.Ping_PORTB_Signal                      0x00001bf4   Section        0  ping.o(i.Ping_PORTB_Signal)
-    i.Ping_PORTB_Start                       0x00001c98   Section        0  ping.o(i.Ping_PORTB_Start)
-    i.Ping_Value                             0x00001cac   Section        0  ping.o(i.Ping_Value)
-    i.RemoveBlockedFromSemaphore             0x00001cb8   Section        0  os.o(i.RemoveBlockedFromSemaphore)
-    i.RxFifo_Get                             0x00001cc4   Section        0  uart.o(i.RxFifo_Get)
-    i.RxFifo_Init                            0x00001d00   Section        0  uart.o(i.RxFifo_Init)
-    i.RxFifo_Put                             0x00001d24   Section        0  uart.o(i.RxFifo_Put)
-    i.RxFifo_Size                            0x00001d60   Section        0  uart.o(i.RxFifo_Size)
-    i.ST7735_DrawCharS                       0x00001d78   Section        0  st7735.o(i.ST7735_DrawCharS)
-    i.ST7735_DrawFastHLine                   0x00001e6c   Section        0  st7735.o(i.ST7735_DrawFastHLine)
-    i.ST7735_DrawPixel                       0x00001ee8   Section        0  st7735.o(i.ST7735_DrawPixel)
-    i.ST7735_DrawString                      0x00001f30   Section        0  st7735.o(i.ST7735_DrawString)
-    i.ST7735_FillRect                        0x00001f88   Section        0  st7735.o(i.ST7735_FillRect)
-    i.ST7735_FillScreen                      0x00002034   Section        0  st7735.o(i.ST7735_FillScreen)
-    i.ST7735_InitR                           0x00002058   Section        0  st7735.o(i.ST7735_InitR)
-    i.ST7735_OutChar                         0x000020e0   Section        0  st7735.o(i.ST7735_OutChar)
-    i.ST7735_OutString                       0x000021b4   Section        0  st7735.o(i.ST7735_OutString)
-    i.ST7735_SetCursor                       0x000021cc   Section        0  st7735.o(i.ST7735_SetCursor)
-    i.SW1_Debounce                           0x000021ec   Section        0  os.o(i.SW1_Debounce)
-    i.SW2_Debounce                           0x00002218   Section        0  os.o(i.SW2_Debounce)
-    i.Servo_Initilization                    0x00002244   Section        0  servo.o(i.Servo_Initilization)
-    i.SetInitialStack                        0x00002318   Section        0  os.o(i.SetInitialStack)
-    i.SetThreads                             0x00002404   Section        0  os.o(i.SetThreads)
-    i.SysTick_Handler                        0x00002450   Section        0  os.o(i.SysTick_Handler)
-    i.SysTick_Init                           0x00002464   Section        0  os.o(i.SysTick_Init)
-    i.Timer0A_Handler                        0x00002494   Section        0  os.o(i.Timer0A_Handler)
-    i.Timer0A_Init                           0x000024b0   Section        0  os.o(i.Timer0A_Init)
-    i.Timer1A_Handler                        0x00002514   Section        0  os.o(i.Timer1A_Handler)
-    i.Timer2A_Handler                        0x000025ac   Section        0  timer2.o(i.Timer2A_Handler)
-    i.Timer3A_Handler                        0x000025c4   Section        0  os.o(i.Timer3A_Handler)
-    i.Timer3A_Init                           0x00002654   Section        0  os.o(i.Timer3A_Init)
-    i.Timer4A_Handler                        0x000026bc   Section        0  os.o(i.Timer4A_Handler)
-    i.ToF_Init                               0x00002750   Section        0  tof.o(i.ToF_Init)
-    i.ToF_Measure                            0x00002764   Section        0  tof.o(i.ToF_Measure)
-    i.TxFifo_Get                             0x00002788   Section        0  uart.o(i.TxFifo_Get)
-    i.TxFifo_Init                            0x000027c4   Section        0  uart.o(i.TxFifo_Init)
-    i.TxFifo_Put                             0x000027e8   Section        0  uart.o(i.TxFifo_Put)
-    i.TxFifo_Size                            0x00002824   Section        0  uart.o(i.TxFifo_Size)
-    i.UART0_Handler                          0x0000283c   Section        0  uart.o(i.UART0_Handler)
-    i.UART_InChar                            0x00002894   Section        0  uart.o(i.UART_InChar)
-    i.UART_Init                              0x000028a8   Section        0  uart.o(i.UART_Init)
-    i.UART_OutChar                           0x0000297c   Section        0  uart.o(i.UART_OutChar)
-    i.UART_OutString                         0x000029c0   Section        0  uart.o(i.UART_OutString)
-    i.UART_OutUDec                           0x000029d8   Section        0  uart.o(i.UART_OutUDec)
-    i.UnBlockTCB                             0x00002a02   Section        0  os.o(i.UnBlockTCB)
-    i.UnLinkTCB                              0x00002a1c   Section        0  os.o(i.UnLinkTCB)
-    i.VL53L0X_CheckAndLoadInterruptSettings  0x00002a4c   Section        0  vl53l0x_api.o(i.VL53L0X_CheckAndLoadInterruptSettings)
-    i.VL53L0X_ClearInterruptMask             0x00002ad0   Section        0  vl53l0x_api.o(i.VL53L0X_ClearInterruptMask)
-    i.VL53L0X_DataInit                       0x00002b24   Section        0  vl53l0x_api.o(i.VL53L0X_DataInit)
-    i.VL53L0X_GetDeviceInfo                  0x00002ce0   Section        0  vl53l0x_api.o(i.VL53L0X_GetDeviceInfo)
-    i.VL53L0X_GetDeviceMode                  0x00002cf6   Section        0  vl53l0x_api.o(i.VL53L0X_GetDeviceMode)
-    i.VL53L0X_GetDeviceParameters            0x00002d00   Section        0  vl53l0x_api.o(i.VL53L0X_GetDeviceParameters)
-    i.VL53L0X_GetFractionEnable              0x00002da0   Section        0  vl53l0x_api.o(i.VL53L0X_GetFractionEnable)
-    i.VL53L0X_GetInterMeasurementPeriodMilliSeconds 0x00002dc2   Section        0  vl53l0x_api.o(i.VL53L0X_GetInterMeasurementPeriodMilliSeconds)
-    i.VL53L0X_GetInterruptMaskStatus         0x00002e00   Section        0  vl53l0x_api.o(i.VL53L0X_GetInterruptMaskStatus)
-    i.VL53L0X_GetInterruptThresholds         0x00002e30   Section        0  vl53l0x_api.o(i.VL53L0X_GetInterruptThresholds)
-    i.VL53L0X_GetLimitCheckEnable            0x00002e72   Section        0  vl53l0x_api.o(i.VL53L0X_GetLimitCheckEnable)
-    i.VL53L0X_GetLimitCheckValue             0x00002e8e   Section        0  vl53l0x_api.o(i.VL53L0X_GetLimitCheckValue)
-    i.VL53L0X_GetMeasurementDataReady        0x00002f44   Section        0  vl53l0x_api.o(i.VL53L0X_GetMeasurementDataReady)
-    i.VL53L0X_GetMeasurementTimingBudgetMicroSeconds 0x00002f9a   Section        0  vl53l0x_api.o(i.VL53L0X_GetMeasurementTimingBudgetMicroSeconds)
-    i.VL53L0X_GetOffsetCalibrationDataMicroMeter 0x00002fb0   Section        0  vl53l0x_api.o(i.VL53L0X_GetOffsetCalibrationDataMicroMeter)
-    i.VL53L0X_GetRangingMeasurementData      0x00002fc6   Section        0  vl53l0x_api.o(i.VL53L0X_GetRangingMeasurementData)
-    i.VL53L0X_GetSequenceStepEnables         0x00003134   Section        0  vl53l0x_api.o(i.VL53L0X_GetSequenceStepEnables)
-    i.VL53L0X_GetSequenceStepTimeout         0x000031aa   Section        0  vl53l0x_api.o(i.VL53L0X_GetSequenceStepTimeout)
-    i.VL53L0X_GetVcselPulsePeriod            0x000031fc   Section        0  vl53l0x_api.o(i.VL53L0X_GetVcselPulsePeriod)
-    i.VL53L0X_GetWrapAroundCheckEnable       0x0000321a   Section        0  vl53l0x_api.o(i.VL53L0X_GetWrapAroundCheckEnable)
-    i.VL53L0X_GetXTalkCompensationEnable     0x00003258   Section        0  vl53l0x_api.o(i.VL53L0X_GetXTalkCompensationEnable)
-    i.VL53L0X_GetXTalkCompensationRateMegaCps 0x00003264   Section        0  vl53l0x_api.o(i.VL53L0X_GetXTalkCompensationRateMegaCps)
-    i.VL53L0X_I2C_Init                       0x0000329c   Section        0  vl53l0x_i2c.o(i.VL53L0X_I2C_Init)
-    i.VL53L0X_Init                           0x000034f4   Section        0  vl53l0x.o(i.VL53L0X_Init)
-    i.VL53L0X_PerformRefCalibration          0x00003914   Section        0  vl53l0x_api.o(i.VL53L0X_PerformRefCalibration)
-    i.VL53L0X_PerformRefSpadManagement       0x00003934   Section        0  vl53l0x_api.o(i.VL53L0X_PerformRefSpadManagement)
-    i.VL53L0X_PerformSingleMeasurement       0x00003952   Section        0  vl53l0x_api.o(i.VL53L0X_PerformSingleMeasurement)
-    i.VL53L0X_PerformSingleRangingMeasurement 0x0000398e   Section        0  vl53l0x_api.o(i.VL53L0X_PerformSingleRangingMeasurement)
-    i.VL53L0X_PollingDelay                   0x000039c6   Section        0  vl53l0x_platform.o(i.VL53L0X_PollingDelay)
-    i.VL53L0X_RdByte                         0x000039e2   Section        0  vl53l0x_platform.o(i.VL53L0X_RdByte)
-    i.VL53L0X_RdDWord                        0x00003a12   Section        0  vl53l0x_platform.o(i.VL53L0X_RdDWord)
-    i.VL53L0X_RdWord                         0x00003a42   Section        0  vl53l0x_platform.o(i.VL53L0X_RdWord)
-    i.VL53L0X_ReadMulti                      0x00003a72   Section        0  vl53l0x_platform.o(i.VL53L0X_ReadMulti)
-    i.VL53L0X_SetDeviceAddress               0x00003aac   Section        0  vl53l0x_api.o(i.VL53L0X_SetDeviceAddress)
-    i.VL53L0X_SetDeviceMode                  0x00003ad0   Section        0  vl53l0x_api.o(i.VL53L0X_SetDeviceMode)
-    i.VL53L0X_SetGpioConfig                  0x00003b02   Section        0  vl53l0x_api.o(i.VL53L0X_SetGpioConfig)
-    i.VL53L0X_SetLimitCheckEnable            0x00003c68   Section        0  vl53l0x_api.o(i.VL53L0X_SetLimitCheckEnable)
-    i.VL53L0X_SetLimitCheckValue             0x00003d2a   Section        0  vl53l0x_api.o(i.VL53L0X_SetLimitCheckValue)
-    i.VL53L0X_SetMeasurementTimingBudgetMicroSeconds 0x00003da0   Section        0  vl53l0x_api.o(i.VL53L0X_SetMeasurementTimingBudgetMicroSeconds)
-    i.VL53L0X_SetSequenceStepEnable          0x00003db6   Section        0  vl53l0x_api.o(i.VL53L0X_SetSequenceStepEnable)
-    i.VL53L0X_StartMeasurement               0x00003e7a   Section        0  vl53l0x_api.o(i.VL53L0X_StartMeasurement)
-    i.VL53L0X_StaticInit                     0x00003f84   Section        0  vl53l0x_api.o(i.VL53L0X_StaticInit)
-    i.VL53L0X_UpdateByte                     0x00004124   Section        0  vl53l0x_platform.o(i.VL53L0X_UpdateByte)
-    i.VL53L0X_WrByte                         0x00004184   Section        0  vl53l0x_platform.o(i.VL53L0X_WrByte)
-    i.VL53L0X_WrWord                         0x000041b4   Section        0  vl53l0x_platform.o(i.VL53L0X_WrWord)
-    i.VL53L0X_WriteMulti                     0x000041e4   Section        0  vl53l0x_platform.o(i.VL53L0X_WriteMulti)
-    i.VL53L0X_calc_dmax                      0x00004224   Section        0  vl53l0x_api_core.o(i.VL53L0X_calc_dmax)
-    i.VL53L0X_calc_macro_period_ps           0x000043b0   Section        0  vl53l0x_api_core.o(i.VL53L0X_calc_macro_period_ps)
-    i.VL53L0X_calc_sigma_estimate            0x000043c8   Section        0  vl53l0x_api_core.o(i.VL53L0X_calc_sigma_estimate)
-    i.VL53L0X_calc_timeout_mclks             0x00004678   Section        0  vl53l0x_api_core.o(i.VL53L0X_calc_timeout_mclks)
-    i.VL53L0X_calc_timeout_us                0x000046ac   Section        0  vl53l0x_api_core.o(i.VL53L0X_calc_timeout_us)
-    i.VL53L0X_check_part_used                0x000046e4   Section        0  vl53l0x_api_strings.o(i.VL53L0X_check_part_used)
-    i.VL53L0X_decode_timeout                 0x00004734   Section        0  vl53l0x_api_core.o(i.VL53L0X_decode_timeout)
-    i.VL53L0X_decode_vcsel_period            0x00004742   Section        0  vl53l0x_api_core.o(i.VL53L0X_decode_vcsel_period)
-    i.VL53L0X_device_read_strobe             0x0000474e   Section        0  vl53l0x_api_core.o(i.VL53L0X_device_read_strobe)
-    i.VL53L0X_encode_timeout                 0x0000479c   Section        0  vl53l0x_api_core.o(i.VL53L0X_encode_timeout)
-    i.VL53L0X_getSingleRangingMeasurement    0x000047c4   Section        0  vl53l0x.o(i.VL53L0X_getSingleRangingMeasurement)
-    i.VL53L0X_get_device_info                0x0000481c   Section        0  vl53l0x_api_strings.o(i.VL53L0X_get_device_info)
-    i.VL53L0X_get_info_from_device           0x000048f8   Section        0  vl53l0x_api_core.o(i.VL53L0X_get_info_from_device)
-    i.VL53L0X_get_measurement_timing_budget_micro_seconds 0x00004e3a   Section        0  vl53l0x_api_core.o(i.VL53L0X_get_measurement_timing_budget_micro_seconds)
-    i.VL53L0X_get_offset_calibration_data_micro_meter 0x00004f28   Section        0  vl53l0x_api_calibration.o(i.VL53L0X_get_offset_calibration_data_micro_meter)
-    i.VL53L0X_get_pal_range_status           0x00004f7e   Section        0  vl53l0x_api_core.o(i.VL53L0X_get_pal_range_status)
-    i.VL53L0X_get_total_signal_rate          0x000051b2   Section        0  vl53l0x_api_core.o(i.VL53L0X_get_total_signal_rate)
-    i.VL53L0X_get_total_xtalk_rate           0x000051da   Section        0  vl53l0x_api_core.o(i.VL53L0X_get_total_xtalk_rate)
-    i.VL53L0X_get_vcsel_pulse_period         0x00005214   Section        0  vl53l0x_api_core.o(i.VL53L0X_get_vcsel_pulse_period)
-    i.VL53L0X_isqrt                          0x0000525a   Section        0  vl53l0x_api_core.o(i.VL53L0X_isqrt)
-    i.VL53L0X_load_tuning_settings           0x00005286   Section        0  vl53l0x_api_core.o(i.VL53L0X_load_tuning_settings)
-    i.VL53L0X_measurement_poll_for_completion 0x00005370   Section        0  vl53l0x_api_core.o(i.VL53L0X_measurement_poll_for_completion)
-    i.VL53L0X_perform_phase_calibration      0x000053b0   Section        0  vl53l0x_api_calibration.o(i.VL53L0X_perform_phase_calibration)
-    i.VL53L0X_perform_ref_calibration        0x0000542c   Section        0  vl53l0x_api_calibration.o(i.VL53L0X_perform_ref_calibration)
-    i.VL53L0X_perform_ref_spad_management    0x00005478   Section        0  vl53l0x_api_calibration.o(i.VL53L0X_perform_ref_spad_management)
-    i.VL53L0X_perform_single_ref_calibration 0x00005704   Section        0  vl53l0x_api_calibration.o(i.VL53L0X_perform_single_ref_calibration)
-    i.VL53L0X_perform_vhv_calibration        0x00005744   Section        0  vl53l0x_api_calibration.o(i.VL53L0X_perform_vhv_calibration)
-    i.VL53L0X_read_byte                      0x000057c2   Section        0  vl53l0x_i2c.o(i.VL53L0X_read_byte)
-    i.VL53L0X_read_dword                     0x000057de   Section        0  vl53l0x_i2c.o(i.VL53L0X_read_dword)
-    i.VL53L0X_read_multi                     0x00005820   Section        0  vl53l0x_i2c.o(i.VL53L0X_read_multi)
-    i.VL53L0X_read_word                      0x00005fb4   Section        0  vl53l0x_i2c.o(i.VL53L0X_read_word)
-    i.VL53L0X_ref_calibration_io             0x00005fe6   Section        0  vl53l0x_api_calibration.o(i.VL53L0X_ref_calibration_io)
-    i.VL53L0X_setAddress                     0x00006098   Section        0  vl53l0x.o(i.VL53L0X_setAddress)
-    i.VL53L0X_set_measurement_timing_budget_micro_seconds 0x00006160   Section        0  vl53l0x_api_core.o(i.VL53L0X_set_measurement_timing_budget_micro_seconds)
-    i.VL53L0X_set_reference_spads            0x00006288   Section        0  vl53l0x_api_calibration.o(i.VL53L0X_set_reference_spads)
-    i.VL53L0X_write_byte                     0x0000634a   Section        0  vl53l0x_i2c.o(i.VL53L0X_write_byte)
-    i.VL53L0X_write_multi                    0x00006368   Section        0  vl53l0x_i2c.o(i.VL53L0X_write_multi)
-    i.VL53L0X_write_word                     0x000066d0   Section        0  vl53l0x_i2c.o(i.VL53L0X_write_word)
-    i.WrapInterpreter                        0x000066f8   Section        0  main.o(i.WrapInterpreter)
-    i.__scatterload_copy                     0x00006700   Section       14  handlers.o(i.__scatterload_copy)
-    i.__scatterload_null                     0x0000670e   Section        2  handlers.o(i.__scatterload_null)
-    i.__scatterload_zeroinit                 0x00006710   Section       14  handlers.o(i.__scatterload_zeroinit)
-    i.cmpfunc                                0x0000671e   Section        0  ir.o(i.cmpfunc)
-    i.commandList                            0x00006728   Section        0  st7735.o(i.commandList)
-    commandList                              0x00006729   Thumb Code    86  st7735.o(i.commandList)
-    i.commonInit                             0x00006780   Section        0  st7735.o(i.commonInit)
-    commonInit                               0x00006781   Thumb Code   340  st7735.o(i.commonInit)
-    i.copyHardwareToSoftware                 0x00006904   Section        0  uart.o(i.copyHardwareToSoftware)
-    copyHardwareToSoftware                   0x00006905   Thumb Code    36  uart.o(i.copyHardwareToSoftware)
-    i.copySoftwareToHardware                 0x0000692c   Section        0  uart.o(i.copySoftwareToHardware)
-    copySoftwareToHardware                   0x0000692d   Thumb Code    38  uart.o(i.copySoftwareToHardware)
-    i.delay                                  0x00006958   Section        0  vl53l0x.o(i.delay)
-    delay                                    0x00006959   Thumb Code    24  vl53l0x.o(i.delay)
-    i.enable_ref_spads                       0x00006970   Section        0  vl53l0x_api_calibration.o(i.enable_ref_spads)
-    i.enable_spad_bit                        0x00006a1c   Section        0  vl53l0x_api_calibration.o(i.enable_spad_bit)
-    i.get_next_good_spad                     0x00006a4e   Section        0  vl53l0x_api_calibration.o(i.get_next_good_spad)
-    i.get_ref_spad_map                       0x00006ab2   Section        0  vl53l0x_api_calibration.o(i.get_ref_spad_map)
-    i.get_sequence_step_timeout              0x00006aca   Section        0  vl53l0x_api_core.o(i.get_sequence_step_timeout)
-    i.is_aperture                            0x00006bec   Section        0  vl53l0x_api_calibration.o(i.is_aperture)
-    i.main                                   0x00006c04   Section        0  main.o(i.main)
-    i.newLine                                0x00006c6c   Section        0  interpreter.o(i.newLine)
-    i.perform_ref_signal_measurement         0x00006c74   Section        0  vl53l0x_api_calibration.o(i.perform_ref_signal_measurement)
-    i.pushColor                              0x00006ce2   Section        0  st7735.o(i.pushColor)
-    pushColor                                0x00006ce3   Thumb Code    18  st7735.o(i.pushColor)
-    i.sequence_step_enabled                  0x00006cf4   Section        0  vl53l0x_api.o(i.sequence_step_enabled)
-    i.setAddrWindow                          0x00006d40   Section        0  st7735.o(i.setAddrWindow)
-    setAddrWindow                            0x00006d41   Thumb Code   106  st7735.o(i.setAddrWindow)
-    i.set_ref_spad_map                       0x00006db4   Section        0  vl53l0x_api_calibration.o(i.set_ref_spad_map)
-    i.set_sequence_step_timeout              0x00006dcc   Section        0  vl53l0x_api_core.o(i.set_sequence_step_timeout)
-    i.writecommand                           0x00006f08   Section        0  st7735.o(i.writecommand)
-    writecommand                             0x00006f09   Thumb Code    40  st7735.o(i.writecommand)
-    i.writedata                              0x00006f38   Section        0  st7735.o(i.writedata)
-    writedata                                0x00006f39   Thumb Code    24  st7735.o(i.writedata)
-    .constdata                               0x00006f58   Section     2018  st7735.o(.constdata)
-    Font                                     0x00006f58   Data        1275  st7735.o(.constdata)
-    Bcmd                                     0x00007453   Data         103  st7735.o(.constdata)
-    Rcmd1                                    0x000074ba   Data          59  st7735.o(.constdata)
-    Rcmd2green                               0x000074f5   Data          13  st7735.o(.constdata)
-    Rcmd2red                                 0x00007502   Data          13  st7735.o(.constdata)
-    Rcmd3                                    0x0000750f   Data          43  st7735.o(.constdata)
-    .constdata                               0x0000773a   Section       18  can.o(.constdata)
-    g_usCANBitValues                         0x0000773a   Data          18  can.o(.constdata)
+    i.CAN0_SendData                          0x0000084c   Section        0  can0.o(i.CAN0_SendData)
+    i.CAN0_Setup_Message_Object              0x00000868   Section        0  can0.o(i.CAN0_Setup_Message_Object)
+    CAN0_Setup_Message_Object                0x00000869   Thumb Code    44  can0.o(i.CAN0_Setup_Message_Object)
+    i.CANBitRateSet                          0x00000898   Section        0  can.o(i.CANBitRateSet)
+    i.CANDataRegRead                         0x0000092c   Section        0  can.o(i.CANDataRegRead)
+    CANDataRegRead                           0x0000092d   Thumb Code    54  can.o(i.CANDataRegRead)
+    i.CANDataRegWrite                        0x00000962   Section        0  can.o(i.CANDataRegWrite)
+    CANDataRegWrite                          0x00000963   Thumb Code    54  can.o(i.CANDataRegWrite)
+    i.CANEnable                              0x00000998   Section        0  can.o(i.CANEnable)
+    i.CANInit                                0x000009b0   Section        0  can.o(i.CANInit)
+    i.CANIntClear                            0x00000a44   Section        0  can.o(i.CANIntClear)
+    i.CANIntEnable                           0x00000a90   Section        0  can.o(i.CANIntEnable)
+    i.CANIntNumberGet                        0x00000aac   Section        0  can.o(i.CANIntNumberGet)
+    CANIntNumberGet                          0x00000aad   Thumb Code    44  can.o(i.CANIntNumberGet)
+    i.CANIntStatus                           0x00000adc   Section        0  can.o(i.CANIntStatus)
+    i.CANMessageGet                          0x00000b18   Section        0  can.o(i.CANMessageGet)
+    i.CANMessageSet                          0x00000cca   Section        0  can.o(i.CANMessageSet)
+    i.CANRegRead                             0x00000e7c   Section        0  can.o(i.CANRegRead)
+    CANRegRead                               0x00000e7d   Thumb Code    76  can.o(i.CANRegRead)
+    i.CANRegWrite                            0x00000ecc   Section        0  can.o(i.CANRegWrite)
+    CANRegWrite                              0x00000ecd   Thumb Code    24  can.o(i.CANRegWrite)
+    i.CANStatusGet                           0x00000ee4   Section        0  can.o(i.CANStatusGet)
+    i.Delay1ms                               0x00000f60   Section        0  st7735.o(i.Delay1ms)
+    i.GPIOPortB_Handler                      0x00000f80   Section        0  ping.o(i.GPIOPortB_Handler)
+    i.GPIOPortF_Handler                      0x00000ff0   Section        0  os.o(i.GPIOPortF_Handler)
+    i.GPIO_PortF_Init                        0x000010b8   Section        0  main.o(i.GPIO_PortF_Init)
+    i.HardFault_Handler                      0x0000112c   Section        0  main.o(i.HardFault_Handler)
+    i.IO_Init                                0x00001144   Section        0  os.o(i.IO_Init)
+    i.IR_Init                                0x000011b0   Section        0  ir.o(i.IR_Init)
+    i.IR_getValue                            0x000011d4   Section        0  ir.o(i.IR_getValue)
+    i.IntDisable                             0x000011fc   Section        0  interrupt.o(i.IntDisable)
+    i.IntEnable                              0x0000127c   Section        0  interrupt.o(i.IntEnable)
+    i.Interpreter                            0x000012fc   Section        0  interpreter.o(i.Interpreter)
+    i.LinkTCB                                0x000014d8   Section        0  os.o(i.LinkTCB)
+    i.OS_AddPriorityThread                   0x0000151c   Section        0  os.o(i.OS_AddPriorityThread)
+    i.OS_AddThread                           0x00001580   Section        0  os.o(i.OS_AddThread)
+    i.OS_Fifo_Init                           0x000016b4   Section        0  os.o(i.OS_Fifo_Init)
+    i.OS_Fifo_Put                            0x000016e4   Section        0  os.o(i.OS_Fifo_Put)
+    i.OS_Init                                0x0000172c   Section        0  os.o(i.OS_Init)
+    i.OS_InitSemaphore                       0x00001768   Section        0  os.o(i.OS_InitSemaphore)
+    i.OS_Kill                                0x00001784   Section        0  os.o(i.OS_Kill)
+    i.OS_Launch                              0x000018ec   Section        0  os.o(i.OS_Launch)
+    i.OS_MailBox_Init                        0x00001934   Section        0  os.o(i.OS_MailBox_Init)
+    i.OS_Scheduler                           0x00001950   Section        0  os.o(i.OS_Scheduler)
+    i.OS_Signal                              0x000019ec   Section        0  os.o(i.OS_Signal)
+    i.OS_Sleep                               0x00001a10   Section        0  os.o(i.OS_Sleep)
+    i.OS_Suspend                             0x00001a4c   Section        0  os.o(i.OS_Suspend)
+    i.OS_Time                                0x00001a64   Section        0  os.o(i.OS_Time)
+    i.OS_TimeDifference                      0x00001a70   Section        0  os.o(i.OS_TimeDifference)
+    i.OS_Wait                                0x00001a82   Section        0  os.o(i.OS_Wait)
+    i.OutCRLF                                0x00001aa6   Section        0  uart.o(i.OutCRLF)
+    i.PLL_Init                               0x00001ab8   Section        0  pll.o(i.PLL_Init)
+    i.PingTask                               0x00001b34   Section        0  main.o(i.PingTask)
+    i.Ping_Initilizations                    0x00001b78   Section        0  ping.o(i.Ping_Initilizations)
+    i.Ping_PORTB_Initilization               0x00001b84   Section        0  ping.o(i.Ping_PORTB_Initilization)
+    i.Ping_PORTB_Signal                      0x00001c60   Section        0  ping.o(i.Ping_PORTB_Signal)
+    i.Ping_PORTB_Start                       0x00001d04   Section        0  ping.o(i.Ping_PORTB_Start)
+    i.Ping_Value                             0x00001d18   Section        0  ping.o(i.Ping_Value)
+    i.RemoveBlockedFromSemaphore             0x00001d24   Section        0  os.o(i.RemoveBlockedFromSemaphore)
+    i.RxFifo_Get                             0x00001d30   Section        0  uart.o(i.RxFifo_Get)
+    i.RxFifo_Init                            0x00001d6c   Section        0  uart.o(i.RxFifo_Init)
+    i.RxFifo_Put                             0x00001d90   Section        0  uart.o(i.RxFifo_Put)
+    i.RxFifo_Size                            0x00001dcc   Section        0  uart.o(i.RxFifo_Size)
+    i.ST7735_DrawCharS                       0x00001de4   Section        0  st7735.o(i.ST7735_DrawCharS)
+    i.ST7735_DrawFastHLine                   0x00001ed8   Section        0  st7735.o(i.ST7735_DrawFastHLine)
+    i.ST7735_DrawPixel                       0x00001f54   Section        0  st7735.o(i.ST7735_DrawPixel)
+    i.ST7735_DrawString                      0x00001f9c   Section        0  st7735.o(i.ST7735_DrawString)
+    i.ST7735_FillRect                        0x00001ff4   Section        0  st7735.o(i.ST7735_FillRect)
+    i.ST7735_FillScreen                      0x000020a0   Section        0  st7735.o(i.ST7735_FillScreen)
+    i.ST7735_InitR                           0x000020c4   Section        0  st7735.o(i.ST7735_InitR)
+    i.ST7735_OutChar                         0x0000214c   Section        0  st7735.o(i.ST7735_OutChar)
+    i.ST7735_OutString                       0x00002220   Section        0  st7735.o(i.ST7735_OutString)
+    i.ST7735_SetCursor                       0x00002238   Section        0  st7735.o(i.ST7735_SetCursor)
+    i.SW1_Debounce                           0x00002258   Section        0  os.o(i.SW1_Debounce)
+    i.SW2_Debounce                           0x00002284   Section        0  os.o(i.SW2_Debounce)
+    i.Servo_Initilization                    0x000022b0   Section        0  servo.o(i.Servo_Initilization)
+    i.SetInitialStack                        0x00002384   Section        0  os.o(i.SetInitialStack)
+    i.SetThreads                             0x00002470   Section        0  os.o(i.SetThreads)
+    i.SysTick_Handler                        0x000024bc   Section        0  os.o(i.SysTick_Handler)
+    i.SysTick_Init                           0x000024d0   Section        0  os.o(i.SysTick_Init)
+    i.Timer0A_Handler                        0x00002500   Section        0  os.o(i.Timer0A_Handler)
+    i.Timer0A_Init                           0x0000251c   Section        0  os.o(i.Timer0A_Init)
+    i.Timer1A_Handler                        0x00002580   Section        0  os.o(i.Timer1A_Handler)
+    i.Timer2A_Handler                        0x00002618   Section        0  timer2.o(i.Timer2A_Handler)
+    i.Timer3A_Handler                        0x00002630   Section        0  os.o(i.Timer3A_Handler)
+    i.Timer3A_Init                           0x000026c0   Section        0  os.o(i.Timer3A_Init)
+    i.Timer4A_Handler                        0x00002728   Section        0  os.o(i.Timer4A_Handler)
+    i.ToF_Init                               0x000027bc   Section        0  tof.o(i.ToF_Init)
+    i.ToF_Measure                            0x000027d0   Section        0  tof.o(i.ToF_Measure)
+    i.TxFifo_Get                             0x000027f4   Section        0  uart.o(i.TxFifo_Get)
+    i.TxFifo_Init                            0x00002830   Section        0  uart.o(i.TxFifo_Init)
+    i.TxFifo_Put                             0x00002854   Section        0  uart.o(i.TxFifo_Put)
+    i.TxFifo_Size                            0x00002890   Section        0  uart.o(i.TxFifo_Size)
+    i.UART0_Handler                          0x000028a8   Section        0  uart.o(i.UART0_Handler)
+    i.UART_InChar                            0x00002900   Section        0  uart.o(i.UART_InChar)
+    i.UART_Init                              0x00002914   Section        0  uart.o(i.UART_Init)
+    i.UART_OutChar                           0x000029e8   Section        0  uart.o(i.UART_OutChar)
+    i.UART_OutString                         0x00002a2c   Section        0  uart.o(i.UART_OutString)
+    i.UART_OutUDec                           0x00002a44   Section        0  uart.o(i.UART_OutUDec)
+    i.UnBlockTCB                             0x00002a6e   Section        0  os.o(i.UnBlockTCB)
+    i.UnLinkTCB                              0x00002a88   Section        0  os.o(i.UnLinkTCB)
+    i.VL53L0X_CheckAndLoadInterruptSettings  0x00002ab8   Section        0  vl53l0x_api.o(i.VL53L0X_CheckAndLoadInterruptSettings)
+    i.VL53L0X_ClearInterruptMask             0x00002b3c   Section        0  vl53l0x_api.o(i.VL53L0X_ClearInterruptMask)
+    i.VL53L0X_DataInit                       0x00002b90   Section        0  vl53l0x_api.o(i.VL53L0X_DataInit)
+    i.VL53L0X_GetDeviceInfo                  0x00002d4c   Section        0  vl53l0x_api.o(i.VL53L0X_GetDeviceInfo)
+    i.VL53L0X_GetDeviceMode                  0x00002d62   Section        0  vl53l0x_api.o(i.VL53L0X_GetDeviceMode)
+    i.VL53L0X_GetDeviceParameters            0x00002d6c   Section        0  vl53l0x_api.o(i.VL53L0X_GetDeviceParameters)
+    i.VL53L0X_GetFractionEnable              0x00002e0c   Section        0  vl53l0x_api.o(i.VL53L0X_GetFractionEnable)
+    i.VL53L0X_GetInterMeasurementPeriodMilliSeconds 0x00002e2e   Section        0  vl53l0x_api.o(i.VL53L0X_GetInterMeasurementPeriodMilliSeconds)
+    i.VL53L0X_GetInterruptMaskStatus         0x00002e6c   Section        0  vl53l0x_api.o(i.VL53L0X_GetInterruptMaskStatus)
+    i.VL53L0X_GetInterruptThresholds         0x00002e9c   Section        0  vl53l0x_api.o(i.VL53L0X_GetInterruptThresholds)
+    i.VL53L0X_GetLimitCheckEnable            0x00002ede   Section        0  vl53l0x_api.o(i.VL53L0X_GetLimitCheckEnable)
+    i.VL53L0X_GetLimitCheckValue             0x00002efa   Section        0  vl53l0x_api.o(i.VL53L0X_GetLimitCheckValue)
+    i.VL53L0X_GetMeasurementDataReady        0x00002fb0   Section        0  vl53l0x_api.o(i.VL53L0X_GetMeasurementDataReady)
+    i.VL53L0X_GetMeasurementTimingBudgetMicroSeconds 0x00003006   Section        0  vl53l0x_api.o(i.VL53L0X_GetMeasurementTimingBudgetMicroSeconds)
+    i.VL53L0X_GetOffsetCalibrationDataMicroMeter 0x0000301c   Section        0  vl53l0x_api.o(i.VL53L0X_GetOffsetCalibrationDataMicroMeter)
+    i.VL53L0X_GetRangingMeasurementData      0x00003032   Section        0  vl53l0x_api.o(i.VL53L0X_GetRangingMeasurementData)
+    i.VL53L0X_GetSequenceStepEnables         0x000031a0   Section        0  vl53l0x_api.o(i.VL53L0X_GetSequenceStepEnables)
+    i.VL53L0X_GetSequenceStepTimeout         0x00003216   Section        0  vl53l0x_api.o(i.VL53L0X_GetSequenceStepTimeout)
+    i.VL53L0X_GetVcselPulsePeriod            0x00003268   Section        0  vl53l0x_api.o(i.VL53L0X_GetVcselPulsePeriod)
+    i.VL53L0X_GetWrapAroundCheckEnable       0x00003286   Section        0  vl53l0x_api.o(i.VL53L0X_GetWrapAroundCheckEnable)
+    i.VL53L0X_GetXTalkCompensationEnable     0x000032c4   Section        0  vl53l0x_api.o(i.VL53L0X_GetXTalkCompensationEnable)
+    i.VL53L0X_GetXTalkCompensationRateMegaCps 0x000032d0   Section        0  vl53l0x_api.o(i.VL53L0X_GetXTalkCompensationRateMegaCps)
+    i.VL53L0X_I2C_Init                       0x00003308   Section        0  vl53l0x_i2c.o(i.VL53L0X_I2C_Init)
+    i.VL53L0X_Init                           0x00003560   Section        0  vl53l0x.o(i.VL53L0X_Init)
+    i.VL53L0X_PerformRefCalibration          0x00003980   Section        0  vl53l0x_api.o(i.VL53L0X_PerformRefCalibration)
+    i.VL53L0X_PerformRefSpadManagement       0x000039a0   Section        0  vl53l0x_api.o(i.VL53L0X_PerformRefSpadManagement)
+    i.VL53L0X_PerformSingleMeasurement       0x000039be   Section        0  vl53l0x_api.o(i.VL53L0X_PerformSingleMeasurement)
+    i.VL53L0X_PerformSingleRangingMeasurement 0x000039fa   Section        0  vl53l0x_api.o(i.VL53L0X_PerformSingleRangingMeasurement)
+    i.VL53L0X_PollingDelay                   0x00003a32   Section        0  vl53l0x_platform.o(i.VL53L0X_PollingDelay)
+    i.VL53L0X_RdByte                         0x00003a4e   Section        0  vl53l0x_platform.o(i.VL53L0X_RdByte)
+    i.VL53L0X_RdDWord                        0x00003a7e   Section        0  vl53l0x_platform.o(i.VL53L0X_RdDWord)
+    i.VL53L0X_RdWord                         0x00003aae   Section        0  vl53l0x_platform.o(i.VL53L0X_RdWord)
+    i.VL53L0X_ReadMulti                      0x00003ade   Section        0  vl53l0x_platform.o(i.VL53L0X_ReadMulti)
+    i.VL53L0X_SetDeviceAddress               0x00003b18   Section        0  vl53l0x_api.o(i.VL53L0X_SetDeviceAddress)
+    i.VL53L0X_SetDeviceMode                  0x00003b3c   Section        0  vl53l0x_api.o(i.VL53L0X_SetDeviceMode)
+    i.VL53L0X_SetGpioConfig                  0x00003b6e   Section        0  vl53l0x_api.o(i.VL53L0X_SetGpioConfig)
+    i.VL53L0X_SetLimitCheckEnable            0x00003cd4   Section        0  vl53l0x_api.o(i.VL53L0X_SetLimitCheckEnable)
+    i.VL53L0X_SetLimitCheckValue             0x00003d96   Section        0  vl53l0x_api.o(i.VL53L0X_SetLimitCheckValue)
+    i.VL53L0X_SetMeasurementTimingBudgetMicroSeconds 0x00003e0c   Section        0  vl53l0x_api.o(i.VL53L0X_SetMeasurementTimingBudgetMicroSeconds)
+    i.VL53L0X_SetSequenceStepEnable          0x00003e22   Section        0  vl53l0x_api.o(i.VL53L0X_SetSequenceStepEnable)
+    i.VL53L0X_StartMeasurement               0x00003ee6   Section        0  vl53l0x_api.o(i.VL53L0X_StartMeasurement)
+    i.VL53L0X_StaticInit                     0x00003ff0   Section        0  vl53l0x_api.o(i.VL53L0X_StaticInit)
+    i.VL53L0X_UpdateByte                     0x00004190   Section        0  vl53l0x_platform.o(i.VL53L0X_UpdateByte)
+    i.VL53L0X_WrByte                         0x000041f0   Section        0  vl53l0x_platform.o(i.VL53L0X_WrByte)
+    i.VL53L0X_WrWord                         0x00004220   Section        0  vl53l0x_platform.o(i.VL53L0X_WrWord)
+    i.VL53L0X_WriteMulti                     0x00004250   Section        0  vl53l0x_platform.o(i.VL53L0X_WriteMulti)
+    i.VL53L0X_calc_dmax                      0x00004290   Section        0  vl53l0x_api_core.o(i.VL53L0X_calc_dmax)
+    i.VL53L0X_calc_macro_period_ps           0x0000441c   Section        0  vl53l0x_api_core.o(i.VL53L0X_calc_macro_period_ps)
+    i.VL53L0X_calc_sigma_estimate            0x00004434   Section        0  vl53l0x_api_core.o(i.VL53L0X_calc_sigma_estimate)
+    i.VL53L0X_calc_timeout_mclks             0x000046e4   Section        0  vl53l0x_api_core.o(i.VL53L0X_calc_timeout_mclks)
+    i.VL53L0X_calc_timeout_us                0x00004718   Section        0  vl53l0x_api_core.o(i.VL53L0X_calc_timeout_us)
+    i.VL53L0X_check_part_used                0x00004750   Section        0  vl53l0x_api_strings.o(i.VL53L0X_check_part_used)
+    i.VL53L0X_decode_timeout                 0x000047a0   Section        0  vl53l0x_api_core.o(i.VL53L0X_decode_timeout)
+    i.VL53L0X_decode_vcsel_period            0x000047ae   Section        0  vl53l0x_api_core.o(i.VL53L0X_decode_vcsel_period)
+    i.VL53L0X_device_read_strobe             0x000047ba   Section        0  vl53l0x_api_core.o(i.VL53L0X_device_read_strobe)
+    i.VL53L0X_encode_timeout                 0x00004808   Section        0  vl53l0x_api_core.o(i.VL53L0X_encode_timeout)
+    i.VL53L0X_getSingleRangingMeasurement    0x00004830   Section        0  vl53l0x.o(i.VL53L0X_getSingleRangingMeasurement)
+    i.VL53L0X_get_device_info                0x00004888   Section        0  vl53l0x_api_strings.o(i.VL53L0X_get_device_info)
+    i.VL53L0X_get_info_from_device           0x00004964   Section        0  vl53l0x_api_core.o(i.VL53L0X_get_info_from_device)
+    i.VL53L0X_get_measurement_timing_budget_micro_seconds 0x00004ea6   Section        0  vl53l0x_api_core.o(i.VL53L0X_get_measurement_timing_budget_micro_seconds)
+    i.VL53L0X_get_offset_calibration_data_micro_meter 0x00004f94   Section        0  vl53l0x_api_calibration.o(i.VL53L0X_get_offset_calibration_data_micro_meter)
+    i.VL53L0X_get_pal_range_status           0x00004fea   Section        0  vl53l0x_api_core.o(i.VL53L0X_get_pal_range_status)
+    i.VL53L0X_get_total_signal_rate          0x0000521e   Section        0  vl53l0x_api_core.o(i.VL53L0X_get_total_signal_rate)
+    i.VL53L0X_get_total_xtalk_rate           0x00005246   Section        0  vl53l0x_api_core.o(i.VL53L0X_get_total_xtalk_rate)
+    i.VL53L0X_get_vcsel_pulse_period         0x00005280   Section        0  vl53l0x_api_core.o(i.VL53L0X_get_vcsel_pulse_period)
+    i.VL53L0X_isqrt                          0x000052c6   Section        0  vl53l0x_api_core.o(i.VL53L0X_isqrt)
+    i.VL53L0X_load_tuning_settings           0x000052f2   Section        0  vl53l0x_api_core.o(i.VL53L0X_load_tuning_settings)
+    i.VL53L0X_measurement_poll_for_completion 0x000053dc   Section        0  vl53l0x_api_core.o(i.VL53L0X_measurement_poll_for_completion)
+    i.VL53L0X_perform_phase_calibration      0x0000541c   Section        0  vl53l0x_api_calibration.o(i.VL53L0X_perform_phase_calibration)
+    i.VL53L0X_perform_ref_calibration        0x00005498   Section        0  vl53l0x_api_calibration.o(i.VL53L0X_perform_ref_calibration)
+    i.VL53L0X_perform_ref_spad_management    0x000054e4   Section        0  vl53l0x_api_calibration.o(i.VL53L0X_perform_ref_spad_management)
+    i.VL53L0X_perform_single_ref_calibration 0x00005770   Section        0  vl53l0x_api_calibration.o(i.VL53L0X_perform_single_ref_calibration)
+    i.VL53L0X_perform_vhv_calibration        0x000057b0   Section        0  vl53l0x_api_calibration.o(i.VL53L0X_perform_vhv_calibration)
+    i.VL53L0X_read_byte                      0x0000582e   Section        0  vl53l0x_i2c.o(i.VL53L0X_read_byte)
+    i.VL53L0X_read_dword                     0x0000584a   Section        0  vl53l0x_i2c.o(i.VL53L0X_read_dword)
+    i.VL53L0X_read_multi                     0x0000588c   Section        0  vl53l0x_i2c.o(i.VL53L0X_read_multi)
+    i.VL53L0X_read_word                      0x00006020   Section        0  vl53l0x_i2c.o(i.VL53L0X_read_word)
+    i.VL53L0X_ref_calibration_io             0x00006052   Section        0  vl53l0x_api_calibration.o(i.VL53L0X_ref_calibration_io)
+    i.VL53L0X_setAddress                     0x00006104   Section        0  vl53l0x.o(i.VL53L0X_setAddress)
+    i.VL53L0X_set_measurement_timing_budget_micro_seconds 0x000061cc   Section        0  vl53l0x_api_core.o(i.VL53L0X_set_measurement_timing_budget_micro_seconds)
+    i.VL53L0X_set_reference_spads            0x000062f4   Section        0  vl53l0x_api_calibration.o(i.VL53L0X_set_reference_spads)
+    i.VL53L0X_write_byte                     0x000063b6   Section        0  vl53l0x_i2c.o(i.VL53L0X_write_byte)
+    i.VL53L0X_write_multi                    0x000063d4   Section        0  vl53l0x_i2c.o(i.VL53L0X_write_multi)
+    i.VL53L0X_write_word                     0x0000673c   Section        0  vl53l0x_i2c.o(i.VL53L0X_write_word)
+    i.WrapInterpreter                        0x00006764   Section        0  main.o(i.WrapInterpreter)
+    i.__scatterload_copy                     0x0000676c   Section       14  handlers.o(i.__scatterload_copy)
+    i.__scatterload_null                     0x0000677a   Section        2  handlers.o(i.__scatterload_null)
+    i.__scatterload_zeroinit                 0x0000677c   Section       14  handlers.o(i.__scatterload_zeroinit)
+    i.cmpfunc                                0x0000678a   Section        0  ir.o(i.cmpfunc)
+    i.commandList                            0x00006794   Section        0  st7735.o(i.commandList)
+    commandList                              0x00006795   Thumb Code    86  st7735.o(i.commandList)
+    i.commonInit                             0x000067ec   Section        0  st7735.o(i.commonInit)
+    commonInit                               0x000067ed   Thumb Code   340  st7735.o(i.commonInit)
+    i.copyHardwareToSoftware                 0x00006970   Section        0  uart.o(i.copyHardwareToSoftware)
+    copyHardwareToSoftware                   0x00006971   Thumb Code    36  uart.o(i.copyHardwareToSoftware)
+    i.copySoftwareToHardware                 0x00006998   Section        0  uart.o(i.copySoftwareToHardware)
+    copySoftwareToHardware                   0x00006999   Thumb Code    38  uart.o(i.copySoftwareToHardware)
+    i.delay                                  0x000069c4   Section        0  vl53l0x.o(i.delay)
+    delay                                    0x000069c5   Thumb Code    24  vl53l0x.o(i.delay)
+    i.enable_ref_spads                       0x000069dc   Section        0  vl53l0x_api_calibration.o(i.enable_ref_spads)
+    i.enable_spad_bit                        0x00006a88   Section        0  vl53l0x_api_calibration.o(i.enable_spad_bit)
+    i.get_next_good_spad                     0x00006aba   Section        0  vl53l0x_api_calibration.o(i.get_next_good_spad)
+    i.get_ref_spad_map                       0x00006b1e   Section        0  vl53l0x_api_calibration.o(i.get_ref_spad_map)
+    i.get_sequence_step_timeout              0x00006b36   Section        0  vl53l0x_api_core.o(i.get_sequence_step_timeout)
+    i.is_aperture                            0x00006c58   Section        0  vl53l0x_api_calibration.o(i.is_aperture)
+    i.main                                   0x00006c70   Section        0  main.o(i.main)
+    i.newLine                                0x00006cd8   Section        0  interpreter.o(i.newLine)
+    i.perform_ref_signal_measurement         0x00006ce0   Section        0  vl53l0x_api_calibration.o(i.perform_ref_signal_measurement)
+    i.pushColor                              0x00006d4e   Section        0  st7735.o(i.pushColor)
+    pushColor                                0x00006d4f   Thumb Code    18  st7735.o(i.pushColor)
+    i.sequence_step_enabled                  0x00006d60   Section        0  vl53l0x_api.o(i.sequence_step_enabled)
+    i.setAddrWindow                          0x00006dac   Section        0  st7735.o(i.setAddrWindow)
+    setAddrWindow                            0x00006dad   Thumb Code   106  st7735.o(i.setAddrWindow)
+    i.set_ref_spad_map                       0x00006e20   Section        0  vl53l0x_api_calibration.o(i.set_ref_spad_map)
+    i.set_sequence_step_timeout              0x00006e38   Section        0  vl53l0x_api_core.o(i.set_sequence_step_timeout)
+    i.writecommand                           0x00006f74   Section        0  st7735.o(i.writecommand)
+    writecommand                             0x00006f75   Thumb Code    40  st7735.o(i.writecommand)
+    i.writedata                              0x00006fa4   Section        0  st7735.o(i.writedata)
+    writedata                                0x00006fa5   Thumb Code    24  st7735.o(i.writedata)
+    .constdata                               0x00006fc4   Section     2018  st7735.o(.constdata)
+    Font                                     0x00006fc4   Data        1275  st7735.o(.constdata)
+    Bcmd                                     0x000074bf   Data         103  st7735.o(.constdata)
+    Rcmd1                                    0x00007526   Data          59  st7735.o(.constdata)
+    Rcmd2green                               0x00007561   Data          13  st7735.o(.constdata)
+    Rcmd2red                                 0x0000756e   Data          13  st7735.o(.constdata)
+    Rcmd3                                    0x0000757b   Data          43  st7735.o(.constdata)
+    .constdata                               0x000077a6   Section       18  can.o(.constdata)
+    g_usCANBitValues                         0x000077a6   Data          18  can.o(.constdata)
     .data                                    0x20000000   Section       20  main.o(.data)
     .data                                    0x20000014   Section       12  adc.o(.data)
     .data                                    0x20000020   Section      124  os.o(.data)
@@ -1414,198 +1415,199 @@ Image Symbol Table
     BlockTCB                                 0x00000699   Thumb Code    52  os.o(i.BlockTCB)
     CAN0_Handler                             0x000006d5   Thumb Code   146  can0.o(i.CAN0_Handler)
     CAN0_Open                                0x00000775   Thumb Code   178  can0.o(i.CAN0_Open)
-    CANBitRateSet                            0x0000087d   Thumb Code   142  can.o(i.CANBitRateSet)
-    CANEnable                                0x0000097d   Thumb Code    24  can.o(i.CANEnable)
-    CANInit                                  0x00000995   Thumb Code   148  can.o(i.CANInit)
-    CANIntClear                              0x00000a29   Thumb Code    76  can.o(i.CANIntClear)
-    CANIntEnable                             0x00000a75   Thumb Code    26  can.o(i.CANIntEnable)
-    CANIntStatus                             0x00000ac1   Thumb Code    60  can.o(i.CANIntStatus)
-    CANMessageGet                            0x00000afd   Thumb Code   434  can.o(i.CANMessageGet)
-    CANMessageSet                            0x00000caf   Thumb Code   434  can.o(i.CANMessageSet)
-    CANStatusGet                             0x00000ec9   Thumb Code   124  can.o(i.CANStatusGet)
-    Delay1ms                                 0x00000f45   Thumb Code    32  st7735.o(i.Delay1ms)
-    GPIOPortB_Handler                        0x00000f65   Thumb Code    88  ping.o(i.GPIOPortB_Handler)
-    GPIOPortF_Handler                        0x00000fd5   Thumb Code   164  os.o(i.GPIOPortF_Handler)
-    GPIO_PortF_Init                          0x0000109d   Thumb Code    94  main.o(i.GPIO_PortF_Init)
-    HardFault_Handler                        0x00001111   Thumb Code    18  main.o(i.HardFault_Handler)
-    IO_Init                                  0x00001129   Thumb Code    78  os.o(i.IO_Init)
-    IR_Init                                  0x00001195   Thumb Code    28  ir.o(i.IR_Init)
-    IR_getValue                              0x000011b9   Thumb Code    26  ir.o(i.IR_getValue)
-    IntDisable                               0x000011e1   Thumb Code   116  interrupt.o(i.IntDisable)
-    IntEnable                                0x00001261   Thumb Code   116  interrupt.o(i.IntEnable)
-    Interpreter                              0x000012e1   Thumb Code   208  interpreter.o(i.Interpreter)
-    LinkTCB                                  0x0000146d   Thumb Code    54  os.o(i.LinkTCB)
-    OS_AddPriorityThread                     0x000014b1   Thumb Code    82  os.o(i.OS_AddPriorityThread)
-    OS_AddThread                             0x00001515   Thumb Code   290  os.o(i.OS_AddThread)
-    OS_Fifo_Init                             0x00001649   Thumb Code    36  os.o(i.OS_Fifo_Init)
-    OS_Fifo_Put                              0x00001679   Thumb Code    60  os.o(i.OS_Fifo_Put)
-    OS_Init                                  0x000016c1   Thumb Code    42  os.o(i.OS_Init)
-    OS_InitSemaphore                         0x000016fd   Thumb Code    26  os.o(i.OS_InitSemaphore)
-    OS_Kill                                  0x00001719   Thumb Code   330  os.o(i.OS_Kill)
-    OS_Launch                                0x00001881   Thumb Code    58  os.o(i.OS_Launch)
-    OS_MailBox_Init                          0x000018c9   Thumb Code    22  os.o(i.OS_MailBox_Init)
-    OS_Scheduler                             0x000018e5   Thumb Code   138  os.o(i.OS_Scheduler)
-    OS_Signal                                0x00001981   Thumb Code    36  os.o(i.OS_Signal)
-    OS_Sleep                                 0x000019a5   Thumb Code    50  os.o(i.OS_Sleep)
-    OS_Suspend                               0x000019e1   Thumb Code    18  os.o(i.OS_Suspend)
-    OS_Time                                  0x000019f9   Thumb Code     6  os.o(i.OS_Time)
-    OS_TimeDifference                        0x00001a05   Thumb Code    18  os.o(i.OS_TimeDifference)
-    OS_Wait                                  0x00001a17   Thumb Code    36  os.o(i.OS_Wait)
-    OutCRLF                                  0x00001a3b   Thumb Code    16  uart.o(i.OutCRLF)
-    PLL_Init                                 0x00001a4d   Thumb Code   118  pll.o(i.PLL_Init)
-    PingTask                                 0x00001ac9   Thumb Code    30  main.o(i.PingTask)
-    Ping_Initilizations                      0x00001b0d   Thumb Code    12  ping.o(i.Ping_Initilizations)
-    Ping_PORTB_Initilization                 0x00001b19   Thumb Code   194  ping.o(i.Ping_PORTB_Initilization)
-    Ping_PORTB_Signal                        0x00001bf5   Thumb Code   144  ping.o(i.Ping_PORTB_Signal)
-    Ping_PORTB_Start                         0x00001c99   Thumb Code    14  ping.o(i.Ping_PORTB_Start)
-    Ping_Value                               0x00001cad   Thumb Code     6  ping.o(i.Ping_Value)
-    RemoveBlockedFromSemaphore               0x00001cb9   Thumb Code    10  os.o(i.RemoveBlockedFromSemaphore)
-    RxFifo_Get                               0x00001cc5   Thumb Code    46  uart.o(i.RxFifo_Get)
-    RxFifo_Init                              0x00001d01   Thumb Code    26  uart.o(i.RxFifo_Init)
-    RxFifo_Put                               0x00001d25   Thumb Code    48  uart.o(i.RxFifo_Put)
-    RxFifo_Size                              0x00001d61   Thumb Code    14  uart.o(i.RxFifo_Size)
-    ST7735_DrawCharS                         0x00001d79   Thumb Code   232  st7735.o(i.ST7735_DrawCharS)
-    ST7735_DrawFastHLine                     0x00001e6d   Thumb Code   116  st7735.o(i.ST7735_DrawFastHLine)
-    ST7735_DrawPixel                         0x00001ee9   Thumb Code    64  st7735.o(i.ST7735_DrawPixel)
-    ST7735_DrawString                        0x00001f31   Thumb Code    86  st7735.o(i.ST7735_DrawString)
-    ST7735_FillRect                          0x00001f89   Thumb Code   164  st7735.o(i.ST7735_FillRect)
-    ST7735_FillScreen                        0x00002035   Thumb Code    28  st7735.o(i.ST7735_FillScreen)
-    ST7735_InitR                             0x00002059   Thumb Code    98  st7735.o(i.ST7735_InitR)
-    ST7735_OutChar                           0x000020e1   Thumb Code   176  st7735.o(i.ST7735_OutChar)
-    ST7735_OutString                         0x000021b5   Thumb Code    24  st7735.o(i.ST7735_OutString)
-    ST7735_SetCursor                         0x000021cd   Thumb Code    22  st7735.o(i.ST7735_SetCursor)
-    SW1_Debounce                             0x000021ed   Thumb Code    36  os.o(i.SW1_Debounce)
-    SW2_Debounce                             0x00002219   Thumb Code    36  os.o(i.SW2_Debounce)
-    Servo_Initilization                      0x00002245   Thumb Code   178  servo.o(i.Servo_Initilization)
-    SetInitialStack                          0x00002319   Thumb Code   228  os.o(i.SetInitialStack)
-    SetThreads                               0x00002405   Thumb Code    68  os.o(i.SetThreads)
-    SysTick_Handler                          0x00002451   Thumb Code    16  os.o(i.SysTick_Handler)
-    SysTick_Init                             0x00002465   Thumb Code    42  os.o(i.SysTick_Init)
-    Timer0A_Handler                          0x00002495   Thumb Code    18  os.o(i.Timer0A_Handler)
-    Timer0A_Init                             0x000024b1   Thumb Code    82  os.o(i.Timer0A_Init)
-    Timer1A_Handler                          0x00002515   Thumb Code   120  os.o(i.Timer1A_Handler)
-    Timer2A_Handler                          0x000025ad   Thumb Code    16  timer2.o(i.Timer2A_Handler)
-    Timer3A_Handler                          0x000025c5   Thumb Code   128  os.o(i.Timer3A_Handler)
-    Timer3A_Init                             0x00002655   Thumb Code    86  os.o(i.Timer3A_Init)
-    Timer4A_Handler                          0x000026bd   Thumb Code   120  os.o(i.Timer4A_Handler)
-    ToF_Init                                 0x00002751   Thumb Code    20  tof.o(i.ToF_Init)
-    ToF_Measure                              0x00002765   Thumb Code    36  tof.o(i.ToF_Measure)
-    TxFifo_Get                               0x00002789   Thumb Code    46  uart.o(i.TxFifo_Get)
-    TxFifo_Init                              0x000027c5   Thumb Code    26  uart.o(i.TxFifo_Init)
-    TxFifo_Put                               0x000027e9   Thumb Code    48  uart.o(i.TxFifo_Put)
-    TxFifo_Size                              0x00002825   Thumb Code    14  uart.o(i.TxFifo_Size)
-    UART0_Handler                            0x0000283d   Thumb Code    82  uart.o(i.UART0_Handler)
-    UART_InChar                              0x00002895   Thumb Code    20  uart.o(i.UART_InChar)
-    UART_Init                                0x000028a9   Thumb Code   184  uart.o(i.UART_Init)
-    UART_OutChar                             0x0000297d   Thumb Code    58  uart.o(i.UART_OutChar)
-    UART_OutString                           0x000029c1   Thumb Code    24  uart.o(i.UART_OutString)
-    UART_OutUDec                             0x000029d9   Thumb Code    42  uart.o(i.UART_OutUDec)
-    UnBlockTCB                               0x00002a03   Thumb Code    24  os.o(i.UnBlockTCB)
-    UnLinkTCB                                0x00002a1d   Thumb Code    40  os.o(i.UnLinkTCB)
-    VL53L0X_CheckAndLoadInterruptSettings    0x00002a4d   Thumb Code   126  vl53l0x_api.o(i.VL53L0X_CheckAndLoadInterruptSettings)
-    VL53L0X_ClearInterruptMask               0x00002ad1   Thumb Code    82  vl53l0x_api.o(i.VL53L0X_ClearInterruptMask)
-    VL53L0X_DataInit                         0x00002b25   Thumb Code   436  vl53l0x_api.o(i.VL53L0X_DataInit)
-    VL53L0X_GetDeviceInfo                    0x00002ce1   Thumb Code    22  vl53l0x_api.o(i.VL53L0X_GetDeviceInfo)
-    VL53L0X_GetDeviceMode                    0x00002cf7   Thumb Code    10  vl53l0x_api.o(i.VL53L0X_GetDeviceMode)
-    VL53L0X_GetDeviceParameters              0x00002d01   Thumb Code   160  vl53l0x_api.o(i.VL53L0X_GetDeviceParameters)
-    VL53L0X_GetFractionEnable                0x00002da1   Thumb Code    34  vl53l0x_api.o(i.VL53L0X_GetFractionEnable)
-    VL53L0X_GetInterMeasurementPeriodMilliSeconds 0x00002dc3   Thumb Code    62  vl53l0x_api.o(i.VL53L0X_GetInterMeasurementPeriodMilliSeconds)
-    VL53L0X_GetInterruptMaskStatus           0x00002e01   Thumb Code    48  vl53l0x_api.o(i.VL53L0X_GetInterruptMaskStatus)
-    VL53L0X_GetInterruptThresholds           0x00002e31   Thumb Code    66  vl53l0x_api.o(i.VL53L0X_GetInterruptThresholds)
-    VL53L0X_GetLimitCheckEnable              0x00002e73   Thumb Code    28  vl53l0x_api.o(i.VL53L0X_GetLimitCheckEnable)
-    VL53L0X_GetLimitCheckValue               0x00002e8f   Thumb Code   182  vl53l0x_api.o(i.VL53L0X_GetLimitCheckValue)
-    VL53L0X_GetMeasurementDataReady          0x00002f45   Thumb Code    86  vl53l0x_api.o(i.VL53L0X_GetMeasurementDataReady)
-    VL53L0X_GetMeasurementTimingBudgetMicroSeconds 0x00002f9b   Thumb Code    22  vl53l0x_api.o(i.VL53L0X_GetMeasurementTimingBudgetMicroSeconds)
-    VL53L0X_GetOffsetCalibrationDataMicroMeter 0x00002fb1   Thumb Code    22  vl53l0x_api.o(i.VL53L0X_GetOffsetCalibrationDataMicroMeter)
-    VL53L0X_GetRangingMeasurementData        0x00002fc7   Thumb Code   366  vl53l0x_api.o(i.VL53L0X_GetRangingMeasurementData)
-    VL53L0X_GetSequenceStepEnables           0x00003135   Thumb Code   118  vl53l0x_api.o(i.VL53L0X_GetSequenceStepEnables)
-    VL53L0X_GetSequenceStepTimeout           0x000031ab   Thumb Code    82  vl53l0x_api.o(i.VL53L0X_GetSequenceStepTimeout)
-    VL53L0X_GetVcselPulsePeriod              0x000031fd   Thumb Code    30  vl53l0x_api.o(i.VL53L0X_GetVcselPulsePeriod)
-    VL53L0X_GetWrapAroundCheckEnable         0x0000321b   Thumb Code    62  vl53l0x_api.o(i.VL53L0X_GetWrapAroundCheckEnable)
-    VL53L0X_GetXTalkCompensationEnable       0x00003259   Thumb Code    12  vl53l0x_api.o(i.VL53L0X_GetXTalkCompensationEnable)
-    VL53L0X_GetXTalkCompensationRateMegaCps  0x00003265   Thumb Code    56  vl53l0x_api.o(i.VL53L0X_GetXTalkCompensationRateMegaCps)
-    VL53L0X_I2C_Init                         0x0000329d   Thumb Code   544  vl53l0x_i2c.o(i.VL53L0X_I2C_Init)
-    VL53L0X_Init                             0x000034f5   Thumb Code  1018  vl53l0x.o(i.VL53L0X_Init)
-    VL53L0X_PerformRefCalibration            0x00003915   Thumb Code    32  vl53l0x_api.o(i.VL53L0X_PerformRefCalibration)
-    VL53L0X_PerformRefSpadManagement         0x00003935   Thumb Code    30  vl53l0x_api.o(i.VL53L0X_PerformRefSpadManagement)
-    VL53L0X_PerformSingleMeasurement         0x00003953   Thumb Code    60  vl53l0x_api.o(i.VL53L0X_PerformSingleMeasurement)
-    VL53L0X_PerformSingleRangingMeasurement  0x0000398f   Thumb Code    56  vl53l0x_api.o(i.VL53L0X_PerformSingleRangingMeasurement)
-    VL53L0X_PollingDelay                     0x000039c7   Thumb Code    28  vl53l0x_platform.o(i.VL53L0X_PollingDelay)
-    VL53L0X_RdByte                           0x000039e3   Thumb Code    48  vl53l0x_platform.o(i.VL53L0X_RdByte)
-    VL53L0X_RdDWord                          0x00003a13   Thumb Code    48  vl53l0x_platform.o(i.VL53L0X_RdDWord)
-    VL53L0X_RdWord                           0x00003a43   Thumb Code    48  vl53l0x_platform.o(i.VL53L0X_RdWord)
-    VL53L0X_ReadMulti                        0x00003a73   Thumb Code    58  vl53l0x_platform.o(i.VL53L0X_ReadMulti)
-    VL53L0X_SetDeviceAddress                 0x00003aad   Thumb Code    36  vl53l0x_api.o(i.VL53L0X_SetDeviceAddress)
-    VL53L0X_SetDeviceMode                    0x00003ad1   Thumb Code    50  vl53l0x_api.o(i.VL53L0X_SetDeviceMode)
-    VL53L0X_SetGpioConfig                    0x00003b03   Thumb Code   358  vl53l0x_api.o(i.VL53L0X_SetGpioConfig)
-    VL53L0X_SetLimitCheckEnable              0x00003c69   Thumb Code   194  vl53l0x_api.o(i.VL53L0X_SetLimitCheckEnable)
-    VL53L0X_SetLimitCheckValue               0x00003d2b   Thumb Code   118  vl53l0x_api.o(i.VL53L0X_SetLimitCheckValue)
-    VL53L0X_SetMeasurementTimingBudgetMicroSeconds 0x00003da1   Thumb Code    22  vl53l0x_api.o(i.VL53L0X_SetMeasurementTimingBudgetMicroSeconds)
-    VL53L0X_SetSequenceStepEnable            0x00003db7   Thumb Code   196  vl53l0x_api.o(i.VL53L0X_SetSequenceStepEnable)
-    VL53L0X_StartMeasurement                 0x00003e7b   Thumb Code   264  vl53l0x_api.o(i.VL53L0X_StartMeasurement)
-    VL53L0X_StaticInit                       0x00003f85   Thumb Code   410  vl53l0x_api.o(i.VL53L0X_StaticInit)
-    VL53L0X_UpdateByte                       0x00004125   Thumb Code    96  vl53l0x_platform.o(i.VL53L0X_UpdateByte)
-    VL53L0X_WrByte                           0x00004185   Thumb Code    48  vl53l0x_platform.o(i.VL53L0X_WrByte)
-    VL53L0X_WrWord                           0x000041b5   Thumb Code    48  vl53l0x_platform.o(i.VL53L0X_WrWord)
-    VL53L0X_WriteMulti                       0x000041e5   Thumb Code    64  vl53l0x_platform.o(i.VL53L0X_WriteMulti)
-    VL53L0X_calc_dmax                        0x00004225   Thumb Code   392  vl53l0x_api_core.o(i.VL53L0X_calc_dmax)
-    VL53L0X_calc_macro_period_ps             0x000043b1   Thumb Code    22  vl53l0x_api_core.o(i.VL53L0X_calc_macro_period_ps)
-    VL53L0X_calc_sigma_estimate              0x000043c9   Thumb Code   674  vl53l0x_api_core.o(i.VL53L0X_calc_sigma_estimate)
-    VL53L0X_calc_timeout_mclks               0x00004679   Thumb Code    52  vl53l0x_api_core.o(i.VL53L0X_calc_timeout_mclks)
-    VL53L0X_calc_timeout_us                  0x000046ad   Thumb Code    54  vl53l0x_api_core.o(i.VL53L0X_calc_timeout_us)
-    VL53L0X_check_part_used                  0x000046e5   Thumb Code    74  vl53l0x_api_strings.o(i.VL53L0X_check_part_used)
-    VL53L0X_decode_timeout                   0x00004735   Thumb Code    14  vl53l0x_api_core.o(i.VL53L0X_decode_timeout)
-    VL53L0X_decode_vcsel_period              0x00004743   Thumb Code    12  vl53l0x_api_core.o(i.VL53L0X_decode_vcsel_period)
-    VL53L0X_device_read_strobe               0x0000474f   Thumb Code    78  vl53l0x_api_core.o(i.VL53L0X_device_read_strobe)
-    VL53L0X_encode_timeout                   0x0000479d   Thumb Code    38  vl53l0x_api_core.o(i.VL53L0X_encode_timeout)
-    VL53L0X_getSingleRangingMeasurement      0x000047c5   Thumb Code    72  vl53l0x.o(i.VL53L0X_getSingleRangingMeasurement)
-    VL53L0X_get_device_info                  0x0000481d   Thumb Code   152  vl53l0x_api_strings.o(i.VL53L0X_get_device_info)
-    VL53L0X_get_info_from_device             0x000048f9   Thumb Code  1346  vl53l0x_api_core.o(i.VL53L0X_get_info_from_device)
-    VL53L0X_get_measurement_timing_budget_micro_seconds 0x00004e3b   Thumb Code   238  vl53l0x_api_core.o(i.VL53L0X_get_measurement_timing_budget_micro_seconds)
-    VL53L0X_get_offset_calibration_data_micro_meter 0x00004f29   Thumb Code    86  vl53l0x_api_calibration.o(i.VL53L0X_get_offset_calibration_data_micro_meter)
-    VL53L0X_get_pal_range_status             0x00004f7f   Thumb Code   564  vl53l0x_api_core.o(i.VL53L0X_get_pal_range_status)
-    VL53L0X_get_total_signal_rate            0x000051b3   Thumb Code    40  vl53l0x_api_core.o(i.VL53L0X_get_total_signal_rate)
-    VL53L0X_get_total_xtalk_rate             0x000051db   Thumb Code    58  vl53l0x_api_core.o(i.VL53L0X_get_total_xtalk_rate)
-    VL53L0X_get_vcsel_pulse_period           0x00005215   Thumb Code    70  vl53l0x_api_core.o(i.VL53L0X_get_vcsel_pulse_period)
-    VL53L0X_isqrt                            0x0000525b   Thumb Code    44  vl53l0x_api_core.o(i.VL53L0X_isqrt)
-    VL53L0X_load_tuning_settings             0x00005287   Thumb Code   234  vl53l0x_api_core.o(i.VL53L0X_load_tuning_settings)
-    VL53L0X_measurement_poll_for_completion  0x00005371   Thumb Code    64  vl53l0x_api_core.o(i.VL53L0X_measurement_poll_for_completion)
-    VL53L0X_perform_phase_calibration        0x000053b1   Thumb Code   124  vl53l0x_api_calibration.o(i.VL53L0X_perform_phase_calibration)
-    VL53L0X_perform_ref_calibration          0x0000542d   Thumb Code    76  vl53l0x_api_calibration.o(i.VL53L0X_perform_ref_calibration)
-    VL53L0X_perform_ref_spad_management      0x00005479   Thumb Code   652  vl53l0x_api_calibration.o(i.VL53L0X_perform_ref_spad_management)
-    VL53L0X_perform_single_ref_calibration   0x00005705   Thumb Code    64  vl53l0x_api_calibration.o(i.VL53L0X_perform_single_ref_calibration)
-    VL53L0X_perform_vhv_calibration          0x00005745   Thumb Code   126  vl53l0x_api_calibration.o(i.VL53L0X_perform_vhv_calibration)
-    VL53L0X_read_byte                        0x000057c3   Thumb Code    28  vl53l0x_i2c.o(i.VL53L0X_read_byte)
-    VL53L0X_read_dword                       0x000057df   Thumb Code    66  vl53l0x_i2c.o(i.VL53L0X_read_dword)
-    VL53L0X_read_multi                       0x00005821   Thumb Code  1932  vl53l0x_i2c.o(i.VL53L0X_read_multi)
-    VL53L0X_read_word                        0x00005fb5   Thumb Code    50  vl53l0x_i2c.o(i.VL53L0X_read_word)
-    VL53L0X_ref_calibration_io               0x00005fe7   Thumb Code   176  vl53l0x_api_calibration.o(i.VL53L0X_ref_calibration_io)
-    VL53L0X_setAddress                       0x00006099   Thumb Code   178  vl53l0x.o(i.VL53L0X_setAddress)
-    VL53L0X_set_measurement_timing_budget_micro_seconds 0x00006161   Thumb Code   296  vl53l0x_api_core.o(i.VL53L0X_set_measurement_timing_budget_micro_seconds)
-    VL53L0X_set_reference_spads              0x00006289   Thumb Code   194  vl53l0x_api_calibration.o(i.VL53L0X_set_reference_spads)
-    VL53L0X_write_byte                       0x0000634b   Thumb Code    30  vl53l0x_i2c.o(i.VL53L0X_write_byte)
-    VL53L0X_write_multi                      0x00006369   Thumb Code   856  vl53l0x_i2c.o(i.VL53L0X_write_multi)
-    VL53L0X_write_word                       0x000066d1   Thumb Code    40  vl53l0x_i2c.o(i.VL53L0X_write_word)
-    WrapInterpreter                          0x000066f9   Thumb Code     8  main.o(i.WrapInterpreter)
-    __scatterload_copy                       0x00006701   Thumb Code    14  handlers.o(i.__scatterload_copy)
-    __scatterload_null                       0x0000670f   Thumb Code     2  handlers.o(i.__scatterload_null)
-    __scatterload_zeroinit                   0x00006711   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
-    cmpfunc                                  0x0000671f   Thumb Code    10  ir.o(i.cmpfunc)
-    enable_ref_spads                         0x00006971   Thumb Code   172  vl53l0x_api_calibration.o(i.enable_ref_spads)
-    enable_spad_bit                          0x00006a1d   Thumb Code    50  vl53l0x_api_calibration.o(i.enable_spad_bit)
-    get_next_good_spad                       0x00006a4f   Thumb Code   100  vl53l0x_api_calibration.o(i.get_next_good_spad)
-    get_ref_spad_map                         0x00006ab3   Thumb Code    24  vl53l0x_api_calibration.o(i.get_ref_spad_map)
-    get_sequence_step_timeout                0x00006acb   Thumb Code   290  vl53l0x_api_core.o(i.get_sequence_step_timeout)
-    is_aperture                              0x00006bed   Thumb Code    18  vl53l0x_api_calibration.o(i.is_aperture)
-    main                                     0x00006c05   Thumb Code    86  main.o(i.main)
-    newLine                                  0x00006c6d   Thumb Code     8  interpreter.o(i.newLine)
-    perform_ref_signal_measurement           0x00006c75   Thumb Code   110  vl53l0x_api_calibration.o(i.perform_ref_signal_measurement)
-    sequence_step_enabled                    0x00006cf5   Thumb Code    74  vl53l0x_api.o(i.sequence_step_enabled)
-    set_ref_spad_map                         0x00006db5   Thumb Code    24  vl53l0x_api_calibration.o(i.set_ref_spad_map)
-    set_sequence_step_timeout                0x00006dcd   Thumb Code   314  vl53l0x_api_core.o(i.set_sequence_step_timeout)
-    dBfs                                     0x0000753a   Data         512  st7735.o(.constdata)
-    Region$$Table$$Base                      0x0000774c   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x0000776c   Number         0  anon$$obj.o(Region$$Table)
+    CAN0_SendData                            0x0000084d   Thumb Code    26  can0.o(i.CAN0_SendData)
+    CANBitRateSet                            0x00000899   Thumb Code   142  can.o(i.CANBitRateSet)
+    CANEnable                                0x00000999   Thumb Code    24  can.o(i.CANEnable)
+    CANInit                                  0x000009b1   Thumb Code   148  can.o(i.CANInit)
+    CANIntClear                              0x00000a45   Thumb Code    76  can.o(i.CANIntClear)
+    CANIntEnable                             0x00000a91   Thumb Code    26  can.o(i.CANIntEnable)
+    CANIntStatus                             0x00000add   Thumb Code    60  can.o(i.CANIntStatus)
+    CANMessageGet                            0x00000b19   Thumb Code   434  can.o(i.CANMessageGet)
+    CANMessageSet                            0x00000ccb   Thumb Code   434  can.o(i.CANMessageSet)
+    CANStatusGet                             0x00000ee5   Thumb Code   124  can.o(i.CANStatusGet)
+    Delay1ms                                 0x00000f61   Thumb Code    32  st7735.o(i.Delay1ms)
+    GPIOPortB_Handler                        0x00000f81   Thumb Code    88  ping.o(i.GPIOPortB_Handler)
+    GPIOPortF_Handler                        0x00000ff1   Thumb Code   164  os.o(i.GPIOPortF_Handler)
+    GPIO_PortF_Init                          0x000010b9   Thumb Code    94  main.o(i.GPIO_PortF_Init)
+    HardFault_Handler                        0x0000112d   Thumb Code    18  main.o(i.HardFault_Handler)
+    IO_Init                                  0x00001145   Thumb Code    78  os.o(i.IO_Init)
+    IR_Init                                  0x000011b1   Thumb Code    28  ir.o(i.IR_Init)
+    IR_getValue                              0x000011d5   Thumb Code    26  ir.o(i.IR_getValue)
+    IntDisable                               0x000011fd   Thumb Code   116  interrupt.o(i.IntDisable)
+    IntEnable                                0x0000127d   Thumb Code   116  interrupt.o(i.IntEnable)
+    Interpreter                              0x000012fd   Thumb Code   250  interpreter.o(i.Interpreter)
+    LinkTCB                                  0x000014d9   Thumb Code    54  os.o(i.LinkTCB)
+    OS_AddPriorityThread                     0x0000151d   Thumb Code    82  os.o(i.OS_AddPriorityThread)
+    OS_AddThread                             0x00001581   Thumb Code   290  os.o(i.OS_AddThread)
+    OS_Fifo_Init                             0x000016b5   Thumb Code    36  os.o(i.OS_Fifo_Init)
+    OS_Fifo_Put                              0x000016e5   Thumb Code    60  os.o(i.OS_Fifo_Put)
+    OS_Init                                  0x0000172d   Thumb Code    42  os.o(i.OS_Init)
+    OS_InitSemaphore                         0x00001769   Thumb Code    26  os.o(i.OS_InitSemaphore)
+    OS_Kill                                  0x00001785   Thumb Code   330  os.o(i.OS_Kill)
+    OS_Launch                                0x000018ed   Thumb Code    58  os.o(i.OS_Launch)
+    OS_MailBox_Init                          0x00001935   Thumb Code    22  os.o(i.OS_MailBox_Init)
+    OS_Scheduler                             0x00001951   Thumb Code   138  os.o(i.OS_Scheduler)
+    OS_Signal                                0x000019ed   Thumb Code    36  os.o(i.OS_Signal)
+    OS_Sleep                                 0x00001a11   Thumb Code    50  os.o(i.OS_Sleep)
+    OS_Suspend                               0x00001a4d   Thumb Code    18  os.o(i.OS_Suspend)
+    OS_Time                                  0x00001a65   Thumb Code     6  os.o(i.OS_Time)
+    OS_TimeDifference                        0x00001a71   Thumb Code    18  os.o(i.OS_TimeDifference)
+    OS_Wait                                  0x00001a83   Thumb Code    36  os.o(i.OS_Wait)
+    OutCRLF                                  0x00001aa7   Thumb Code    16  uart.o(i.OutCRLF)
+    PLL_Init                                 0x00001ab9   Thumb Code   118  pll.o(i.PLL_Init)
+    PingTask                                 0x00001b35   Thumb Code    30  main.o(i.PingTask)
+    Ping_Initilizations                      0x00001b79   Thumb Code    12  ping.o(i.Ping_Initilizations)
+    Ping_PORTB_Initilization                 0x00001b85   Thumb Code   194  ping.o(i.Ping_PORTB_Initilization)
+    Ping_PORTB_Signal                        0x00001c61   Thumb Code   144  ping.o(i.Ping_PORTB_Signal)
+    Ping_PORTB_Start                         0x00001d05   Thumb Code    14  ping.o(i.Ping_PORTB_Start)
+    Ping_Value                               0x00001d19   Thumb Code     6  ping.o(i.Ping_Value)
+    RemoveBlockedFromSemaphore               0x00001d25   Thumb Code    10  os.o(i.RemoveBlockedFromSemaphore)
+    RxFifo_Get                               0x00001d31   Thumb Code    46  uart.o(i.RxFifo_Get)
+    RxFifo_Init                              0x00001d6d   Thumb Code    26  uart.o(i.RxFifo_Init)
+    RxFifo_Put                               0x00001d91   Thumb Code    48  uart.o(i.RxFifo_Put)
+    RxFifo_Size                              0x00001dcd   Thumb Code    14  uart.o(i.RxFifo_Size)
+    ST7735_DrawCharS                         0x00001de5   Thumb Code   232  st7735.o(i.ST7735_DrawCharS)
+    ST7735_DrawFastHLine                     0x00001ed9   Thumb Code   116  st7735.o(i.ST7735_DrawFastHLine)
+    ST7735_DrawPixel                         0x00001f55   Thumb Code    64  st7735.o(i.ST7735_DrawPixel)
+    ST7735_DrawString                        0x00001f9d   Thumb Code    86  st7735.o(i.ST7735_DrawString)
+    ST7735_FillRect                          0x00001ff5   Thumb Code   164  st7735.o(i.ST7735_FillRect)
+    ST7735_FillScreen                        0x000020a1   Thumb Code    28  st7735.o(i.ST7735_FillScreen)
+    ST7735_InitR                             0x000020c5   Thumb Code    98  st7735.o(i.ST7735_InitR)
+    ST7735_OutChar                           0x0000214d   Thumb Code   176  st7735.o(i.ST7735_OutChar)
+    ST7735_OutString                         0x00002221   Thumb Code    24  st7735.o(i.ST7735_OutString)
+    ST7735_SetCursor                         0x00002239   Thumb Code    22  st7735.o(i.ST7735_SetCursor)
+    SW1_Debounce                             0x00002259   Thumb Code    36  os.o(i.SW1_Debounce)
+    SW2_Debounce                             0x00002285   Thumb Code    36  os.o(i.SW2_Debounce)
+    Servo_Initilization                      0x000022b1   Thumb Code   178  servo.o(i.Servo_Initilization)
+    SetInitialStack                          0x00002385   Thumb Code   228  os.o(i.SetInitialStack)
+    SetThreads                               0x00002471   Thumb Code    68  os.o(i.SetThreads)
+    SysTick_Handler                          0x000024bd   Thumb Code    16  os.o(i.SysTick_Handler)
+    SysTick_Init                             0x000024d1   Thumb Code    42  os.o(i.SysTick_Init)
+    Timer0A_Handler                          0x00002501   Thumb Code    18  os.o(i.Timer0A_Handler)
+    Timer0A_Init                             0x0000251d   Thumb Code    82  os.o(i.Timer0A_Init)
+    Timer1A_Handler                          0x00002581   Thumb Code   120  os.o(i.Timer1A_Handler)
+    Timer2A_Handler                          0x00002619   Thumb Code    16  timer2.o(i.Timer2A_Handler)
+    Timer3A_Handler                          0x00002631   Thumb Code   128  os.o(i.Timer3A_Handler)
+    Timer3A_Init                             0x000026c1   Thumb Code    86  os.o(i.Timer3A_Init)
+    Timer4A_Handler                          0x00002729   Thumb Code   120  os.o(i.Timer4A_Handler)
+    ToF_Init                                 0x000027bd   Thumb Code    20  tof.o(i.ToF_Init)
+    ToF_Measure                              0x000027d1   Thumb Code    36  tof.o(i.ToF_Measure)
+    TxFifo_Get                               0x000027f5   Thumb Code    46  uart.o(i.TxFifo_Get)
+    TxFifo_Init                              0x00002831   Thumb Code    26  uart.o(i.TxFifo_Init)
+    TxFifo_Put                               0x00002855   Thumb Code    48  uart.o(i.TxFifo_Put)
+    TxFifo_Size                              0x00002891   Thumb Code    14  uart.o(i.TxFifo_Size)
+    UART0_Handler                            0x000028a9   Thumb Code    82  uart.o(i.UART0_Handler)
+    UART_InChar                              0x00002901   Thumb Code    20  uart.o(i.UART_InChar)
+    UART_Init                                0x00002915   Thumb Code   184  uart.o(i.UART_Init)
+    UART_OutChar                             0x000029e9   Thumb Code    58  uart.o(i.UART_OutChar)
+    UART_OutString                           0x00002a2d   Thumb Code    24  uart.o(i.UART_OutString)
+    UART_OutUDec                             0x00002a45   Thumb Code    42  uart.o(i.UART_OutUDec)
+    UnBlockTCB                               0x00002a6f   Thumb Code    24  os.o(i.UnBlockTCB)
+    UnLinkTCB                                0x00002a89   Thumb Code    40  os.o(i.UnLinkTCB)
+    VL53L0X_CheckAndLoadInterruptSettings    0x00002ab9   Thumb Code   126  vl53l0x_api.o(i.VL53L0X_CheckAndLoadInterruptSettings)
+    VL53L0X_ClearInterruptMask               0x00002b3d   Thumb Code    82  vl53l0x_api.o(i.VL53L0X_ClearInterruptMask)
+    VL53L0X_DataInit                         0x00002b91   Thumb Code   436  vl53l0x_api.o(i.VL53L0X_DataInit)
+    VL53L0X_GetDeviceInfo                    0x00002d4d   Thumb Code    22  vl53l0x_api.o(i.VL53L0X_GetDeviceInfo)
+    VL53L0X_GetDeviceMode                    0x00002d63   Thumb Code    10  vl53l0x_api.o(i.VL53L0X_GetDeviceMode)
+    VL53L0X_GetDeviceParameters              0x00002d6d   Thumb Code   160  vl53l0x_api.o(i.VL53L0X_GetDeviceParameters)
+    VL53L0X_GetFractionEnable                0x00002e0d   Thumb Code    34  vl53l0x_api.o(i.VL53L0X_GetFractionEnable)
+    VL53L0X_GetInterMeasurementPeriodMilliSeconds 0x00002e2f   Thumb Code    62  vl53l0x_api.o(i.VL53L0X_GetInterMeasurementPeriodMilliSeconds)
+    VL53L0X_GetInterruptMaskStatus           0x00002e6d   Thumb Code    48  vl53l0x_api.o(i.VL53L0X_GetInterruptMaskStatus)
+    VL53L0X_GetInterruptThresholds           0x00002e9d   Thumb Code    66  vl53l0x_api.o(i.VL53L0X_GetInterruptThresholds)
+    VL53L0X_GetLimitCheckEnable              0x00002edf   Thumb Code    28  vl53l0x_api.o(i.VL53L0X_GetLimitCheckEnable)
+    VL53L0X_GetLimitCheckValue               0x00002efb   Thumb Code   182  vl53l0x_api.o(i.VL53L0X_GetLimitCheckValue)
+    VL53L0X_GetMeasurementDataReady          0x00002fb1   Thumb Code    86  vl53l0x_api.o(i.VL53L0X_GetMeasurementDataReady)
+    VL53L0X_GetMeasurementTimingBudgetMicroSeconds 0x00003007   Thumb Code    22  vl53l0x_api.o(i.VL53L0X_GetMeasurementTimingBudgetMicroSeconds)
+    VL53L0X_GetOffsetCalibrationDataMicroMeter 0x0000301d   Thumb Code    22  vl53l0x_api.o(i.VL53L0X_GetOffsetCalibrationDataMicroMeter)
+    VL53L0X_GetRangingMeasurementData        0x00003033   Thumb Code   366  vl53l0x_api.o(i.VL53L0X_GetRangingMeasurementData)
+    VL53L0X_GetSequenceStepEnables           0x000031a1   Thumb Code   118  vl53l0x_api.o(i.VL53L0X_GetSequenceStepEnables)
+    VL53L0X_GetSequenceStepTimeout           0x00003217   Thumb Code    82  vl53l0x_api.o(i.VL53L0X_GetSequenceStepTimeout)
+    VL53L0X_GetVcselPulsePeriod              0x00003269   Thumb Code    30  vl53l0x_api.o(i.VL53L0X_GetVcselPulsePeriod)
+    VL53L0X_GetWrapAroundCheckEnable         0x00003287   Thumb Code    62  vl53l0x_api.o(i.VL53L0X_GetWrapAroundCheckEnable)
+    VL53L0X_GetXTalkCompensationEnable       0x000032c5   Thumb Code    12  vl53l0x_api.o(i.VL53L0X_GetXTalkCompensationEnable)
+    VL53L0X_GetXTalkCompensationRateMegaCps  0x000032d1   Thumb Code    56  vl53l0x_api.o(i.VL53L0X_GetXTalkCompensationRateMegaCps)
+    VL53L0X_I2C_Init                         0x00003309   Thumb Code   544  vl53l0x_i2c.o(i.VL53L0X_I2C_Init)
+    VL53L0X_Init                             0x00003561   Thumb Code  1018  vl53l0x.o(i.VL53L0X_Init)
+    VL53L0X_PerformRefCalibration            0x00003981   Thumb Code    32  vl53l0x_api.o(i.VL53L0X_PerformRefCalibration)
+    VL53L0X_PerformRefSpadManagement         0x000039a1   Thumb Code    30  vl53l0x_api.o(i.VL53L0X_PerformRefSpadManagement)
+    VL53L0X_PerformSingleMeasurement         0x000039bf   Thumb Code    60  vl53l0x_api.o(i.VL53L0X_PerformSingleMeasurement)
+    VL53L0X_PerformSingleRangingMeasurement  0x000039fb   Thumb Code    56  vl53l0x_api.o(i.VL53L0X_PerformSingleRangingMeasurement)
+    VL53L0X_PollingDelay                     0x00003a33   Thumb Code    28  vl53l0x_platform.o(i.VL53L0X_PollingDelay)
+    VL53L0X_RdByte                           0x00003a4f   Thumb Code    48  vl53l0x_platform.o(i.VL53L0X_RdByte)
+    VL53L0X_RdDWord                          0x00003a7f   Thumb Code    48  vl53l0x_platform.o(i.VL53L0X_RdDWord)
+    VL53L0X_RdWord                           0x00003aaf   Thumb Code    48  vl53l0x_platform.o(i.VL53L0X_RdWord)
+    VL53L0X_ReadMulti                        0x00003adf   Thumb Code    58  vl53l0x_platform.o(i.VL53L0X_ReadMulti)
+    VL53L0X_SetDeviceAddress                 0x00003b19   Thumb Code    36  vl53l0x_api.o(i.VL53L0X_SetDeviceAddress)
+    VL53L0X_SetDeviceMode                    0x00003b3d   Thumb Code    50  vl53l0x_api.o(i.VL53L0X_SetDeviceMode)
+    VL53L0X_SetGpioConfig                    0x00003b6f   Thumb Code   358  vl53l0x_api.o(i.VL53L0X_SetGpioConfig)
+    VL53L0X_SetLimitCheckEnable              0x00003cd5   Thumb Code   194  vl53l0x_api.o(i.VL53L0X_SetLimitCheckEnable)
+    VL53L0X_SetLimitCheckValue               0x00003d97   Thumb Code   118  vl53l0x_api.o(i.VL53L0X_SetLimitCheckValue)
+    VL53L0X_SetMeasurementTimingBudgetMicroSeconds 0x00003e0d   Thumb Code    22  vl53l0x_api.o(i.VL53L0X_SetMeasurementTimingBudgetMicroSeconds)
+    VL53L0X_SetSequenceStepEnable            0x00003e23   Thumb Code   196  vl53l0x_api.o(i.VL53L0X_SetSequenceStepEnable)
+    VL53L0X_StartMeasurement                 0x00003ee7   Thumb Code   264  vl53l0x_api.o(i.VL53L0X_StartMeasurement)
+    VL53L0X_StaticInit                       0x00003ff1   Thumb Code   410  vl53l0x_api.o(i.VL53L0X_StaticInit)
+    VL53L0X_UpdateByte                       0x00004191   Thumb Code    96  vl53l0x_platform.o(i.VL53L0X_UpdateByte)
+    VL53L0X_WrByte                           0x000041f1   Thumb Code    48  vl53l0x_platform.o(i.VL53L0X_WrByte)
+    VL53L0X_WrWord                           0x00004221   Thumb Code    48  vl53l0x_platform.o(i.VL53L0X_WrWord)
+    VL53L0X_WriteMulti                       0x00004251   Thumb Code    64  vl53l0x_platform.o(i.VL53L0X_WriteMulti)
+    VL53L0X_calc_dmax                        0x00004291   Thumb Code   392  vl53l0x_api_core.o(i.VL53L0X_calc_dmax)
+    VL53L0X_calc_macro_period_ps             0x0000441d   Thumb Code    22  vl53l0x_api_core.o(i.VL53L0X_calc_macro_period_ps)
+    VL53L0X_calc_sigma_estimate              0x00004435   Thumb Code   674  vl53l0x_api_core.o(i.VL53L0X_calc_sigma_estimate)
+    VL53L0X_calc_timeout_mclks               0x000046e5   Thumb Code    52  vl53l0x_api_core.o(i.VL53L0X_calc_timeout_mclks)
+    VL53L0X_calc_timeout_us                  0x00004719   Thumb Code    54  vl53l0x_api_core.o(i.VL53L0X_calc_timeout_us)
+    VL53L0X_check_part_used                  0x00004751   Thumb Code    74  vl53l0x_api_strings.o(i.VL53L0X_check_part_used)
+    VL53L0X_decode_timeout                   0x000047a1   Thumb Code    14  vl53l0x_api_core.o(i.VL53L0X_decode_timeout)
+    VL53L0X_decode_vcsel_period              0x000047af   Thumb Code    12  vl53l0x_api_core.o(i.VL53L0X_decode_vcsel_period)
+    VL53L0X_device_read_strobe               0x000047bb   Thumb Code    78  vl53l0x_api_core.o(i.VL53L0X_device_read_strobe)
+    VL53L0X_encode_timeout                   0x00004809   Thumb Code    38  vl53l0x_api_core.o(i.VL53L0X_encode_timeout)
+    VL53L0X_getSingleRangingMeasurement      0x00004831   Thumb Code    72  vl53l0x.o(i.VL53L0X_getSingleRangingMeasurement)
+    VL53L0X_get_device_info                  0x00004889   Thumb Code   152  vl53l0x_api_strings.o(i.VL53L0X_get_device_info)
+    VL53L0X_get_info_from_device             0x00004965   Thumb Code  1346  vl53l0x_api_core.o(i.VL53L0X_get_info_from_device)
+    VL53L0X_get_measurement_timing_budget_micro_seconds 0x00004ea7   Thumb Code   238  vl53l0x_api_core.o(i.VL53L0X_get_measurement_timing_budget_micro_seconds)
+    VL53L0X_get_offset_calibration_data_micro_meter 0x00004f95   Thumb Code    86  vl53l0x_api_calibration.o(i.VL53L0X_get_offset_calibration_data_micro_meter)
+    VL53L0X_get_pal_range_status             0x00004feb   Thumb Code   564  vl53l0x_api_core.o(i.VL53L0X_get_pal_range_status)
+    VL53L0X_get_total_signal_rate            0x0000521f   Thumb Code    40  vl53l0x_api_core.o(i.VL53L0X_get_total_signal_rate)
+    VL53L0X_get_total_xtalk_rate             0x00005247   Thumb Code    58  vl53l0x_api_core.o(i.VL53L0X_get_total_xtalk_rate)
+    VL53L0X_get_vcsel_pulse_period           0x00005281   Thumb Code    70  vl53l0x_api_core.o(i.VL53L0X_get_vcsel_pulse_period)
+    VL53L0X_isqrt                            0x000052c7   Thumb Code    44  vl53l0x_api_core.o(i.VL53L0X_isqrt)
+    VL53L0X_load_tuning_settings             0x000052f3   Thumb Code   234  vl53l0x_api_core.o(i.VL53L0X_load_tuning_settings)
+    VL53L0X_measurement_poll_for_completion  0x000053dd   Thumb Code    64  vl53l0x_api_core.o(i.VL53L0X_measurement_poll_for_completion)
+    VL53L0X_perform_phase_calibration        0x0000541d   Thumb Code   124  vl53l0x_api_calibration.o(i.VL53L0X_perform_phase_calibration)
+    VL53L0X_perform_ref_calibration          0x00005499   Thumb Code    76  vl53l0x_api_calibration.o(i.VL53L0X_perform_ref_calibration)
+    VL53L0X_perform_ref_spad_management      0x000054e5   Thumb Code   652  vl53l0x_api_calibration.o(i.VL53L0X_perform_ref_spad_management)
+    VL53L0X_perform_single_ref_calibration   0x00005771   Thumb Code    64  vl53l0x_api_calibration.o(i.VL53L0X_perform_single_ref_calibration)
+    VL53L0X_perform_vhv_calibration          0x000057b1   Thumb Code   126  vl53l0x_api_calibration.o(i.VL53L0X_perform_vhv_calibration)
+    VL53L0X_read_byte                        0x0000582f   Thumb Code    28  vl53l0x_i2c.o(i.VL53L0X_read_byte)
+    VL53L0X_read_dword                       0x0000584b   Thumb Code    66  vl53l0x_i2c.o(i.VL53L0X_read_dword)
+    VL53L0X_read_multi                       0x0000588d   Thumb Code  1932  vl53l0x_i2c.o(i.VL53L0X_read_multi)
+    VL53L0X_read_word                        0x00006021   Thumb Code    50  vl53l0x_i2c.o(i.VL53L0X_read_word)
+    VL53L0X_ref_calibration_io               0x00006053   Thumb Code   176  vl53l0x_api_calibration.o(i.VL53L0X_ref_calibration_io)
+    VL53L0X_setAddress                       0x00006105   Thumb Code   178  vl53l0x.o(i.VL53L0X_setAddress)
+    VL53L0X_set_measurement_timing_budget_micro_seconds 0x000061cd   Thumb Code   296  vl53l0x_api_core.o(i.VL53L0X_set_measurement_timing_budget_micro_seconds)
+    VL53L0X_set_reference_spads              0x000062f5   Thumb Code   194  vl53l0x_api_calibration.o(i.VL53L0X_set_reference_spads)
+    VL53L0X_write_byte                       0x000063b7   Thumb Code    30  vl53l0x_i2c.o(i.VL53L0X_write_byte)
+    VL53L0X_write_multi                      0x000063d5   Thumb Code   856  vl53l0x_i2c.o(i.VL53L0X_write_multi)
+    VL53L0X_write_word                       0x0000673d   Thumb Code    40  vl53l0x_i2c.o(i.VL53L0X_write_word)
+    WrapInterpreter                          0x00006765   Thumb Code     8  main.o(i.WrapInterpreter)
+    __scatterload_copy                       0x0000676d   Thumb Code    14  handlers.o(i.__scatterload_copy)
+    __scatterload_null                       0x0000677b   Thumb Code     2  handlers.o(i.__scatterload_null)
+    __scatterload_zeroinit                   0x0000677d   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
+    cmpfunc                                  0x0000678b   Thumb Code    10  ir.o(i.cmpfunc)
+    enable_ref_spads                         0x000069dd   Thumb Code   172  vl53l0x_api_calibration.o(i.enable_ref_spads)
+    enable_spad_bit                          0x00006a89   Thumb Code    50  vl53l0x_api_calibration.o(i.enable_spad_bit)
+    get_next_good_spad                       0x00006abb   Thumb Code   100  vl53l0x_api_calibration.o(i.get_next_good_spad)
+    get_ref_spad_map                         0x00006b1f   Thumb Code    24  vl53l0x_api_calibration.o(i.get_ref_spad_map)
+    get_sequence_step_timeout                0x00006b37   Thumb Code   290  vl53l0x_api_core.o(i.get_sequence_step_timeout)
+    is_aperture                              0x00006c59   Thumb Code    18  vl53l0x_api_calibration.o(i.is_aperture)
+    main                                     0x00006c71   Thumb Code    86  main.o(i.main)
+    newLine                                  0x00006cd9   Thumb Code     8  interpreter.o(i.newLine)
+    perform_ref_signal_measurement           0x00006ce1   Thumb Code   110  vl53l0x_api_calibration.o(i.perform_ref_signal_measurement)
+    sequence_step_enabled                    0x00006d61   Thumb Code    74  vl53l0x_api.o(i.sequence_step_enabled)
+    set_ref_spad_map                         0x00006e21   Thumb Code    24  vl53l0x_api_calibration.o(i.set_ref_spad_map)
+    set_sequence_step_timeout                0x00006e39   Thumb Code   314  vl53l0x_api_core.o(i.set_sequence_step_timeout)
+    dBfs                                     0x000075a6   Data         512  st7735.o(.constdata)
+    Region$$Table$$Base                      0x000077b8   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x000077d8   Number         0  anon$$obj.o(Region$$Table)
     RcvCount                                 0x20000000   Data           4  main.o(.data)
     sequenceNum                              0x20000004   Data           1  main.o(.data)
     XmtData                                  0x20000005   Data           4  main.o(.data)
@@ -1695,261 +1697,263 @@ Memory Map of the image
 
   Image Entry point : 0x0000026d
 
-  Load Region LR_1 (Base: 0x00000000, Size: 0x00007b40, Max: 0xffffffff, ABSOLUTE, COMPRESSED[0x000079fc])
+  Load Region LR_1 (Base: 0x00000000, Size: 0x00007bac, Max: 0xffffffff, ABSOLUTE, COMPRESSED[0x00007a68])
 
-    Execution Region ER_RO (Base: 0x00000000, Size: 0x0000776c, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RO (Base: 0x00000000, Size: 0x000077d8, Max: 0xffffffff, ABSOLUTE)
 
     Base Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x00000000   0x00000284   Code   RO         1450  * RESET               startup.o
-    0x00000284   0x00000000   Code   RO         2625  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)
-    0x00000284   0x00000004   Code   RO         2638    .ARM.Collect$$$$00000001  mc_w.l(entry2.o)
-    0x00000288   0x00000004   Code   RO         2641    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)
-    0x0000028c   0x00000000   Code   RO         2643    .ARM.Collect$$$$00000008  mc_w.l(entry7b.o)
-    0x0000028c   0x00000000   Code   RO         2645    .ARM.Collect$$$$0000000A  mc_w.l(entry8b.o)
-    0x0000028c   0x00000008   Code   RO         2646    .ARM.Collect$$$$0000000B  mc_w.l(entry9a.o)
-    0x00000294   0x00000000   Code   RO         2648    .ARM.Collect$$$$0000000D  mc_w.l(entry10a.o)
-    0x00000294   0x00000000   Code   RO         2650    .ARM.Collect$$$$0000000F  mc_w.l(entry11a.o)
-    0x00000294   0x00000004   Code   RO         2639    .ARM.Collect$$$$00002712  mc_w.l(entry2.o)
-    0x00000298   0x00000050   Code   RO          935    .text               osasm.o
-    0x000002e8   0x0000001c   Code   RO         1451    .text               startup.o
-    0x00000304   0x0000009c   Code   RO         2628    .text               mc_w.l(qsort.o)
-    0x000003a0   0x00000024   Code   RO         2630    .text               mc_w.l(memcpya.o)
-    0x000003c4   0x00000024   Code   RO         2632    .text               mc_w.l(memseta.o)
-    0x000003e8   0x00000012   Code   RO         2634    .text               mc_w.l(strcpy.o)
+    0x00000000   0x00000284   Code   RO         1453  * RESET               startup.o
+    0x00000284   0x00000000   Code   RO         2628  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)
+    0x00000284   0x00000004   Code   RO         2641    .ARM.Collect$$$$00000001  mc_w.l(entry2.o)
+    0x00000288   0x00000004   Code   RO         2644    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)
+    0x0000028c   0x00000000   Code   RO         2646    .ARM.Collect$$$$00000008  mc_w.l(entry7b.o)
+    0x0000028c   0x00000000   Code   RO         2648    .ARM.Collect$$$$0000000A  mc_w.l(entry8b.o)
+    0x0000028c   0x00000008   Code   RO         2649    .ARM.Collect$$$$0000000B  mc_w.l(entry9a.o)
+    0x00000294   0x00000000   Code   RO         2651    .ARM.Collect$$$$0000000D  mc_w.l(entry10a.o)
+    0x00000294   0x00000000   Code   RO         2653    .ARM.Collect$$$$0000000F  mc_w.l(entry11a.o)
+    0x00000294   0x00000004   Code   RO         2642    .ARM.Collect$$$$00002712  mc_w.l(entry2.o)
+    0x00000298   0x00000050   Code   RO          938    .text               osasm.o
+    0x000002e8   0x0000001c   Code   RO         1454    .text               startup.o
+    0x00000304   0x0000009c   Code   RO         2631    .text               mc_w.l(qsort.o)
+    0x000003a0   0x00000024   Code   RO         2633    .text               mc_w.l(memcpya.o)
+    0x000003c4   0x00000024   Code   RO         2635    .text               mc_w.l(memseta.o)
+    0x000003e8   0x00000012   Code   RO         2637    .text               mc_w.l(strcpy.o)
     0x000003fa   0x00000002   PAD
-    0x000003fc   0x00000024   Code   RO         2652    .text               mc_w.l(init.o)
-    0x00000420   0x00000060   Code   RO         2662    .text               mc_w.l(__dclz77c.o)
+    0x000003fc   0x00000024   Code   RO         2655    .text               mc_w.l(init.o)
+    0x00000420   0x00000060   Code   RO         2665    .text               mc_w.l(__dclz77c.o)
     0x00000480   0x00000040   Code   RO          100    i.ADC0Seq3_Handler  adc.o
     0x000004c0   0x0000010c   Code   RO          101    i.ADC_Collect       adc.o
     0x000005cc   0x0000002c   Code   RO          102    i.ADC_In            adc.o
     0x000005f8   0x0000006c   Code   RO          103    i.ADC_Open          adc.o
-    0x00000664   0x00000034   Code   RO          157    i.AddBlockedToSemaphore  os.o
-    0x00000698   0x0000003c   Code   RO          158    i.BlockTCB          os.o
-    0x000006d4   0x000000a0   Code   RO         1101    i.CAN0_Handler      can0.o
-    0x00000774   0x000000d8   Code   RO         1102    i.CAN0_Open         can0.o
-    0x0000084c   0x00000030   Code   RO         1104    i.CAN0_Setup_Message_Object  can0.o
-    0x0000087c   0x00000094   Code   RO          939    i.CANBitRateSet     can.o
-    0x00000910   0x00000036   Code   RO          940    i.CANDataRegRead    can.o
-    0x00000946   0x00000036   Code   RO          941    i.CANDataRegWrite   can.o
-    0x0000097c   0x00000018   Code   RO          943    i.CANEnable         can.o
-    0x00000994   0x00000094   Code   RO          945    i.CANInit           can.o
-    0x00000a28   0x0000004c   Code   RO          946    i.CANIntClear       can.o
-    0x00000a74   0x0000001a   Code   RO          948    i.CANIntEnable      can.o
-    0x00000a8e   0x00000002   PAD
-    0x00000a90   0x00000030   Code   RO          949    i.CANIntNumberGet   can.o
-    0x00000ac0   0x0000003c   Code   RO          951    i.CANIntStatus      can.o
-    0x00000afc   0x000001b2   Code   RO          954    i.CANMessageGet     can.o
-    0x00000cae   0x000001b2   Code   RO          955    i.CANMessageSet     can.o
-    0x00000e60   0x00000050   Code   RO          956    i.CANRegRead        can.o
-    0x00000eb0   0x00000018   Code   RO          957    i.CANRegWrite       can.o
-    0x00000ec8   0x0000007c   Code   RO          960    i.CANStatusGet      can.o
-    0x00000f44   0x00000020   Code   RO          509    i.Delay1ms          st7735.o
-    0x00000f64   0x00000070   Code   RO         1291    i.GPIOPortB_Handler  ping.o
-    0x00000fd4   0x000000c8   Code   RO          159    i.GPIOPortF_Handler  os.o
-    0x0000109c   0x00000074   Code   RO            1    i.GPIO_PortF_Init   main.o
-    0x00001110   0x00000018   Code   RO            2    i.HardFault_Handler  main.o
-    0x00001128   0x0000006c   Code   RO          160    i.IO_Init           os.o
-    0x00001194   0x00000024   Code   RO         1417    i.IR_Init           ir.o
-    0x000011b8   0x00000028   Code   RO         1418    i.IR_getValue       ir.o
-    0x000011e0   0x00000080   Code   RO         1149    i.IntDisable        interrupt.o
-    0x00001260   0x00000080   Code   RO         1150    i.IntEnable         interrupt.o
-    0x000012e0   0x0000018c   Code   RO          136    i.Interpreter       interpreter.o
-    0x0000146c   0x00000044   Code   RO          162    i.LinkTCB           os.o
-    0x000014b0   0x00000064   Code   RO          164    i.OS_AddPriorityThread  os.o
-    0x00001514   0x00000134   Code   RO          167    i.OS_AddThread      os.o
-    0x00001648   0x00000030   Code   RO          171    i.OS_Fifo_Init      os.o
-    0x00001678   0x00000048   Code   RO          172    i.OS_Fifo_Put       os.o
-    0x000016c0   0x0000003c   Code   RO          175    i.OS_Init           os.o
-    0x000016fc   0x0000001a   Code   RO          176    i.OS_InitSemaphore  os.o
-    0x00001716   0x00000002   PAD
-    0x00001718   0x00000168   Code   RO          177    i.OS_Kill           os.o
-    0x00001880   0x00000048   Code   RO          178    i.OS_Launch         os.o
-    0x000018c8   0x0000001c   Code   RO          179    i.OS_MailBox_Init   os.o
-    0x000018e4   0x0000009c   Code   RO          183    i.OS_Scheduler      os.o
-    0x00001980   0x00000024   Code   RO          184    i.OS_Signal         os.o
-    0x000019a4   0x0000003c   Code   RO          185    i.OS_Sleep          os.o
-    0x000019e0   0x00000018   Code   RO          186    i.OS_Suspend        os.o
-    0x000019f8   0x0000000c   Code   RO          187    i.OS_Time           os.o
-    0x00001a04   0x00000012   Code   RO          188    i.OS_TimeDifference  os.o
-    0x00001a16   0x00000024   Code   RO          189    i.OS_Wait           os.o
-    0x00001a3a   0x00000010   Code   RO          798    i.OutCRLF           uart.o
-    0x00001a4a   0x00000002   PAD
-    0x00001a4c   0x0000007c   Code   RO          497    i.PLL_Init          pll.o
-    0x00001ac8   0x00000044   Code   RO            3    i.PingTask          main.o
-    0x00001b0c   0x0000000c   Code   RO         1292    i.Ping_Initilizations  ping.o
-    0x00001b18   0x000000dc   Code   RO         1293    i.Ping_PORTB_Initilization  ping.o
-    0x00001bf4   0x000000a4   Code   RO         1294    i.Ping_PORTB_Signal  ping.o
-    0x00001c98   0x00000014   Code   RO         1295    i.Ping_PORTB_Start  ping.o
-    0x00001cac   0x0000000c   Code   RO         1296    i.Ping_Value        ping.o
-    0x00001cb8   0x0000000a   Code   RO          194    i.RemoveBlockedFromSemaphore  os.o
-    0x00001cc2   0x00000002   PAD
-    0x00001cc4   0x0000003c   Code   RO          799    i.RxFifo_Get        uart.o
-    0x00001d00   0x00000024   Code   RO          800    i.RxFifo_Init       uart.o
-    0x00001d24   0x0000003c   Code   RO          801    i.RxFifo_Put        uart.o
-    0x00001d60   0x00000018   Code   RO          802    i.RxFifo_Size       uart.o
-    0x00001d78   0x000000f4   Code   RO          519    i.ST7735_DrawCharS  st7735.o
-    0x00001e6c   0x0000007c   Code   RO          520    i.ST7735_DrawFastHLine  st7735.o
-    0x00001ee8   0x00000048   Code   RO          522    i.ST7735_DrawPixel  st7735.o
-    0x00001f30   0x00000056   Code   RO          523    i.ST7735_DrawString  st7735.o
-    0x00001f86   0x00000002   PAD
-    0x00001f88   0x000000ac   Code   RO          524    i.ST7735_FillRect   st7735.o
-    0x00002034   0x00000024   Code   RO          525    i.ST7735_FillScreen  st7735.o
-    0x00002058   0x00000088   Code   RO          527    i.ST7735_InitR      st7735.o
-    0x000020e0   0x000000d4   Code   RO          530    i.ST7735_OutChar    st7735.o
-    0x000021b4   0x00000018   Code   RO          531    i.ST7735_OutString  st7735.o
-    0x000021cc   0x00000020   Code   RO          541    i.ST7735_SetCursor  st7735.o
-    0x000021ec   0x0000002c   Code   RO          195    i.SW1_Debounce      os.o
-    0x00002218   0x0000002c   Code   RO          197    i.SW2_Debounce      os.o
-    0x00002244   0x000000d4   Code   RO         1337    i.Servo_Initilization  servo.o
-    0x00002318   0x000000ec   Code   RO          199    i.SetInitialStack   os.o
-    0x00002404   0x0000004c   Code   RO          200    i.SetThreads        os.o
-    0x00002450   0x00000014   Code   RO          201    i.SysTick_Handler   os.o
-    0x00002464   0x00000030   Code   RO          202    i.SysTick_Init      os.o
-    0x00002494   0x0000001c   Code   RO          203    i.Timer0A_Handler   os.o
-    0x000024b0   0x00000064   Code   RO          204    i.Timer0A_Init      os.o
-    0x00002514   0x00000098   Code   RO          205    i.Timer1A_Handler   os.o
-    0x000025ac   0x00000018   Code   RO          772    i.Timer2A_Handler   timer2.o
-    0x000025c4   0x00000090   Code   RO          206    i.Timer3A_Handler   os.o
-    0x00002654   0x00000068   Code   RO          207    i.Timer3A_Init      os.o
-    0x000026bc   0x00000094   Code   RO          208    i.Timer4A_Handler   os.o
-    0x00002750   0x00000014   Code   RO         1360    i.ToF_Init          tof.o
-    0x00002764   0x00000024   Code   RO         1361    i.ToF_Measure       tof.o
-    0x00002788   0x0000003c   Code   RO          803    i.TxFifo_Get        uart.o
-    0x000027c4   0x00000024   Code   RO          804    i.TxFifo_Init       uart.o
-    0x000027e8   0x0000003c   Code   RO          805    i.TxFifo_Put        uart.o
-    0x00002824   0x00000018   Code   RO          806    i.TxFifo_Size       uart.o
-    0x0000283c   0x00000058   Code   RO          807    i.UART0_Handler     uart.o
-    0x00002894   0x00000014   Code   RO          808    i.UART_InChar       uart.o
-    0x000028a8   0x000000d4   Code   RO          812    i.UART_Init         uart.o
-    0x0000297c   0x00000044   Code   RO          813    i.UART_OutChar      uart.o
-    0x000029c0   0x00000018   Code   RO          814    i.UART_OutString    uart.o
-    0x000029d8   0x0000002a   Code   RO          815    i.UART_OutUDec      uart.o
-    0x00002a02   0x00000018   Code   RO          209    i.UnBlockTCB        os.o
-    0x00002a1a   0x00000002   PAD
-    0x00002a1c   0x00000030   Code   RO          210    i.UnLinkTCB         os.o
-    0x00002a4c   0x00000084   Code   RO         1644    i.VL53L0X_CheckAndLoadInterruptSettings  vl53l0x_api.o
-    0x00002ad0   0x00000052   Code   RO         1645    i.VL53L0X_ClearInterruptMask  vl53l0x_api.o
-    0x00002b22   0x00000002   PAD
-    0x00002b24   0x000001bc   Code   RO         1646    i.VL53L0X_DataInit  vl53l0x_api.o
-    0x00002ce0   0x00000016   Code   RO         1650    i.VL53L0X_GetDeviceInfo  vl53l0x_api.o
-    0x00002cf6   0x0000000a   Code   RO         1651    i.VL53L0X_GetDeviceMode  vl53l0x_api.o
-    0x00002d00   0x000000a0   Code   RO         1652    i.VL53L0X_GetDeviceParameters  vl53l0x_api.o
-    0x00002da0   0x00000022   Code   RO         1654    i.VL53L0X_GetFractionEnable  vl53l0x_api.o
-    0x00002dc2   0x0000003e   Code   RO         1658    i.VL53L0X_GetInterMeasurementPeriodMilliSeconds  vl53l0x_api.o
-    0x00002e00   0x00000030   Code   RO         1659    i.VL53L0X_GetInterruptMaskStatus  vl53l0x_api.o
-    0x00002e30   0x00000042   Code   RO         1660    i.VL53L0X_GetInterruptThresholds  vl53l0x_api.o
-    0x00002e72   0x0000001c   Code   RO         1662    i.VL53L0X_GetLimitCheckEnable  vl53l0x_api.o
-    0x00002e8e   0x000000b6   Code   RO         1665    i.VL53L0X_GetLimitCheckValue  vl53l0x_api.o
-    0x00002f44   0x00000056   Code   RO         1668    i.VL53L0X_GetMeasurementDataReady  vl53l0x_api.o
-    0x00002f9a   0x00000016   Code   RO         1670    i.VL53L0X_GetMeasurementTimingBudgetMicroSeconds  vl53l0x_api.o
-    0x00002fb0   0x00000016   Code   RO         1674    i.VL53L0X_GetOffsetCalibrationDataMicroMeter  vl53l0x_api.o
-    0x00002fc6   0x0000016e   Code   RO         1682    i.VL53L0X_GetRangingMeasurementData  vl53l0x_api.o
-    0x00003134   0x00000076   Code   RO         1686    i.VL53L0X_GetSequenceStepEnables  vl53l0x_api.o
-    0x000031aa   0x00000052   Code   RO         1687    i.VL53L0X_GetSequenceStepTimeout  vl53l0x_api.o
-    0x000031fc   0x0000001e   Code   RO         1695    i.VL53L0X_GetVcselPulsePeriod  vl53l0x_api.o
-    0x0000321a   0x0000003e   Code   RO         1697    i.VL53L0X_GetWrapAroundCheckEnable  vl53l0x_api.o
-    0x00003258   0x0000000c   Code   RO         1698    i.VL53L0X_GetXTalkCompensationEnable  vl53l0x_api.o
-    0x00003264   0x00000038   Code   RO         1699    i.VL53L0X_GetXTalkCompensationRateMegaCps  vl53l0x_api.o
-    0x0000329c   0x00000258   Code   RO         1496    i.VL53L0X_I2C_Init  vl53l0x_i2c.o
-    0x000034f4   0x00000420   Code   RO         1457    i.VL53L0X_Init      vl53l0x.o
-    0x00003914   0x00000020   Code   RO         1701    i.VL53L0X_PerformRefCalibration  vl53l0x_api.o
-    0x00003934   0x0000001e   Code   RO         1702    i.VL53L0X_PerformRefSpadManagement  vl53l0x_api.o
-    0x00003952   0x0000003c   Code   RO         1704    i.VL53L0X_PerformSingleMeasurement  vl53l0x_api.o
-    0x0000398e   0x00000038   Code   RO         1705    i.VL53L0X_PerformSingleRangingMeasurement  vl53l0x_api.o
-    0x000039c6   0x0000001c   Code   RO         1560    i.VL53L0X_PollingDelay  vl53l0x_platform.o
-    0x000039e2   0x00000030   Code   RO         1561    i.VL53L0X_RdByte    vl53l0x_platform.o
-    0x00003a12   0x00000030   Code   RO         1562    i.VL53L0X_RdDWord   vl53l0x_platform.o
-    0x00003a42   0x00000030   Code   RO         1563    i.VL53L0X_RdWord    vl53l0x_platform.o
-    0x00003a72   0x0000003a   Code   RO         1564    i.VL53L0X_ReadMulti  vl53l0x_platform.o
-    0x00003aac   0x00000024   Code   RO         1709    i.VL53L0X_SetDeviceAddress  vl53l0x_api.o
-    0x00003ad0   0x00000032   Code   RO         1710    i.VL53L0X_SetDeviceMode  vl53l0x_api.o
-    0x00003b02   0x00000166   Code   RO         1713    i.VL53L0X_SetGpioConfig  vl53l0x_api.o
-    0x00003c68   0x000000c2   Code   RO         1718    i.VL53L0X_SetLimitCheckEnable  vl53l0x_api.o
-    0x00003d2a   0x00000076   Code   RO         1719    i.VL53L0X_SetLimitCheckValue  vl53l0x_api.o
-    0x00003da0   0x00000016   Code   RO         1721    i.VL53L0X_SetMeasurementTimingBudgetMicroSeconds  vl53l0x_api.o
-    0x00003db6   0x000000c4   Code   RO         1728    i.VL53L0X_SetSequenceStepEnable  vl53l0x_api.o
-    0x00003e7a   0x00000108   Code   RO         1737    i.VL53L0X_StartMeasurement  vl53l0x_api.o
-    0x00003f82   0x00000002   PAD
-    0x00003f84   0x000001a0   Code   RO         1738    i.VL53L0X_StaticInit  vl53l0x_api.o
-    0x00004124   0x00000060   Code   RO         1566    i.VL53L0X_UpdateByte  vl53l0x_platform.o
-    0x00004184   0x00000030   Code   RO         1567    i.VL53L0X_WrByte    vl53l0x_platform.o
-    0x000041b4   0x00000030   Code   RO         1569    i.VL53L0X_WrWord    vl53l0x_platform.o
-    0x000041e4   0x00000040   Code   RO         1570    i.VL53L0X_WriteMulti  vl53l0x_platform.o
-    0x00004224   0x0000018c   Code   RO         2409    i.VL53L0X_calc_dmax  vl53l0x_api_core.o
-    0x000043b0   0x00000016   Code   RO         2410    i.VL53L0X_calc_macro_period_ps  vl53l0x_api_core.o
-    0x000043c6   0x00000002   PAD
-    0x000043c8   0x000002b0   Code   RO         2411    i.VL53L0X_calc_sigma_estimate  vl53l0x_api_core.o
-    0x00004678   0x00000034   Code   RO         2412    i.VL53L0X_calc_timeout_mclks  vl53l0x_api_core.o
-    0x000046ac   0x00000036   Code   RO         2413    i.VL53L0X_calc_timeout_us  vl53l0x_api_core.o
-    0x000046e2   0x00000002   PAD
-    0x000046e4   0x00000050   Code   RO         2571    i.VL53L0X_check_part_used  vl53l0x_api_strings.o
-    0x00004734   0x0000000e   Code   RO         2414    i.VL53L0X_decode_timeout  vl53l0x_api_core.o
-    0x00004742   0x0000000c   Code   RO         2415    i.VL53L0X_decode_vcsel_period  vl53l0x_api_core.o
-    0x0000474e   0x0000004e   Code   RO         2416    i.VL53L0X_device_read_strobe  vl53l0x_api_core.o
-    0x0000479c   0x00000026   Code   RO         2417    i.VL53L0X_encode_timeout  vl53l0x_api_core.o
-    0x000047c2   0x00000002   PAD
-    0x000047c4   0x00000058   Code   RO         1458    i.VL53L0X_getSingleRangingMeasurement  vl53l0x.o
-    0x0000481c   0x000000dc   Code   RO         2573    i.VL53L0X_get_device_info  vl53l0x_api_strings.o
-    0x000048f8   0x00000542   Code   RO         2419    i.VL53L0X_get_info_from_device  vl53l0x_api_core.o
-    0x00004e3a   0x000000ee   Code   RO         2420    i.VL53L0X_get_measurement_timing_budget_micro_seconds  vl53l0x_api_core.o
-    0x00004f28   0x00000056   Code   RO         2263    i.VL53L0X_get_offset_calibration_data_micro_meter  vl53l0x_api_calibration.o
-    0x00004f7e   0x00000234   Code   RO         2421    i.VL53L0X_get_pal_range_status  vl53l0x_api_core.o
-    0x000051b2   0x00000028   Code   RO         2422    i.VL53L0X_get_total_signal_rate  vl53l0x_api_core.o
-    0x000051da   0x0000003a   Code   RO         2423    i.VL53L0X_get_total_xtalk_rate  vl53l0x_api_core.o
-    0x00005214   0x00000046   Code   RO         2424    i.VL53L0X_get_vcsel_pulse_period  vl53l0x_api_core.o
-    0x0000525a   0x0000002c   Code   RO         2425    i.VL53L0X_isqrt     vl53l0x_api_core.o
-    0x00005286   0x000000ea   Code   RO         2426    i.VL53L0X_load_tuning_settings  vl53l0x_api_core.o
-    0x00005370   0x00000040   Code   RO         2427    i.VL53L0X_measurement_poll_for_completion  vl53l0x_api_core.o
-    0x000053b0   0x0000007c   Code   RO         2267    i.VL53L0X_perform_phase_calibration  vl53l0x_api_calibration.o
-    0x0000542c   0x0000004c   Code   RO         2268    i.VL53L0X_perform_ref_calibration  vl53l0x_api_calibration.o
-    0x00005478   0x0000028c   Code   RO         2269    i.VL53L0X_perform_ref_spad_management  vl53l0x_api_calibration.o
-    0x00005704   0x00000040   Code   RO         2270    i.VL53L0X_perform_single_ref_calibration  vl53l0x_api_calibration.o
-    0x00005744   0x0000007e   Code   RO         2271    i.VL53L0X_perform_vhv_calibration  vl53l0x_api_calibration.o
-    0x000057c2   0x0000001c   Code   RO         1497    i.VL53L0X_read_byte  vl53l0x_i2c.o
-    0x000057de   0x00000042   Code   RO         1498    i.VL53L0X_read_dword  vl53l0x_i2c.o
-    0x00005820   0x00000794   Code   RO         1499    i.VL53L0X_read_multi  vl53l0x_i2c.o
-    0x00005fb4   0x00000032   Code   RO         1500    i.VL53L0X_read_word  vl53l0x_i2c.o
-    0x00005fe6   0x000000b0   Code   RO         2273    i.VL53L0X_ref_calibration_io  vl53l0x_api_calibration.o
-    0x00006096   0x00000002   PAD
-    0x00006098   0x000000c8   Code   RO         1459    i.VL53L0X_setAddress  vl53l0x.o
-    0x00006160   0x00000128   Code   RO         2430    i.VL53L0X_set_measurement_timing_budget_micro_seconds  vl53l0x_api_core.o
-    0x00006288   0x000000c2   Code   RO         2276    i.VL53L0X_set_reference_spads  vl53l0x_api_calibration.o
-    0x0000634a   0x0000001e   Code   RO         1501    i.VL53L0X_write_byte  vl53l0x_i2c.o
-    0x00006368   0x00000368   Code   RO         1503    i.VL53L0X_write_multi  vl53l0x_i2c.o
-    0x000066d0   0x00000028   Code   RO         1504    i.VL53L0X_write_word  vl53l0x_i2c.o
-    0x000066f8   0x00000008   Code   RO            6    i.WrapInterpreter   main.o
-    0x00006700   0x0000000e   Code   RO         2656    i.__scatterload_copy  mc_w.l(handlers.o)
-    0x0000670e   0x00000002   Code   RO         2657    i.__scatterload_null  mc_w.l(handlers.o)
-    0x00006710   0x0000000e   Code   RO         2658    i.__scatterload_zeroinit  mc_w.l(handlers.o)
-    0x0000671e   0x0000000a   Code   RO         1419    i.cmpfunc           ir.o
-    0x00006728   0x00000056   Code   RO          545    i.commandList       st7735.o
-    0x0000677e   0x00000002   PAD
-    0x00006780   0x00000184   Code   RO          546    i.commonInit        st7735.o
-    0x00006904   0x00000028   Code   RO          817    i.copyHardwareToSoftware  uart.o
-    0x0000692c   0x0000002c   Code   RO          818    i.copySoftwareToHardware  uart.o
-    0x00006958   0x00000018   Code   RO         1460    i.delay             vl53l0x.o
-    0x00006970   0x000000ac   Code   RO         2278    i.enable_ref_spads  vl53l0x_api_calibration.o
-    0x00006a1c   0x00000032   Code   RO         2279    i.enable_spad_bit   vl53l0x_api_calibration.o
-    0x00006a4e   0x00000064   Code   RO         2280    i.get_next_good_spad  vl53l0x_api_calibration.o
-    0x00006ab2   0x00000018   Code   RO         2281    i.get_ref_spad_map  vl53l0x_api_calibration.o
-    0x00006aca   0x00000122   Code   RO         2432    i.get_sequence_step_timeout  vl53l0x_api_core.o
-    0x00006bec   0x00000018   Code   RO         2282    i.is_aperture       vl53l0x_api_calibration.o
-    0x00006c04   0x00000068   Code   RO            7    i.main              main.o
-    0x00006c6c   0x00000008   Code   RO          137    i.newLine           interpreter.o
-    0x00006c74   0x0000006e   Code   RO         2283    i.perform_ref_signal_measurement  vl53l0x_api_calibration.o
-    0x00006ce2   0x00000012   Code   RO          548    i.pushColor         st7735.o
-    0x00006cf4   0x0000004a   Code   RO         1742    i.sequence_step_enabled  vl53l0x_api.o
-    0x00006d3e   0x00000002   PAD
-    0x00006d40   0x00000074   Code   RO          549    i.setAddrWindow     st7735.o
-    0x00006db4   0x00000018   Code   RO         2284    i.set_ref_spad_map  vl53l0x_api_calibration.o
-    0x00006dcc   0x0000013a   Code   RO         2433    i.set_sequence_step_timeout  vl53l0x_api_core.o
-    0x00006f06   0x00000002   PAD
-    0x00006f08   0x00000030   Code   RO          550    i.writecommand      st7735.o
-    0x00006f38   0x00000020   Code   RO          551    i.writedata         st7735.o
-    0x00006f58   0x000007e2   Data   RO          553    .constdata          st7735.o
-    0x0000773a   0x00000012   Data   RO          961    .constdata          can.o
-    0x0000774c   0x00000020   Data   RO         2654    Region$$Table       anon$$obj.o
+    0x00000664   0x00000034   Code   RO          160    i.AddBlockedToSemaphore  os.o
+    0x00000698   0x0000003c   Code   RO          161    i.BlockTCB          os.o
+    0x000006d4   0x000000a0   Code   RO         1104    i.CAN0_Handler      can0.o
+    0x00000774   0x000000d8   Code   RO         1105    i.CAN0_Open         can0.o
+    0x0000084c   0x0000001a   Code   RO         1106    i.CAN0_SendData     can0.o
+    0x00000866   0x00000002   PAD
+    0x00000868   0x00000030   Code   RO         1107    i.CAN0_Setup_Message_Object  can0.o
+    0x00000898   0x00000094   Code   RO          942    i.CANBitRateSet     can.o
+    0x0000092c   0x00000036   Code   RO          943    i.CANDataRegRead    can.o
+    0x00000962   0x00000036   Code   RO          944    i.CANDataRegWrite   can.o
+    0x00000998   0x00000018   Code   RO          946    i.CANEnable         can.o
+    0x000009b0   0x00000094   Code   RO          948    i.CANInit           can.o
+    0x00000a44   0x0000004c   Code   RO          949    i.CANIntClear       can.o
+    0x00000a90   0x0000001a   Code   RO          951    i.CANIntEnable      can.o
+    0x00000aaa   0x00000002   PAD
+    0x00000aac   0x00000030   Code   RO          952    i.CANIntNumberGet   can.o
+    0x00000adc   0x0000003c   Code   RO          954    i.CANIntStatus      can.o
+    0x00000b18   0x000001b2   Code   RO          957    i.CANMessageGet     can.o
+    0x00000cca   0x000001b2   Code   RO          958    i.CANMessageSet     can.o
+    0x00000e7c   0x00000050   Code   RO          959    i.CANRegRead        can.o
+    0x00000ecc   0x00000018   Code   RO          960    i.CANRegWrite       can.o
+    0x00000ee4   0x0000007c   Code   RO          963    i.CANStatusGet      can.o
+    0x00000f60   0x00000020   Code   RO          512    i.Delay1ms          st7735.o
+    0x00000f80   0x00000070   Code   RO         1294    i.GPIOPortB_Handler  ping.o
+    0x00000ff0   0x000000c8   Code   RO          162    i.GPIOPortF_Handler  os.o
+    0x000010b8   0x00000074   Code   RO            1    i.GPIO_PortF_Init   main.o
+    0x0000112c   0x00000018   Code   RO            2    i.HardFault_Handler  main.o
+    0x00001144   0x0000006c   Code   RO          163    i.IO_Init           os.o
+    0x000011b0   0x00000024   Code   RO         1420    i.IR_Init           ir.o
+    0x000011d4   0x00000028   Code   RO         1421    i.IR_getValue       ir.o
+    0x000011fc   0x00000080   Code   RO         1152    i.IntDisable        interrupt.o
+    0x0000127c   0x00000080   Code   RO         1153    i.IntEnable         interrupt.o
+    0x000012fc   0x000001dc   Code   RO          136    i.Interpreter       interpreter.o
+    0x000014d8   0x00000044   Code   RO          165    i.LinkTCB           os.o
+    0x0000151c   0x00000064   Code   RO          167    i.OS_AddPriorityThread  os.o
+    0x00001580   0x00000134   Code   RO          170    i.OS_AddThread      os.o
+    0x000016b4   0x00000030   Code   RO          174    i.OS_Fifo_Init      os.o
+    0x000016e4   0x00000048   Code   RO          175    i.OS_Fifo_Put       os.o
+    0x0000172c   0x0000003c   Code   RO          178    i.OS_Init           os.o
+    0x00001768   0x0000001a   Code   RO          179    i.OS_InitSemaphore  os.o
+    0x00001782   0x00000002   PAD
+    0x00001784   0x00000168   Code   RO          180    i.OS_Kill           os.o
+    0x000018ec   0x00000048   Code   RO          181    i.OS_Launch         os.o
+    0x00001934   0x0000001c   Code   RO          182    i.OS_MailBox_Init   os.o
+    0x00001950   0x0000009c   Code   RO          186    i.OS_Scheduler      os.o
+    0x000019ec   0x00000024   Code   RO          187    i.OS_Signal         os.o
+    0x00001a10   0x0000003c   Code   RO          188    i.OS_Sleep          os.o
+    0x00001a4c   0x00000018   Code   RO          189    i.OS_Suspend        os.o
+    0x00001a64   0x0000000c   Code   RO          190    i.OS_Time           os.o
+    0x00001a70   0x00000012   Code   RO          191    i.OS_TimeDifference  os.o
+    0x00001a82   0x00000024   Code   RO          192    i.OS_Wait           os.o
+    0x00001aa6   0x00000010   Code   RO          801    i.OutCRLF           uart.o
+    0x00001ab6   0x00000002   PAD
+    0x00001ab8   0x0000007c   Code   RO          500    i.PLL_Init          pll.o
+    0x00001b34   0x00000044   Code   RO            3    i.PingTask          main.o
+    0x00001b78   0x0000000c   Code   RO         1295    i.Ping_Initilizations  ping.o
+    0x00001b84   0x000000dc   Code   RO         1296    i.Ping_PORTB_Initilization  ping.o
+    0x00001c60   0x000000a4   Code   RO         1297    i.Ping_PORTB_Signal  ping.o
+    0x00001d04   0x00000014   Code   RO         1298    i.Ping_PORTB_Start  ping.o
+    0x00001d18   0x0000000c   Code   RO         1299    i.Ping_Value        ping.o
+    0x00001d24   0x0000000a   Code   RO          197    i.RemoveBlockedFromSemaphore  os.o
+    0x00001d2e   0x00000002   PAD
+    0x00001d30   0x0000003c   Code   RO          802    i.RxFifo_Get        uart.o
+    0x00001d6c   0x00000024   Code   RO          803    i.RxFifo_Init       uart.o
+    0x00001d90   0x0000003c   Code   RO          804    i.RxFifo_Put        uart.o
+    0x00001dcc   0x00000018   Code   RO          805    i.RxFifo_Size       uart.o
+    0x00001de4   0x000000f4   Code   RO          522    i.ST7735_DrawCharS  st7735.o
+    0x00001ed8   0x0000007c   Code   RO          523    i.ST7735_DrawFastHLine  st7735.o
+    0x00001f54   0x00000048   Code   RO          525    i.ST7735_DrawPixel  st7735.o
+    0x00001f9c   0x00000056   Code   RO          526    i.ST7735_DrawString  st7735.o
+    0x00001ff2   0x00000002   PAD
+    0x00001ff4   0x000000ac   Code   RO          527    i.ST7735_FillRect   st7735.o
+    0x000020a0   0x00000024   Code   RO          528    i.ST7735_FillScreen  st7735.o
+    0x000020c4   0x00000088   Code   RO          530    i.ST7735_InitR      st7735.o
+    0x0000214c   0x000000d4   Code   RO          533    i.ST7735_OutChar    st7735.o
+    0x00002220   0x00000018   Code   RO          534    i.ST7735_OutString  st7735.o
+    0x00002238   0x00000020   Code   RO          544    i.ST7735_SetCursor  st7735.o
+    0x00002258   0x0000002c   Code   RO          198    i.SW1_Debounce      os.o
+    0x00002284   0x0000002c   Code   RO          200    i.SW2_Debounce      os.o
+    0x000022b0   0x000000d4   Code   RO         1340    i.Servo_Initilization  servo.o
+    0x00002384   0x000000ec   Code   RO          202    i.SetInitialStack   os.o
+    0x00002470   0x0000004c   Code   RO          203    i.SetThreads        os.o
+    0x000024bc   0x00000014   Code   RO          204    i.SysTick_Handler   os.o
+    0x000024d0   0x00000030   Code   RO          205    i.SysTick_Init      os.o
+    0x00002500   0x0000001c   Code   RO          206    i.Timer0A_Handler   os.o
+    0x0000251c   0x00000064   Code   RO          207    i.Timer0A_Init      os.o
+    0x00002580   0x00000098   Code   RO          208    i.Timer1A_Handler   os.o
+    0x00002618   0x00000018   Code   RO          775    i.Timer2A_Handler   timer2.o
+    0x00002630   0x00000090   Code   RO          209    i.Timer3A_Handler   os.o
+    0x000026c0   0x00000068   Code   RO          210    i.Timer3A_Init      os.o
+    0x00002728   0x00000094   Code   RO          211    i.Timer4A_Handler   os.o
+    0x000027bc   0x00000014   Code   RO         1363    i.ToF_Init          tof.o
+    0x000027d0   0x00000024   Code   RO         1364    i.ToF_Measure       tof.o
+    0x000027f4   0x0000003c   Code   RO          806    i.TxFifo_Get        uart.o
+    0x00002830   0x00000024   Code   RO          807    i.TxFifo_Init       uart.o
+    0x00002854   0x0000003c   Code   RO          808    i.TxFifo_Put        uart.o
+    0x00002890   0x00000018   Code   RO          809    i.TxFifo_Size       uart.o
+    0x000028a8   0x00000058   Code   RO          810    i.UART0_Handler     uart.o
+    0x00002900   0x00000014   Code   RO          811    i.UART_InChar       uart.o
+    0x00002914   0x000000d4   Code   RO          815    i.UART_Init         uart.o
+    0x000029e8   0x00000044   Code   RO          816    i.UART_OutChar      uart.o
+    0x00002a2c   0x00000018   Code   RO          817    i.UART_OutString    uart.o
+    0x00002a44   0x0000002a   Code   RO          818    i.UART_OutUDec      uart.o
+    0x00002a6e   0x00000018   Code   RO          212    i.UnBlockTCB        os.o
+    0x00002a86   0x00000002   PAD
+    0x00002a88   0x00000030   Code   RO          213    i.UnLinkTCB         os.o
+    0x00002ab8   0x00000084   Code   RO         1647    i.VL53L0X_CheckAndLoadInterruptSettings  vl53l0x_api.o
+    0x00002b3c   0x00000052   Code   RO         1648    i.VL53L0X_ClearInterruptMask  vl53l0x_api.o
+    0x00002b8e   0x00000002   PAD
+    0x00002b90   0x000001bc   Code   RO         1649    i.VL53L0X_DataInit  vl53l0x_api.o
+    0x00002d4c   0x00000016   Code   RO         1653    i.VL53L0X_GetDeviceInfo  vl53l0x_api.o
+    0x00002d62   0x0000000a   Code   RO         1654    i.VL53L0X_GetDeviceMode  vl53l0x_api.o
+    0x00002d6c   0x000000a0   Code   RO         1655    i.VL53L0X_GetDeviceParameters  vl53l0x_api.o
+    0x00002e0c   0x00000022   Code   RO         1657    i.VL53L0X_GetFractionEnable  vl53l0x_api.o
+    0x00002e2e   0x0000003e   Code   RO         1661    i.VL53L0X_GetInterMeasurementPeriodMilliSeconds  vl53l0x_api.o
+    0x00002e6c   0x00000030   Code   RO         1662    i.VL53L0X_GetInterruptMaskStatus  vl53l0x_api.o
+    0x00002e9c   0x00000042   Code   RO         1663    i.VL53L0X_GetInterruptThresholds  vl53l0x_api.o
+    0x00002ede   0x0000001c   Code   RO         1665    i.VL53L0X_GetLimitCheckEnable  vl53l0x_api.o
+    0x00002efa   0x000000b6   Code   RO         1668    i.VL53L0X_GetLimitCheckValue  vl53l0x_api.o
+    0x00002fb0   0x00000056   Code   RO         1671    i.VL53L0X_GetMeasurementDataReady  vl53l0x_api.o
+    0x00003006   0x00000016   Code   RO         1673    i.VL53L0X_GetMeasurementTimingBudgetMicroSeconds  vl53l0x_api.o
+    0x0000301c   0x00000016   Code   RO         1677    i.VL53L0X_GetOffsetCalibrationDataMicroMeter  vl53l0x_api.o
+    0x00003032   0x0000016e   Code   RO         1685    i.VL53L0X_GetRangingMeasurementData  vl53l0x_api.o
+    0x000031a0   0x00000076   Code   RO         1689    i.VL53L0X_GetSequenceStepEnables  vl53l0x_api.o
+    0x00003216   0x00000052   Code   RO         1690    i.VL53L0X_GetSequenceStepTimeout  vl53l0x_api.o
+    0x00003268   0x0000001e   Code   RO         1698    i.VL53L0X_GetVcselPulsePeriod  vl53l0x_api.o
+    0x00003286   0x0000003e   Code   RO         1700    i.VL53L0X_GetWrapAroundCheckEnable  vl53l0x_api.o
+    0x000032c4   0x0000000c   Code   RO         1701    i.VL53L0X_GetXTalkCompensationEnable  vl53l0x_api.o
+    0x000032d0   0x00000038   Code   RO         1702    i.VL53L0X_GetXTalkCompensationRateMegaCps  vl53l0x_api.o
+    0x00003308   0x00000258   Code   RO         1499    i.VL53L0X_I2C_Init  vl53l0x_i2c.o
+    0x00003560   0x00000420   Code   RO         1460    i.VL53L0X_Init      vl53l0x.o
+    0x00003980   0x00000020   Code   RO         1704    i.VL53L0X_PerformRefCalibration  vl53l0x_api.o
+    0x000039a0   0x0000001e   Code   RO         1705    i.VL53L0X_PerformRefSpadManagement  vl53l0x_api.o
+    0x000039be   0x0000003c   Code   RO         1707    i.VL53L0X_PerformSingleMeasurement  vl53l0x_api.o
+    0x000039fa   0x00000038   Code   RO         1708    i.VL53L0X_PerformSingleRangingMeasurement  vl53l0x_api.o
+    0x00003a32   0x0000001c   Code   RO         1563    i.VL53L0X_PollingDelay  vl53l0x_platform.o
+    0x00003a4e   0x00000030   Code   RO         1564    i.VL53L0X_RdByte    vl53l0x_platform.o
+    0x00003a7e   0x00000030   Code   RO         1565    i.VL53L0X_RdDWord   vl53l0x_platform.o
+    0x00003aae   0x00000030   Code   RO         1566    i.VL53L0X_RdWord    vl53l0x_platform.o
+    0x00003ade   0x0000003a   Code   RO         1567    i.VL53L0X_ReadMulti  vl53l0x_platform.o
+    0x00003b18   0x00000024   Code   RO         1712    i.VL53L0X_SetDeviceAddress  vl53l0x_api.o
+    0x00003b3c   0x00000032   Code   RO         1713    i.VL53L0X_SetDeviceMode  vl53l0x_api.o
+    0x00003b6e   0x00000166   Code   RO         1716    i.VL53L0X_SetGpioConfig  vl53l0x_api.o
+    0x00003cd4   0x000000c2   Code   RO         1721    i.VL53L0X_SetLimitCheckEnable  vl53l0x_api.o
+    0x00003d96   0x00000076   Code   RO         1722    i.VL53L0X_SetLimitCheckValue  vl53l0x_api.o
+    0x00003e0c   0x00000016   Code   RO         1724    i.VL53L0X_SetMeasurementTimingBudgetMicroSeconds  vl53l0x_api.o
+    0x00003e22   0x000000c4   Code   RO         1731    i.VL53L0X_SetSequenceStepEnable  vl53l0x_api.o
+    0x00003ee6   0x00000108   Code   RO         1740    i.VL53L0X_StartMeasurement  vl53l0x_api.o
+    0x00003fee   0x00000002   PAD
+    0x00003ff0   0x000001a0   Code   RO         1741    i.VL53L0X_StaticInit  vl53l0x_api.o
+    0x00004190   0x00000060   Code   RO         1569    i.VL53L0X_UpdateByte  vl53l0x_platform.o
+    0x000041f0   0x00000030   Code   RO         1570    i.VL53L0X_WrByte    vl53l0x_platform.o
+    0x00004220   0x00000030   Code   RO         1572    i.VL53L0X_WrWord    vl53l0x_platform.o
+    0x00004250   0x00000040   Code   RO         1573    i.VL53L0X_WriteMulti  vl53l0x_platform.o
+    0x00004290   0x0000018c   Code   RO         2412    i.VL53L0X_calc_dmax  vl53l0x_api_core.o
+    0x0000441c   0x00000016   Code   RO         2413    i.VL53L0X_calc_macro_period_ps  vl53l0x_api_core.o
+    0x00004432   0x00000002   PAD
+    0x00004434   0x000002b0   Code   RO         2414    i.VL53L0X_calc_sigma_estimate  vl53l0x_api_core.o
+    0x000046e4   0x00000034   Code   RO         2415    i.VL53L0X_calc_timeout_mclks  vl53l0x_api_core.o
+    0x00004718   0x00000036   Code   RO         2416    i.VL53L0X_calc_timeout_us  vl53l0x_api_core.o
+    0x0000474e   0x00000002   PAD
+    0x00004750   0x00000050   Code   RO         2574    i.VL53L0X_check_part_used  vl53l0x_api_strings.o
+    0x000047a0   0x0000000e   Code   RO         2417    i.VL53L0X_decode_timeout  vl53l0x_api_core.o
+    0x000047ae   0x0000000c   Code   RO         2418    i.VL53L0X_decode_vcsel_period  vl53l0x_api_core.o
+    0x000047ba   0x0000004e   Code   RO         2419    i.VL53L0X_device_read_strobe  vl53l0x_api_core.o
+    0x00004808   0x00000026   Code   RO         2420    i.VL53L0X_encode_timeout  vl53l0x_api_core.o
+    0x0000482e   0x00000002   PAD
+    0x00004830   0x00000058   Code   RO         1461    i.VL53L0X_getSingleRangingMeasurement  vl53l0x.o
+    0x00004888   0x000000dc   Code   RO         2576    i.VL53L0X_get_device_info  vl53l0x_api_strings.o
+    0x00004964   0x00000542   Code   RO         2422    i.VL53L0X_get_info_from_device  vl53l0x_api_core.o
+    0x00004ea6   0x000000ee   Code   RO         2423    i.VL53L0X_get_measurement_timing_budget_micro_seconds  vl53l0x_api_core.o
+    0x00004f94   0x00000056   Code   RO         2266    i.VL53L0X_get_offset_calibration_data_micro_meter  vl53l0x_api_calibration.o
+    0x00004fea   0x00000234   Code   RO         2424    i.VL53L0X_get_pal_range_status  vl53l0x_api_core.o
+    0x0000521e   0x00000028   Code   RO         2425    i.VL53L0X_get_total_signal_rate  vl53l0x_api_core.o
+    0x00005246   0x0000003a   Code   RO         2426    i.VL53L0X_get_total_xtalk_rate  vl53l0x_api_core.o
+    0x00005280   0x00000046   Code   RO         2427    i.VL53L0X_get_vcsel_pulse_period  vl53l0x_api_core.o
+    0x000052c6   0x0000002c   Code   RO         2428    i.VL53L0X_isqrt     vl53l0x_api_core.o
+    0x000052f2   0x000000ea   Code   RO         2429    i.VL53L0X_load_tuning_settings  vl53l0x_api_core.o
+    0x000053dc   0x00000040   Code   RO         2430    i.VL53L0X_measurement_poll_for_completion  vl53l0x_api_core.o
+    0x0000541c   0x0000007c   Code   RO         2270    i.VL53L0X_perform_phase_calibration  vl53l0x_api_calibration.o
+    0x00005498   0x0000004c   Code   RO         2271    i.VL53L0X_perform_ref_calibration  vl53l0x_api_calibration.o
+    0x000054e4   0x0000028c   Code   RO         2272    i.VL53L0X_perform_ref_spad_management  vl53l0x_api_calibration.o
+    0x00005770   0x00000040   Code   RO         2273    i.VL53L0X_perform_single_ref_calibration  vl53l0x_api_calibration.o
+    0x000057b0   0x0000007e   Code   RO         2274    i.VL53L0X_perform_vhv_calibration  vl53l0x_api_calibration.o
+    0x0000582e   0x0000001c   Code   RO         1500    i.VL53L0X_read_byte  vl53l0x_i2c.o
+    0x0000584a   0x00000042   Code   RO         1501    i.VL53L0X_read_dword  vl53l0x_i2c.o
+    0x0000588c   0x00000794   Code   RO         1502    i.VL53L0X_read_multi  vl53l0x_i2c.o
+    0x00006020   0x00000032   Code   RO         1503    i.VL53L0X_read_word  vl53l0x_i2c.o
+    0x00006052   0x000000b0   Code   RO         2276    i.VL53L0X_ref_calibration_io  vl53l0x_api_calibration.o
+    0x00006102   0x00000002   PAD
+    0x00006104   0x000000c8   Code   RO         1462    i.VL53L0X_setAddress  vl53l0x.o
+    0x000061cc   0x00000128   Code   RO         2433    i.VL53L0X_set_measurement_timing_budget_micro_seconds  vl53l0x_api_core.o
+    0x000062f4   0x000000c2   Code   RO         2279    i.VL53L0X_set_reference_spads  vl53l0x_api_calibration.o
+    0x000063b6   0x0000001e   Code   RO         1504    i.VL53L0X_write_byte  vl53l0x_i2c.o
+    0x000063d4   0x00000368   Code   RO         1506    i.VL53L0X_write_multi  vl53l0x_i2c.o
+    0x0000673c   0x00000028   Code   RO         1507    i.VL53L0X_write_word  vl53l0x_i2c.o
+    0x00006764   0x00000008   Code   RO            6    i.WrapInterpreter   main.o
+    0x0000676c   0x0000000e   Code   RO         2659    i.__scatterload_copy  mc_w.l(handlers.o)
+    0x0000677a   0x00000002   Code   RO         2660    i.__scatterload_null  mc_w.l(handlers.o)
+    0x0000677c   0x0000000e   Code   RO         2661    i.__scatterload_zeroinit  mc_w.l(handlers.o)
+    0x0000678a   0x0000000a   Code   RO         1422    i.cmpfunc           ir.o
+    0x00006794   0x00000056   Code   RO          548    i.commandList       st7735.o
+    0x000067ea   0x00000002   PAD
+    0x000067ec   0x00000184   Code   RO          549    i.commonInit        st7735.o
+    0x00006970   0x00000028   Code   RO          820    i.copyHardwareToSoftware  uart.o
+    0x00006998   0x0000002c   Code   RO          821    i.copySoftwareToHardware  uart.o
+    0x000069c4   0x00000018   Code   RO         1463    i.delay             vl53l0x.o
+    0x000069dc   0x000000ac   Code   RO         2281    i.enable_ref_spads  vl53l0x_api_calibration.o
+    0x00006a88   0x00000032   Code   RO         2282    i.enable_spad_bit   vl53l0x_api_calibration.o
+    0x00006aba   0x00000064   Code   RO         2283    i.get_next_good_spad  vl53l0x_api_calibration.o
+    0x00006b1e   0x00000018   Code   RO         2284    i.get_ref_spad_map  vl53l0x_api_calibration.o
+    0x00006b36   0x00000122   Code   RO         2435    i.get_sequence_step_timeout  vl53l0x_api_core.o
+    0x00006c58   0x00000018   Code   RO         2285    i.is_aperture       vl53l0x_api_calibration.o
+    0x00006c70   0x00000068   Code   RO            7    i.main              main.o
+    0x00006cd8   0x00000008   Code   RO          137    i.newLine           interpreter.o
+    0x00006ce0   0x0000006e   Code   RO         2286    i.perform_ref_signal_measurement  vl53l0x_api_calibration.o
+    0x00006d4e   0x00000012   Code   RO          551    i.pushColor         st7735.o
+    0x00006d60   0x0000004a   Code   RO         1745    i.sequence_step_enabled  vl53l0x_api.o
+    0x00006daa   0x00000002   PAD
+    0x00006dac   0x00000074   Code   RO          552    i.setAddrWindow     st7735.o
+    0x00006e20   0x00000018   Code   RO         2287    i.set_ref_spad_map  vl53l0x_api_calibration.o
+    0x00006e38   0x0000013a   Code   RO         2436    i.set_sequence_step_timeout  vl53l0x_api_core.o
+    0x00006f72   0x00000002   PAD
+    0x00006f74   0x00000030   Code   RO          553    i.writecommand      st7735.o
+    0x00006fa4   0x00000020   Code   RO          554    i.writedata         st7735.o
+    0x00006fc4   0x000007e2   Data   RO          556    .constdata          st7735.o
+    0x000077a6   0x00000012   Data   RO          964    .constdata          can.o
+    0x000077b8   0x00000020   Data   RO         2657    Region$$Table       anon$$obj.o
 
 
     Execution Region ER_RW (Base: 0x20000000, Size: 0x000003d4, Max: 0xffffffff, ABSOLUTE, COMPRESSED[0x00000290])
@@ -1958,29 +1962,29 @@ Memory Map of the image
 
     0x20000000   0x00000014   Data   RW            8    .data               main.o
     0x20000014   0x0000000c   Data   RW          104    .data               adc.o
-    0x20000020   0x0000007c   Data   RW          212    .data               os.o
-    0x2000009c   0x00000034   Data   RW          554    .data               st7735.o
-    0x200000d0   0x00000004   Data   RW          775    .data               timer2.o
-    0x200000d4   0x00000018   Data   RW          820    .data               uart.o
-    0x200000ec   0x00000014   Data   RW         1105    .data               can0.o
-    0x20000100   0x00000014   Data   RW         1297    .data               ping.o
-    0x20000114   0x00000004   Data   RW         1421    .data               ir.o
-    0x20000118   0x00000001   Data   RW         1462    .data               vl53l0x.o
-    0x20000119   0x000002a9   Data   RW         1743    .data               vl53l0x_api.o
+    0x20000020   0x0000007c   Data   RW          215    .data               os.o
+    0x2000009c   0x00000034   Data   RW          557    .data               st7735.o
+    0x200000d0   0x00000004   Data   RW          778    .data               timer2.o
+    0x200000d4   0x00000018   Data   RW          823    .data               uart.o
+    0x200000ec   0x00000014   Data   RW         1108    .data               can0.o
+    0x20000100   0x00000014   Data   RW         1300    .data               ping.o
+    0x20000114   0x00000004   Data   RW         1424    .data               ir.o
+    0x20000118   0x00000001   Data   RW         1465    .data               vl53l0x.o
+    0x20000119   0x000002a9   Data   RW         1746    .data               vl53l0x_api.o
     0x200003c2   0x00000002   PAD
-    0x200003c4   0x00000010   Data   RW         2285    .data               vl53l0x_api_calibration.o
+    0x200003c4   0x00000010   Data   RW         2288    .data               vl53l0x_api_calibration.o
 
 
     Execution Region ER_ZI (Base: 0x200003d4, Size: 0x00007c1c, Max: 0xffffffff, ABSOLUTE)
 
     Base Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x200003d4   0x00007064   Zero   RW          211    .bss                os.o
-    0x20007438   0x00000080   Zero   RW          819    .bss                uart.o
-    0x200074b8   0x0000000a   Zero   RW         1420    .bss                ir.o
+    0x200003d4   0x00007064   Zero   RW          214    .bss                os.o
+    0x20007438   0x00000080   Zero   RW          822    .bss                uart.o
+    0x200074b8   0x0000000a   Zero   RW         1423    .bss                ir.o
     0x200074c2   0x00000002   PAD
-    0x200074c4   0x0000072c   Zero   RW         1461    .bss                vl53l0x.o
-    0x20007bf0   0x00000400   Zero   RW         1448    STACK               startup.o
+    0x200074c4   0x0000072c   Zero   RW         1464    .bss                vl53l0x.o
+    0x20007bf0   0x00000400   Zero   RW         1451    STACK               startup.o
 
 
 ==============================================================================
@@ -1992,8 +1996,8 @@ Image component sizes
 
        484         88          0         12          0       2516   adc.o
       1734         20         18          0          0      14445   can.o
-       424         56          0         20          0       2471   can0.o
-       404        188          0          0          0        992   interpreter.o
+       450         56          0         20          0       2899   can0.o
+       484        226          0          0          0       1064   interpreter.o
        256         24          0          0          0       1001   interrupt.o
         86         22          0          4         10       1860   ir.o
        320         84          0         20          0       8960   main.o
@@ -2016,9 +2020,9 @@ Image component sizes
        486          0          0          0          0       7291   vl53l0x_platform.o
 
     ----------------------------------------------------------------------
-     28074       2354       2068        980      31772     185715   Object Totals
+     28182       2392       2068        980      31772     186215   Object Totals
          0          0         32          0          0          0   (incl. Generated)
-        30          0          0          2          2          0   (incl. Padding)
+        32          0          0          2          2          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -2060,15 +2064,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     28504       2370       2068        980      31772     175299   Grand Totals
-     28504       2370       2068        656      31772     175299   ELF Image Totals (compressed)
-     28504       2370       2068        656          0          0   ROM Totals
+     28612       2408       2068        980      31772     175747   Grand Totals
+     28612       2408       2068        656      31772     175747   ELF Image Totals (compressed)
+     28612       2408       2068        656          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                30572 (  29.86kB)
+    Total RO  Size (Code + RO Data)                30680 (  29.96kB)
     Total RW  Size (RW Data + ZI Data)             32752 (  31.98kB)
-    Total ROM Size (Code + RO Data + RW Data)      31228 (  30.50kB)
+    Total ROM Size (Code + RO Data + RW Data)      31336 (  30.60kB)
 
 ==============================================================================
 
