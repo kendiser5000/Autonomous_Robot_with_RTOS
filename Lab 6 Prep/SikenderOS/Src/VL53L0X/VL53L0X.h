@@ -40,7 +40,7 @@ typedef int VL53L0X_I2C_Port;
 
 int VL53L0X_Init(uint32_t port, uint8_t I2C_address);
 
-int VL53L0X_setAddress(uint8_t newAddress);
+int VL53L0X_setAddress(uint32_t port, uint8_t newAddress);
 
 VL53L0X_Error VL53L0X_getSingleRangingMeasurement (uint32_t port, VL53L0X_RangingMeasurementData_t *RangingMeasurementData);
 
