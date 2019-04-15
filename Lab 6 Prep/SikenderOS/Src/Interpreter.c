@@ -55,10 +55,10 @@ void Interpreter(){
 	newLine(); 
 	UART_OutString ("4: Measure Ultrasonic"); 
 	newLine(); 
-	UART_OutString ("5: PWM"); 
-	newLine(); 
-	UART_OutString ("4: Measure Ultrasonic"); 
-	newLine(); 
+	//UART_OutString ("5: PWM"); 
+	//newLine(); 
+	//UART_OutString ("4: Measure Ultrasonic"); 
+	//newLine(); 
 	newLine();
 	UART_OutString ("Selection: ");
 	
