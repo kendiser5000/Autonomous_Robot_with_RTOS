@@ -14,6 +14,7 @@
 #include "IR.h"
 #include "Ping.h"
 #include "CAN0.h"
+#include "ADC.h"
 
 
 /** MAXSAMPLES
@@ -86,6 +87,7 @@ void Interpreter(){
 			UART_OutString("mm\r\n");
 			break;
 		case '3': 
+			//IR_Init(3);
 			UART_OutString("IR Sensor Measurement: ");
 			UART_OutUDec(IR_getValue());
 			UART_OutString("mm\r\n");

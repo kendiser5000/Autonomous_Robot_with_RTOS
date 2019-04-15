@@ -106,6 +106,7 @@ void Ping_PORTB_Signal(void){
     GPIO_PORTB_ICR_R = PORTB_PORTS;      // acknowledge flag6
     GPIO_PORTB_IM_R |= PORTB_PORTS;
     EndCritical(sr);	//enable interrupts
+			EnableInterrupts();
     OS_Kill();
 
 }
@@ -118,7 +119,7 @@ void Ping_PORTB_Signal(void){
  * @author Sikender Ashraf
  */
 void Ping_PORTB_Start(void){
-    OS_AddThread(&Ping_PORTB_Signal, 128, PORTB_PING_PRIORITY);	// should this be Ping_PORTB_Signal
+    OS_AddThread(Ping_PORTB_Signal, 128, PORTB_PING_PRIORITY);	// should this be Ping_PORTB_Signal
 }
 
 unsigned long Ping_Value(void){
