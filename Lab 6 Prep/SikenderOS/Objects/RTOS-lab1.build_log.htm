@@ -2,49 +2,66 @@
 <body>
 <pre>
 <h1>µVision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: µVision V5.25.2.0
+Copyright (C) 2018 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: Sikender Ashraf, UT Austin, LIC=Q7GII-C4BMQ-FWHZM-FLPQ1-UGX93-RT7MU
+ 
+Tool Versions:
+Toolchain:       MDK-ARM Professional  Version: 5.25.2.0
+Toolchain Path:  C:\Keil_v5\ARM\ARMCC\Bin
+C Compiler:      Armcc.exe V5.06 update 6 (build 750)
+Assembler:       Armasm.exe V5.06 update 6 (build 750)
+Linker/Locator:  ArmLink.exe V5.06 update 6 (build 750)
+Library Manager: ArmAr.exe V5.06 update 6 (build 750)
+Hex Converter:   FromElf.exe V5.06 update 6 (build 750)
+CPU DLL:         SARMCM3.DLL V5.25.2.0
+Dialog DLL:      DCM.DLL V1.17.1.0
+Target DLL:      lmidk-agdi.dll V???
+Dialog DLL:      TCM.DLL V1.35.1.0
+ 
 <h2>Project:</h2>
-C:\Users\Sijin\Documents\RTOS\RTOS-Robot\Lab 6 Prep\SikenderOS\RTOS-RobotPrep.uvproj
-Project File Date:  04/15/2019
+C:\Users\Sikenderali Ashraf\Desktop\EE 445M\RTOS-Robot\Lab 6 Prep\SikenderOS\RTOS-RobotPrep.uvproj
+Project File Date:  04/12/2019
 
 <h2>Output:</h2>
-Build target 'RTOS_Lab_3'
-compiling main.c...
-compiling ADC.c...
+*** Using Compiler 'V5.06 update 6 (build 750)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
+Rebuild target 'RTOS_Lab_3'
 compiling Interpreter.c...
-compiling IR.c...
-Src\IR.c(30): warning:  #1-D: last line of file ends without a newline
-  }
-Src\IR.c: 1 warning, 0 errors
+Src\Interpreter.c(77): warning:  #546-D: transfer of control bypasses initialization of:
+            variable "data"  (declared at line 80)
+  	switch (selection){
+  	^
+Src\Interpreter.c: 1 warning, 0 errors
+compiling PLL.c...
+compiling ADC.c...
+compiling Timer2.c...
+compiling UART.c...
+compiling ST7735.c...
+compiling main.c...
+assembling OSasm.s...
+compiling interrupt.c...
+compiling OS.c...
+compiling can.c...
+assembling startup.s...
+compiling can0.c...
+compiling Servo.c...
+compiling Ping.c...
+Src\Ping.c(109): warning:  #223-D: function "EnableInterrupts" declared implicitly
+  			EnableInterrupts();
+Src\Ping.c: 1 warning, 0 errors
+compiling MotorPWM.c...
 linking...
-Program Size: Code=27972 RO-data=2068 RW-data=980 ZI-data=31772  
-".\Objects\RTOS-lab1.axf" - 0 Error(s), 1 Warning(s).
-Load "C:\\Users\\Sijin\\Documents\\RTOS\\RTOS-Robot\\Lab 6 Prep\\SikenderOS\\Objects\\RTOS-lab1.axf" 
-Connecting: Mode=JTAG, Speed=1000000Hz
-Erase Done.
-Programming Done.
-Verify OK.
- is incompatible with parameter of type "uint16_t *"
-        ADC_Collect(channelNum, fs, medianFilter, FILTERSIZE);
-Src\IR.c(29): warning:  #1-D: last line of file ends without a newline
-  }
-Src\IR.c: 1 warning, 2 errors
-".\Objects\RTOS-lab1.axf" - 4 Error(s), 1 Warning(s).
-Target not created
-from vl53l0x.o).
-.\Objects\RTOS-lab1.axf: Error: L6218E: Undefined symbol VL53L0X_PerformSingleRangingMeasurement (referred from vl53l0x.o).
-.\Objects\RTOS-lab1.axf: Error: L6218E: Undefined symbol VL53L0X_SetDeviceAddress (referred from vl53l0x.o).
-.\Objects\RTOS-lab1.axf: Error: L6218E: Undefined symbol VL53L0X_SetDeviceMode (referred from vl53l0x.o).
-.\Objects\RTOS-lab1.axf: Error: L6218E: Undefined symbol VL53L0X_SetLimitCheckEnable (referred from vl53l0x.o).
-.\Objects\RTOS-lab1.axf: Error: L6218E: Undefined symbol VL53L0X_SetLimitCheckValue (referred from vl53l0x.o).
-.\Objects\RTOS-lab1.axf: Error: L6218E: Undefined symbol VL53L0X_StaticInit (referred from vl53l0x.o).
+.\Objects\RTOS-lab1.axf: Error: L6218E: Undefined symbol IR_Init (referred from main.o).
+.\Objects\RTOS-lab1.axf: Error: L6218E: Undefined symbol ToF_Init (referred from main.o).
+.\Objects\RTOS-lab1.axf: Error: L6218E: Undefined symbol IR_getValue (referred from interpreter.o).
+.\Objects\RTOS-lab1.axf: Error: L6218E: Undefined symbol ToF_Measure (referred from interpreter.o).
 Not enough information to list image symbols.
-Finished: 1 information, 0 warning and 10 error messages.
-".\Objects\RTOS-lab1.axf" - 10 Error(s), 0 Warning(s).
-Target not created
-: 0 warnings, 1 error
-compiling vl53l0x_api_strings.c...
-Src\VL53L0X\core\src\vl53l0x_api_strings.c(29): error:  #5: cannot open source input file "vl53l0x_api.h": No such file or directory
-  #include "vl53l0x_api.h"
-Src\VL53L0X\core\src\vl53l0x_api_strings.c: 0 warnings, 1 error
-".\Objects\RTOS-lab1.axf" - 8 Error(s), 0 Warning(s).
-Target not created
+Not enough information to list load addresses in the image map.
+Finished: 2 information, 0 warning and 4 error messages.
+".\Objects\RTOS-lab1.axf" - 4 Error(s), 2 Warning(s).
+Target not created.
+Build Time Elapsed:  00:00:03
+</pre>
+</body>
+</html>
