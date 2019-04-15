@@ -105,7 +105,7 @@ void UserTask(void){
   XmtData[1] = PF4>>2;  // 0 or 4
   XmtData[2] = 0;       // unassigned field
   XmtData[3] = sequenceNum;  // sequence count
-  CAN0_SendData(XmtData);
+  //CAN_SendData(XmtData);
   sequenceNum++;
 }
 

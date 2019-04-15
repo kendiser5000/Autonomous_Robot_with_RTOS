@@ -62,7 +62,7 @@ void Interpreter(){
 	//newLine(); 
 	newLine();
 	UART_OutString ("Selection: ");
-	
+	static short i = 0;
 	char selection = UART_InChar();
 	// Error checking
 	while ((selection != '1') && (selection != '2') && (selection != '3') && (selection != '4')){
@@ -79,7 +79,10 @@ void Interpreter(){
 		case '1': 
 			UART_OutString ("Sending data onto CAN"); 
 			uint8_t data[4] = {0x04, 0x03, 0x02, 0x01};
-			CAN0_SendData(data);
+			unsigned char CanData[4];
+			((unsigned short*)CanData)[0] = i++;
+			i %= 4;
+			CAN0_SendData(IRSensor, CanData);
 			newLine();
 			break;
 		case '2': 
@@ -102,6 +105,7 @@ void Interpreter(){
 				message[2*i+1] = ((USONICValues[i]&0xFF00)>>8);
 				UART_OutUDec(USONICValues[i]);
 			}
+			UART_OutString("mm\r\n");
 			break;
 	}
 	newLine();
