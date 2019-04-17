@@ -2,7 +2,6 @@
 lab-3/Objects
 lab-3/Listings
 *.bak
-*.dep
 *.o
 *.d
 *.Sijin
