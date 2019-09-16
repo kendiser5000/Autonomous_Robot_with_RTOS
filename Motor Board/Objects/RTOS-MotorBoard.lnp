@@ -1,0 +1,25 @@
+--cpu=Cortex-M4 --fpu=SoftVFP
+".\objects\main.o"
+".\objects\interpreter.o"
+".\objects\os.o"
+".\objects\pll.o"
+".\objects\uart.o"
+".\objects\osasm.o"
+".\objects\can.o"
+".\objects\can0.o"
+".\objects\interrupt.o"
+".\objects\motorcontrol.o"
+".\objects\tof.o"
+".\objects\vl53l0x.o"
+".\objects\vl53l0x_i2c.o"
+".\objects\vl53l0x_platform.o"
+".\objects\vl53l0x_api.o"
+".\objects\vl53l0x_api_core.o"
+".\objects\vl53l0x_api_ranging.o"
+".\objects\vl53l0x_api_calibration.o"
+".\objects\vl53l0x_api_strings.o"
+".\objects\pwm.o"
+".\objects\startup.o"
+--library_type=microlib --ro-base 0x00000000 --entry 0x00000000 --rw-base 0x20000000 --entry Reset_Handler --first __Vectors --strict --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\Listings\RTOS-MotorBoard.map" -o .\Objects\RTOS-MotorBoard.axf
